@@ -9,18 +9,16 @@ type RemoteData a
   | Failed String
   | Answer a
 
--- TODO Rename
-foo : Maybe (Response a) -> RemoteData a
-foo response =
+fromHttp : Maybe (Response a) -> RemoteData a
+fromHttp response =
   case response of
     Nothing -> NotAsked
     Just Waiting -> Loading
     Just (Failure _ err) -> Failed err
     Just (Success x) -> Answer x
 
--- TODO Rename
-bar : Json.Decoder a -> Maybe (Response String) -> RemoteData a
-bar decoder response =
+fromFromHttp : Json.Decoder a -> Maybe (Response String) -> RemoteData a
+fromFromHttp decoder response =
   case response of
     Nothing -> NotAsked
     Just Waiting -> Loading
