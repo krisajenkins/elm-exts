@@ -19,8 +19,8 @@ fromHttp response =
     Just (Failure _ err) -> Failed err
     Just (Success x) -> Answer x
 
-fromFromHttp : Json.Decoder a -> Maybe (Response String) -> RemoteData a
-fromFromHttp decoder response =
+fromJsonHttp : Json.Decoder a -> Maybe (Response String) -> RemoteData a
+fromJsonHttp decoder response =
   case response of
     Nothing -> NotAsked
     Just Waiting -> Loading
