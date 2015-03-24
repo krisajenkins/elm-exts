@@ -6,15 +6,29 @@ import List
 import Set
 import Set (Set)
 import Http
+import Http (..)
 
-isWaiting : Http.Response a -> Bool
+isWaiting : Response a -> Bool
 isWaiting response =
   case response of
-    Http.Waiting -> True
+    Waiting -> True
     _            -> False
 
-isSuccess : Http.Response a -> Bool
+isSuccess : Response a -> Bool
 isSuccess response =
   case response of
-    Http.Success _ -> True
+    Success _ -> True
     _              -> False
+
+justResponse : Response a -> Maybe (Result String a)
+justResponse x =
+  case x of
+    Success v -> Just (Ok v)
+    Waiting -> Nothing
+    Failure _ msg -> Just (Err msg)
+
+justSuccess : Response a -> Maybe a
+justSuccess x =
+  case x of
+    Success v -> Just v
+    _ -> Nothing
