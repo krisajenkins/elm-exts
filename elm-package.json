@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "summary": "helpful summary of your project, less than 80 characters",
+    "repository": "https://github.com/krisajenkins/elm-exts.git",
+    "license": "BSD3",
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [
+        "Exts.Delta",
+        "Exts.Http",
+        "Exts.List",
+        "Exts.Maybe",
+        "Exts.RemoteData",
+        "Exts.Result",
+        "Exts.SafeList",
+        "Exts.Set",
+        "Exts.String"
+	],
+    "dependencies": {
+        "elm-lang/core": "1.1.0 <= v < 2.0.0",
+        "evancz/elm-html": "1.1.0 <= v < 2.0.0",
+        "circuithub/elm-json-extra": "2.0.0 <= v < 3.0.0"
+    }
+}
