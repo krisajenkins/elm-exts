@@ -1,5 +1,7 @@
 module Exts.Http where
 
+{-| Extensions to the core Http library. |-}
+
 import List
 import Set
 import Set (Set)

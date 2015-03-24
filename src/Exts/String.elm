@@ -1,5 +1,7 @@
 module Exts.String where
 
+{-| Extensions to the core String library. |-}
+
 import String (..)
 
 removePrefix : String -> String -> String

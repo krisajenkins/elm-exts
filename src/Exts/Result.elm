@@ -1,5 +1,7 @@
 module Exts.Result where
 
+{-| Extensions to the core Maybe library. |-}
+
 import Http
 
 isOk : Result a b -> Bool
@@ -19,4 +21,3 @@ resultWithDefault d x =
   case x of
     Ok y -> y
     Err _ -> d
-

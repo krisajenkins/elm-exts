@@ -1,5 +1,7 @@
 module Exts.List where
 
+{-| Extensions to the core List library. |-}
+
 import List (..)
 
 chunk : Int -> List a -> List (List a)

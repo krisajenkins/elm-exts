@@ -1,5 +1,7 @@
 module Exts.RemoteData where
 
+{-| A replacement to the Http type. It's chief addition is to model the notion of "Not yet requested." |-}
+
 import Json.Decode as Json
 import Http (..)
 

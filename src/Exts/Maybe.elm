@@ -1,5 +1,7 @@
 module Exts.Maybe where
 
+{-| Extensions to the core Maybe library. |-}
+
 import Maybe
 
 isJust : Maybe a -> Bool
