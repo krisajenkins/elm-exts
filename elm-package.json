@@ -11,6 +11,8 @@
         "Exts.Http",
         "Exts.List",
         "Exts.Maybe",
+        "Exts.Html.Bootstrap",
+        "Exts.Html.Table",
         "Exts.RemoteData",
         "Exts.Result",
         "Exts.SafeList",
