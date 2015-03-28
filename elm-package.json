@@ -11,6 +11,7 @@
         "Exts.Http",
         "Exts.List",
         "Exts.Maybe",
+        "Exts.Tuple",
         "Exts.Html.Bootstrap",
         "Exts.Html.Table",
         "Exts.RemoteData",
