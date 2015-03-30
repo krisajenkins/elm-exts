@@ -4,6 +4,12 @@ module Exts.Result where
 
 import Http
 
+bimap : (e -> f) -> (a -> b)  -> Result e a -> Result f b
+bimap f g r =
+  case r of
+    Ok x -> Ok (g x)
+    Err x -> Err (f x)
+
 isOk : Result a b -> Bool
 isOk x =
   case x of
