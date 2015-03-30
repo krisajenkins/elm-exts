@@ -16,12 +16,6 @@ isOk x =
     Ok _ -> True
     Err _ -> False
 
-resultToMaybe : Result a b -> Maybe b
-resultToMaybe x =
-  case x of
-    Err _ -> Nothing
-    Ok y -> Just y
-
 resultWithDefault : b -> Result a b ->  b
 resultWithDefault d x =
   case x of
