@@ -10,6 +10,7 @@
         "Exts.Delta",
         "Exts.Http",
         "Exts.List",
+        "Exts.Json.Encode",
         "Exts.Maybe",
         "Exts.Tuple",
         "Exts.Html.Bootstrap",
