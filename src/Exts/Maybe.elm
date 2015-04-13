@@ -17,3 +17,11 @@ maybeNumber x =
   case x of
     Nothing -> ""
     Just x -> toString x
+
+mapMaybe : (comparable -> Maybe b) -> List comparable -> List b
+mapMaybe f xs =
+  case xs of
+    [] -> []
+    (x::ys) -> case f x of
+                 Nothing -> mapMaybe f ys
+                 Just y -> y :: mapMaybe f ys
