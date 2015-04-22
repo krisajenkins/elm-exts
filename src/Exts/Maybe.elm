@@ -9,6 +9,9 @@ isJust x = case x of
              Just _ -> True
              _ -> False
 
+isNothing : Maybe a -> Bool
+isNothing = not << isJust
+
 maybeString : Maybe String -> String
 maybeString = Maybe.withDefault ""
 
