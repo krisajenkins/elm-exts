@@ -21,7 +21,7 @@ maybeNumber x =
     Nothing -> ""
     Just x -> toString x
 
-mapMaybe : (comparable -> Maybe b) -> List comparable -> List b
+mapMaybe : (a -> Maybe b) -> List a -> List b
 mapMaybe f xs =
   case xs of
     [] -> []
