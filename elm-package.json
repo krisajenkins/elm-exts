@@ -8,22 +8,22 @@
     ],
     "exposed-modules": [
         "Exts.Delta",
-        "Exts.Http",
-        "Exts.List",
-        "Exts.Json.Encode",
-        "Exts.Maybe",
-        "Exts.Tuple",
         "Exts.Html.Bootstrap",
         "Exts.Html.Table",
-        "Exts.RemoteData",
+        "Exts.Json.Encode",
+        "Exts.List",
+        "Exts.Maybe",
         "Exts.Result",
         "Exts.SafeList",
         "Exts.Set",
-        "Exts.String"
+        "Exts.String",
+        "Exts.Tuple"
     ],
     "dependencies": {
         "circuithub/elm-json-extra": "2.0.0 <= v < 3.0.0",
-        "elm-lang/core": "1.1.0 <= v < 2.0.0",
-        "evancz/elm-html": "1.1.0 <= v < 2.0.0"
-    }
+        "elm-lang/core": "2.0.0 <= v < 3.0.0",
+        "evancz/elm-html": "3.0.0 <= v < 4.0.0",
+        "evancz/elm-http": "1.0.0 <= v < 2.0.0"
+    },
+    "elm-version": "0.15.0 <= v < 0.16.0"
 }

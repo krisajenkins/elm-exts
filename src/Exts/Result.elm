@@ -2,8 +2,6 @@ module Exts.Result where
 
 {-| Extensions to the core Maybe library. |-}
 
-import Http
-
 bimap : (e -> f) -> (a -> b)  -> Result e a -> Result f b
 bimap f g r =
   case r of

@@ -2,9 +2,8 @@ module Exts.Html.Bootstrap where
 
 {-| Bootstrap support. |-}
 
-import Html (..)
-import Html.Attributes (..)
-import List
+import Html exposing (..)
+import Html.Attributes exposing (..)
 
 container : List Html -> Html
 container = div [class "container"]

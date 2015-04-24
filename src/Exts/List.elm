@@ -2,7 +2,7 @@ module Exts.List where
 
 {-| Extensions to the core List library. |-}
 
-import List (..)
+import List exposing (take, drop, length)
 
 chunk : Int -> List a -> List (List a)
 chunk n xs =

@@ -2,7 +2,7 @@ module Exts.String where
 
 {-| Extensions to the core String library. |-}
 
-import String (..)
+import String exposing (dropLeft, length, startsWith)
 
 removePrefix : String -> String -> String
 removePrefix prefix s =

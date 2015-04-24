@@ -7,8 +7,7 @@ Implementation detail: This code is hampered by the lack of Elm's type classes. 
 2. It is up to you to ensure (a) implments Eq correctly.
 -}
 
-import List
-import List (append, partition, (::))
+import List exposing (append, partition, (::))
 import Set
 
 filter : (a -> Bool) -> List a -> List a

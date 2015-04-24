@@ -5,9 +5,8 @@ module Exts.Html.Table where
     ready to rewrite when this 80% case no longer suits.
 |-}
 
-import Html (..)
-import Html.Attributes (..)
-import List
+import Html exposing (..)
+import Html.Attributes exposing (..)
 
 titleGroup : List String -> Html
 titleGroup strings = div [] (List.map (\s -> div [] [text s]) strings)
