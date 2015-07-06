@@ -8,6 +8,7 @@
     ],
     "exposed-modules": [
         "Exts.Delta",
+        "Exts.Dict",
         "Exts.Html.Bootstrap",
         "Exts.Html.Table",
         "Exts.Json.Encode",
