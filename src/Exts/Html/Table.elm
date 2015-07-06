@@ -1,19 +1,17 @@
-module Exts.Html.Table where
+module Exts.Html.Table
+  (CellDef, TableDef, simpleTable, titleGroup, valueGroup)
+  where
 
 {-| Helpers for simple data tables.
-    I find this approach brakes down for all but simple tables, so be
-    ready to rewrite when this 80% case no longer suits.
-|-}
+
+  I find this approach brakes down for all but simple tables, so be
+  ready to rewrite when this 80% case no longer suits.
+
+@docs CellDef, TableDef, simpleTable, titleGroup, valueGroup
+-}
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-
-titleGroup : List String -> Html
-titleGroup strings = div [] (List.map (\s -> div [] [text s]) strings)
-
-valueGroup : List (a -> Html) -> a -> Html
-valueGroup fs x = div [] (List.map (\f -> div [] [f x]) fs)
-
 
 type alias CellDef a = (Html, (a -> Html))
 type alias TableDef a = List (CellDef a)
@@ -30,3 +28,9 @@ simpleTableRow tableDef item =
   tr []
      (List.map (\ (_,f) -> (td [] [f item]))
                tableDef)
+
+titleGroup : List String -> Html
+titleGroup strings = div [] (List.map (\s -> div [] [text s]) strings)
+
+valueGroup : List (a -> Html) -> a -> Html
+valueGroup fs x = div [] (List.map (\f -> div [] [f x]) fs)

@@ -1,9 +1,14 @@
 module Exts.String where
 
-{-| Extensions to the core String library. |-}
+{-| Extensions to the core String library.
+
+@docs removePrefix
+
+-}
 
 import String exposing (dropLeft, length, startsWith)
 
+{-| Strip a leading string from a string. -}
 removePrefix : String -> String -> String
 removePrefix prefix s =
   if (startsWith prefix s)
