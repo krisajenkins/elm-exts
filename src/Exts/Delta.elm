@@ -8,7 +8,6 @@ Implementation detail: This code is hampered by the lack of Elm's type classes. 
 -}
 
 import List exposing (append, partition, (::))
-import Set
 
 filter : (a -> Bool) -> List a -> List a
 filter p xs = case xs of
