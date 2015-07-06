@@ -14,7 +14,6 @@
         "Exts.List",
         "Exts.Maybe",
         "Exts.Result",
-        "Exts.SafeList",
         "Exts.Set",
         "Exts.String",
         "Exts.Tuple"
