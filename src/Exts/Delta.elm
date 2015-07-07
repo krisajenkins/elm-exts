@@ -30,18 +30,16 @@ intersect xs ys = List.filter (\x -> listContains x ys) xs
 listContains : a -> List a -> Bool
 listContains x = List.any ((==) x)
 
-type alias Delta a = {
-  entering : List a,
-  continuing : List a,
-  leaving : List a
-}
+type alias Delta a =
+  {entering : List a
+  ,continuing : List a
+  ,leaving : List a}
 
 empty : Delta a
-empty = {
-  entering = [],
-  continuing = [],
-  leaving = []
-  }
+empty =
+  {entering = []
+  ,continuing = []
+  ,leaving = []}
 
 generation : List a -> Delta a -> Delta a
 generation xs ds =
@@ -51,5 +49,4 @@ generation xs ds =
       newContinuers = intersect xs actives
   in { empty | entering <- newEntries
              , continuing <- newContinuers
-             , leaving <- newLeavers
-             }
+             , leaving <- newLeavers}
