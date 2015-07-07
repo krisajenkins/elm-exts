@@ -20,7 +20,6 @@ import Dict exposing (Dict,insert)
 indexBy : (v -> comparable) -> List v -> Dict comparable v
 indexBy f = List.foldl (\x -> insert (f x) x) Dict.empty
 
-
 {-| Group a list of items by a key.
 
   Supply an indexing function (eg. `.id`) and a list of
@@ -30,7 +29,7 @@ indexBy f = List.foldl (\x -> insert (f x) x) Dict.empty
 -}
 groupBy : (v -> comparable) -> List v -> Dict comparable (List v)
 groupBy f =
-  let foo g x d = let key = g x
-                      newValue = x :: Maybe.withDefault [] (Dict.get key d)
-                  in insert key newValue d
-  in List.foldl (\x -> foo f x) Dict.empty
+  let reducer g x d = let key = g x
+                          newValue = x :: Maybe.withDefault [] (Dict.get key d)
+                      in insert key newValue d
+  in List.foldl (reducer f) Dict.empty
