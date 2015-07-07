@@ -5,6 +5,8 @@ module Exts.Delta (Delta, empty, generation) where
 Implementation detail: This code is hampered by the lack of Elm's type classes. Note the following:
 1. Performance may degrade badly as the number of elements increases.
 2. It is up to you to ensure (a) implments Eq correctly.
+
+@docs Delta, empty, generation
 -}
 
 import List exposing (append, partition, (::))
@@ -30,17 +32,20 @@ intersect xs ys = List.filter (\x -> listContains x ys) xs
 listContains : a -> List a -> Bool
 listContains x = List.any ((==) x)
 
+{-| A data-structure that maintains the difference list of entering, continuing and leaving players. -}
 type alias Delta a =
   {entering : List a
   ,continuing : List a
   ,leaving : List a}
 
+{-| A default starting state for Deltas. -}
 empty : Delta a
 empty =
   {entering = []
   ,continuing = []
   ,leaving = []}
 
+{-| Update the delta by inspecting a list of players. -}
 generation : List a -> Delta a -> Delta a
 generation xs ds =
   let actives = union ds.entering ds.continuing
