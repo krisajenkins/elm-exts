@@ -2,7 +2,7 @@ module Exts.Dict where
 
 {-| Extensions to the core Dict library.
 
-@docs indexBy, groupBy
+@docs indexBy, groupBy, frequency
 
 -}
 
@@ -33,3 +33,7 @@ groupBy f =
                           newValue = x :: Maybe.withDefault [] (Dict.get key d)
                       in insert key newValue d
   in List.foldl (reducer f) Dict.empty
+
+{-| Create a frequency-map from the given list. -}
+frequency : List comparable -> Dict comparable Int
+frequency xs = Dict.map (\_ -> List.length) <| groupBy identity xs
