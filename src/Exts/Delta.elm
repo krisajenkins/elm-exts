@@ -1,4 +1,4 @@
-module Exts.Delta where
+module Exts.Delta (Delta, empty, generation) where
 
 {-| A system for tracking players that enter and leave a stage, a-la D3.
 
