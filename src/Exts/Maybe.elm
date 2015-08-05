@@ -5,7 +5,7 @@ module Exts.Maybe where
 @docs isJust, isNothing, maybeString, maybeNumber, maybe
 -}
 
-import Maybe
+import Maybe exposing (withDefault)
 
 {-| Boolean checks. -}
 isJust : Maybe a -> Bool
@@ -30,8 +30,4 @@ maybeNumber x =
 
 {-| Apply a function to a value, returning the default if the function returns Nothing. -}
 maybe : b -> (a -> b) -> Maybe a -> b
-maybe default f maybe =
-  case maybe of
-    Nothing -> default
-    Just x -> f x
-
+maybe default f = withDefault default << Maybe.map f
