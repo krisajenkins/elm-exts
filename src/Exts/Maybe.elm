@@ -2,7 +2,7 @@ module Exts.Maybe where
 
 {-| Extensions to the core Maybe library.
 
-@docs isJust, isNothing, maybeString, maybeNumber, mapMaybe
+@docs isJust, isNothing, maybeString, maybeNumber, mapMaybe, maybe, bind
 -}
 
 import Maybe
@@ -36,3 +36,17 @@ mapMaybe f xs =
     (x::ys) -> case f x of
                  Nothing -> mapMaybe f ys
                  Just y -> y :: mapMaybe f ys
+
+{-| Apply a function to a value, returning the default if the function returns Nothing. -}
+maybe : b -> (a -> b) -> Maybe a -> b
+maybe default f maybe =
+  case maybe of
+    Nothing -> default
+    Just x -> f x
+
+{-| Monadic bind for the Maybe type. -}
+bind : Maybe a -> (a -> Maybe b) -> Maybe b
+bind ma f =
+  case ma of
+    Nothing -> Nothing
+    Just a -> f a
