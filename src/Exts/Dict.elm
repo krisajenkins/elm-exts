@@ -27,6 +27,7 @@ indexBy f = List.foldl (\x -> insert (f x) x) Dict.empty
 
   If the indexing function returns a unique key for every item, consider `indexBy` instead.
 -}
+-- TODO This function would be more efficient if it used Dict.update, instead of Dict.insert.
 groupBy : (v -> comparable) -> List v -> Dict comparable (List v)
 groupBy f =
   let reducer g x d = let key = g x
