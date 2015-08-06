@@ -36,4 +36,9 @@ groupBy f =
 
 {-| Create a frequency-map from the given list. -}
 frequency : List comparable -> Dict comparable Int
-frequency xs = Dict.map (\_ -> List.length) <| groupBy identity xs
+frequency =
+  let updater m = case m of
+                    Nothing -> Just 0
+                    Just n -> Just (n + 1)
+      reducer x = Dict.update x updater
+  in List.foldl reducer Dict.empty
