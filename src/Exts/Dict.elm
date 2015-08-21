@@ -39,7 +39,7 @@ groupBy f =
 frequency : List comparable -> Dict comparable Int
 frequency =
   let updater m = case m of
-                    Nothing -> Just 0
+                    Nothing -> Just 1
                     Just n -> Just (n + 1)
       reducer x = Dict.update x updater
   in List.foldl reducer Dict.empty
