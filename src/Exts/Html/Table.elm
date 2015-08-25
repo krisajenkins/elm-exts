@@ -1,5 +1,5 @@
 module Exts.Html.Table
-  (CellDef, TableDef, simpleTable, titleGroup, valueGroup)
+  (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup)
   where
 
 {-| Helpers for simple data tables. Define how a list of items can be rendered as a table. The definition a list of (column-title, column-value-accessor) pairs.
@@ -7,7 +7,7 @@ module Exts.Html.Table
   I find this approach brakes down for all but simple tables, so be
   ready to rewrite when this 80% case no longer suits.
 
-@docs CellDef, TableDef, simpleTable, titleGroup, valueGroup
+@docs CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup
 -}
 
 import Html exposing (..)
@@ -31,6 +31,7 @@ simpleTable tableDef items =
                                    tableDef)]
         ,tbody [] (List.map (simpleTableRow tableDef) items)]
 
+{-| Given a table definition, render an element to a <tr> tag. This is lower-level. Usually you will want `simpleTable` instead. -}
 simpleTableRow : TableDef a -> a -> Html
 simpleTableRow tableDef item =
   tr []
