@@ -2,7 +2,7 @@ module Exts.Result where
 
 {-| Extensions to the core Result library.
 
-@docs bimap, isOk, isErr, resultWithDefault
+@docs bimap, isOk, isErr, resultWithDefault, mappend
 -}
 
 {-| Treat Result as a bifunctor. -}
@@ -29,3 +29,11 @@ resultWithDefault d x =
   case x of
     Ok y -> y
     Err _ -> d
+
+{-| Monoidal append - join two Results together as though they were one. -}
+mappend : Result e a -> Result e b -> Result e (a,b)
+mappend a b =
+  case (a,b) of
+    (Err x,_) -> Err x
+    (_,Err y) -> Err y
+    (Ok x, Ok y) -> Ok (x,y)
