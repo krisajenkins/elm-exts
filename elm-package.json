@@ -12,6 +12,7 @@
         "Exts.Html.Bootstrap",
         "Exts.Html.Table",
         "Exts.Json.Encode",
+        "Exts.LatLng",
         "Exts.List",
         "Exts.Maybe",
         "Exts.Result",
