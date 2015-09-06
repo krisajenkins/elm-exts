@@ -2,7 +2,7 @@ module Exts.Html.Bootstrap where
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs container, containerFluid, row, empty, twoColumns, Ratio, youtube
+@docs container, containerFluid, row, empty, twoColumns, Ratio, video
 -}
 
 import Html exposing (..)
@@ -30,9 +30,14 @@ twoColumns left right =
   row [div [class "col-xs-6"] left
       ,div [class "col-xs-6"] right]
 
-{-| Embed a YouTube video, in a responsive frame. -}
-youtube : Ratio -> String -> Html
-youtube ratio url =
+{-| Aspect ratios for responsive video embedding. -}
+type Ratio
+  = SixteenByNine
+  | FourByThree
+
+{-| Embed a responsive video. -}
+video : Ratio -> String -> Html
+video ratio url =
   let ratioClass = case ratio of
                      SixteenByNine -> "embed-responsive-16by9"
                      FourByThree   -> "embed-responsive-4by3"
@@ -42,8 +47,3 @@ youtube ratio url =
               [iframe [class "embed-responsive-item"
                       ,src url]
                       []]]
-
-{-| Aspect ratios for responsive video embedding. -}
-type Ratio
-  = SixteenByNine
-  | FourByThree
