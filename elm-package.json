@@ -10,6 +10,7 @@
         "Exts.Delta",
         "Exts.Dict",
         "Exts.Html.Bootstrap",
+        "Exts.Html.Events",
         "Exts.Html.Table",
         "Exts.Json.Encode",
         "Exts.Float",
