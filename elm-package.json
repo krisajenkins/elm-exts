@@ -13,6 +13,7 @@
         "Exts.Html.Bootstrap",
         "Exts.Html.Events",
         "Exts.Html.Table",
+        "Exts.Task",
         "Exts.Json.Encode",
         "Exts.Float",
         "Exts.LatLng",
