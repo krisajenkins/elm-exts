@@ -17,7 +17,6 @@ import Task exposing (Task)
 asEffect : Task e a -> Effects (Result e a)
 asEffect = Effects.task << Task.toResult
 
-
 {-| Wrap a plain model as a (model, no-effects) pair.
 
 This is taken from the [Effects Documentation](http://package.elm-lang.org/packages/evancz/elm-effects/1.0.0/Effects),
