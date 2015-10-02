@@ -4,7 +4,8 @@
     "repository": "https://github.com/krisajenkins/elm-exts.git",
     "license": "BSD3",
     "source-directories": [
-        "src"
+        "src",
+        "test"
     ],
     "exposed-modules": [
         "Exts.Delta",
