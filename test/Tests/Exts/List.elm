@@ -7,7 +7,20 @@ import ElmTest.Assertion exposing (assert, assertEqual)
 import Exts.List exposing (..)
 
 tests : Test
-tests = suite "Exts.List" [mergeByTests]
+tests = suite "Exts.List" [chunkTests
+                          ,mergeByTests]
+
+chunkTests : Test
+chunkTests =
+  suite "chunk"
+    [defaultTest (assertEqual []
+                              (chunk 0 []))
+    ,defaultTest (assertEqual []
+                              (chunk 3 []))
+    ,defaultTest (assertEqual ([[1,2,3], [4,5,6], [7,8,9], [10]])
+                              (chunk 3 [1..10]))
+    ,defaultTest (assertEqual ([[1..4], [5..8], [9..12]])
+                              (chunk 4 [1..12]))]
 
 mergeByTests : Test
 mergeByTests =
