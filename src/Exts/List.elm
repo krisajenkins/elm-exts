@@ -2,10 +2,11 @@ module Exts.List where
 
 {-| Extensions to the core List library.
 
-@docs chunk
+@docs chunk,mergeBy
  -}
 
 import List exposing (take, drop, length)
+import Dict
 
 {-| Split a list into chunks of length n.
 
@@ -18,3 +19,12 @@ chunk n xs =
   if | xs == [] -> []
      | (length xs) > n -> (take n xs) :: (chunk n (drop n xs))
      | otherwise -> [xs]
+
+{-| Merge two lists. The first argument is a function which returns
+the unique ID of each element. Where an element appears more than
+once, the last won wins.
+-}
+mergeBy : (a -> comparable) -> List a -> List a -> List a
+mergeBy f xs ys =
+  let reducer v acc = Dict.insert (f v) v acc
+  in Dict.values (List.foldl reducer Dict.empty (xs ++ ys))
