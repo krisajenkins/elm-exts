@@ -2,7 +2,7 @@ module Exts.List where
 
 {-| Extensions to the core List library.
 
-@docs chunk,mergeBy
+@docs chunk,mergeBy, singleton
  -}
 
 import List exposing (take, drop, length)
@@ -28,3 +28,7 @@ mergeBy : (a -> comparable) -> List a -> List a -> List a
 mergeBy f xs ys =
   let reducer v acc = Dict.insert (f v) v acc
   in Dict.values (List.foldl reducer Dict.empty (xs ++ ys))
+
+{-| Wrap a single item into a list. -}
+singleton : a -> List a
+singleton x = [x]
