@@ -2,7 +2,7 @@ module Exts.Html.Bootstrap where
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs container, containerFluid, row, empty, twoColumns, Ratio, video
+@docs container, containerFluid, row, empty, twoColumns, Ratio, video, glyphicon
 -}
 
 import Html exposing (..)
@@ -47,3 +47,9 @@ video ratio url =
               [iframe [class "embed-responsive-item"
                       ,src url]
                       []]]
+
+{-| Glyphicons. Supply the unprefixed glyph name (eg. 'zoom-in'). -}
+glyphicon : String -> Html
+glyphicon name =
+  span [class ("glyphicon glyphicon-" ++ name)]
+       []
