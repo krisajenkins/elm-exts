@@ -2,7 +2,7 @@ module Exts.Maybe where
 
 {-| Extensions to the core Maybe library.
 
-@docs isJust, isNothing, maybe, mappend
+@docs isJust, isNothing, maybe, mappend, catMaybes
 -}
 
 import Maybe exposing (withDefault)
@@ -28,3 +28,11 @@ mappend a b =
     (Nothing,_) -> Nothing
     (_,Nothing) -> Nothing
     (Just x, Just y) -> Just (x,y)
+
+{-| Extract all the `Just` values from a List of Maybes. -}
+catMaybes : List (Maybe a) -> List a
+catMaybes xs =
+  case xs of
+    [] -> []
+    (Nothing::xs') -> catMaybes xs'
+    (Just x::xs') -> x :: catMaybes xs'
