@@ -11,12 +11,11 @@
         "Exts.Delta",
         "Exts.Dict",
         "Exts.Effects",
+        "Exts.Float",
         "Exts.Html.Bootstrap",
         "Exts.Html.Events",
         "Exts.Html.Table",
-        "Exts.Task",
         "Exts.Json.Encode",
-        "Exts.Float",
         "Exts.LatLng",
         "Exts.List",
         "Exts.Maybe",
@@ -24,6 +23,7 @@
         "Exts.Routing",
         "Exts.Set",
         "Exts.String",
+        "Exts.Task",
         "Exts.Tuple"
     ],
     "dependencies": {
