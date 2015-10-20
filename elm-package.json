@@ -20,7 +20,6 @@
         "Exts.List",
         "Exts.Maybe",
         "Exts.Result",
-        "Exts.Routing",
         "Exts.Set",
         "Exts.String",
         "Exts.Task",
