@@ -1,16 +1,17 @@
 module Exts.Http
-       (put, postForm)
+       (put, postForm, promoteError)
        where
 
 {-| Extensions to the main Http library.
 
-@docs put, postForm
+@docs promoteError, put, postForm
 -}
 
 import Http exposing (..)
 import Json.Decode exposing (Decoder)
 import Task exposing (Task, andThen, mapError, succeed, fail)
 
+{-| Convert an Http.RawError into an Error, using the same rules Http uses internally. -}
 promoteError : RawError -> Error
 promoteError rawError =
   case rawError of
