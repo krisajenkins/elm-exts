@@ -73,11 +73,11 @@ popover direction isShown styles title body =
                  ,("right",  (direction == Right))
                  ,("bottom", (direction == Bottom))
                  ,("left",   (direction == Left))]
-      ,style ([("top", "50px")
+      ,style ([("top", "0")
               ,("left", "0")
               ,("right", "0")
-              ,("margin-left", "auto")
-              ,("margin-right", "auto")
+              ,("margin-left", "0")
+              ,("margin-right", "0")
               ,("display", "block")]
               ++
               styles)]
