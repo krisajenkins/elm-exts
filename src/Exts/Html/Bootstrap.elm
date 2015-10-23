@@ -2,7 +2,7 @@ module Exts.Html.Bootstrap where
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs container, containerFluid, row, empty, twoColumns, Ratio, video, glyphicon
+@docs container, containerFluid, row, empty, twoColumns, Ratio, video, glyphicon, popover, PopoverDirection
 -}
 
 import Html exposing (..)
@@ -53,3 +53,39 @@ glyphicon : String -> Html
 glyphicon name =
   span [class ("glyphicon glyphicon-" ++ name)]
        []
+
+------------------------------------------------------------
+-- Popovers
+------------------------------------------------------------
+{-|-}
+type PopoverDirection
+  = Top
+  | Right
+  | Bottom
+  | Left
+
+{-| Interface to the bootstrap popover that does not require bootstrap.js. -}
+popover : PopoverDirection -> Bool -> List (String, String) -> Maybe String -> List Html -> Html
+popover direction isShown styles title body =
+  div [classList [("popover fade", True)
+                 ,("in", isShown)
+                 ,("top",    (direction == Top))
+                 ,("right",  (direction == Right))
+                 ,("bottom", (direction == Bottom))
+                 ,("left",   (direction == Left))]
+      ,style ([("top", "50px")
+              ,("left", "0")
+              ,("right", "0")
+              ,("margin-left", "auto")
+              ,("margin-right", "auto")
+              ,("display", "block")]
+              ++
+              styles)]
+      [div [class "arrow"]
+           []
+      ,case title of
+         Just s -> h3 [class "popover-title"]
+                      [text s]
+         Nothing -> empty
+      ,div [class "popover-content"]
+           body]
