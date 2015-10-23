@@ -73,14 +73,9 @@ popover direction isShown styles title body =
                  ,("right",  (direction == Right))
                  ,("bottom", (direction == Bottom))
                  ,("left",   (direction == Left))]
-      ,style ([("top", "0")
-              ,("left", "0")
-              ,("right", "0")
-              ,("margin-left", "0")
-              ,("margin-right", "0")
-              ,("display", "block")]
+      ,style (styles
               ++
-              styles)]
+              [("display", "block")])]
       [div [class "arrow"]
            []
       ,case title of
