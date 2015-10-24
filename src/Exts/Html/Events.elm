@@ -8,7 +8,7 @@ module Exts.Html.Events
 -}
 
 import Html exposing (Attribute)
-import Html.Events exposing (on, keyCode)
+import Html.Events exposing (onWithOptions, keyCode)
 import Json.Decode exposing (customDecoder)
 import Signal exposing (Message)
 
@@ -24,6 +24,9 @@ enterKey = keyCodeIs 13
 {-| Send a message when the user hits enter. -}
 onEnter : Message -> Attribute
 onEnter message =
-    on "keydown"
+    onWithOptions
+      "keydown"
+      {preventDefault = True
+      ,stopPropagation = False}
       (customDecoder keyCode enterKey)
       (always message)
