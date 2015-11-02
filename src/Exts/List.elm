@@ -23,7 +23,7 @@ import Dict
 chunk : Int -> List a -> List (List a)
 chunk n xs =
   if n < 1
-  then []
+  then singleton xs
   else trampoline (chunk' n xs Array.empty)
 
 chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))

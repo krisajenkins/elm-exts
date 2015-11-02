@@ -1,19 +1,29 @@
 module Tests.Exts.List
-  (tests)
+  (tests, claims)
   where
 
 import ElmTest.Test exposing (test, Test, suite, defaultTest)
 import ElmTest.Assertion exposing (assert, assertEqual)
 import Exts.List exposing (..)
+import Check.Investigator exposing (..)
+import Check exposing (Claim,true,for,claim)
+import Set
 
 tests : Test
-tests = suite "Exts.List" [chunkTests
-                          ,mergeByTests]
+tests =
+  suite "Exts.List"
+    [chunkTests
+    ,mergeByTests]
+
+claims : Claim
+claims =
+  Check.suite "Exts.List"
+              [chunkClaims]
 
 chunkTests : Test
 chunkTests =
   suite "chunk"
-    [defaultTest (assertEqual []
+    [defaultTest (assertEqual [[]]
                               (chunk 0 []))
     ,defaultTest (assertEqual []
                               (chunk 3 []))
@@ -21,6 +31,27 @@ chunkTests =
                               (chunk 3 [1..10]))
     ,defaultTest (assertEqual ([[1..4], [5..8], [9..12]])
                               (chunk 4 [1..12]))]
+
+chunkClaims : Claim
+chunkClaims =
+  Check.suite "chunk"
+    [claim "Concat restores the list."
+     `true`
+     (\ (n, xs) -> (List.concat (chunk n xs)) == xs)
+     `for`
+     (tuple (int, list char))
+    ,claim "Every chunk but the last should be <n> items long."
+     `true`
+     (\ (n, xs) -> (chunk n xs
+                   |> List.reverse
+                   |> List.tail
+                   |> Maybe.withDefault []
+                   |> List.map List.length
+                   |> Set.fromList
+                   |> Set.insert n)
+                   == Set.singleton n)
+     `for`
+     (tuple (int, list char))]
 
 mergeByTests : Test
 mergeByTests =
