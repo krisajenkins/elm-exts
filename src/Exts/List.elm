@@ -1,4 +1,8 @@
-module Exts.List where
+module Exts.List
+       (chunk
+       ,mergeBy
+       ,singleton)
+       where
 
 {-| Extensions to the core List library.
 
