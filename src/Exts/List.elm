@@ -9,6 +9,8 @@ module Exts.List
 @docs chunk,mergeBy, singleton
  -}
 
+import Array exposing (Array)
+import Trampoline exposing (..)
 import List exposing (take, drop, length)
 import Dict
 
@@ -20,9 +22,16 @@ import Dict
 -}
 chunk : Int -> List a -> List (List a)
 chunk n xs =
-  if | xs == [] -> []
-     | (length xs) > n -> (take n xs) :: (chunk n (drop n xs))
-     | otherwise -> [xs]
+  if n < 1
+  then []
+  else trampoline (chunk' n xs Array.empty)
+
+chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))
+chunk' n xs accum =
+  if List.isEmpty xs
+  then Done (Array.toList accum)
+  else Continue (\ () -> chunk' n (drop n xs)
+                                  (Array.push (take n xs) accum))
 
 {-| Merge two lists. The first argument is a function which returns
 the unique ID of each element. Where an element appears more than
