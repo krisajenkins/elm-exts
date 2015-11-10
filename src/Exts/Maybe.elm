@@ -17,7 +17,7 @@ isJust x = case x of
 isNothing : Maybe a -> Bool
 isNothing = not << isJust
 
-{-| Apply a function to a value, returning the default if the function returns Nothing. -}
+{-| Apply a function to a value, returning the default if the value is Nothing. -}
 maybe : b -> (a -> b) -> Maybe a -> b
 maybe default f = withDefault default << Maybe.map f
 
