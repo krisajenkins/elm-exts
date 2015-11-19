@@ -2,8 +2,7 @@ module Tests.Exts.Delta
   (tests)
   where
 
-import ElmTest.Test exposing (test, Test, suite, defaultTest)
-import ElmTest.Assertion exposing (assert, assertEqual)
+import ElmTest exposing (..)
 import Exts.Delta exposing (..)
 
 tests : Test

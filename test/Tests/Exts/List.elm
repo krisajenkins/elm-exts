@@ -2,11 +2,9 @@ module Tests.Exts.List
   (tests, claims)
   where
 
-import ElmTest.Test exposing (test, Test, suite, defaultTest)
-import ElmTest.Assertion exposing (assert, assertEqual)
+import ElmTest exposing (..)
 import Exts.List exposing (..)
-import Check.Investigator exposing (..)
-import Check exposing (Claim,true,for,claim)
+import Check exposing (..)
 import Set
 
 tests : Test

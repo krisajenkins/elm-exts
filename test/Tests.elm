@@ -1,7 +1,6 @@
 module Tests where
 
-import ElmTest.Test exposing (test, Test, suite, defaultTest)
-import ElmTest.Runner.Element exposing (runDisplay)
+import ElmTest exposing (test, Test, suite, defaultTest, elementRunner)
 import Tests.Exts.Date
 import Tests.Exts.Delta
 import Tests.Exts.List
@@ -23,7 +22,7 @@ claims =
 main : Html
 main = div []
            [h2 [] [text "Unit Tests"]
-           ,runDisplay tests |> Html.fromElement
+           ,elementRunner tests |> Html.fromElement
            ,h2 [] [text "Property Tests"]
            ,quickCheck claims |> displayEvidence]
 
