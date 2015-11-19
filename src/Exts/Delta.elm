@@ -52,6 +52,6 @@ generation xs ds =
       newEntries = diff xs actives
       newLeavers = diff actives xs
       newContinuers = intersect xs actives
-  in { empty | entering <- newEntries
-             , continuing <- newContinuers
-             , leaving <- newLeavers}
+  in { empty | entering = newEntries
+             , continuing = newContinuers
+             , leaving = newLeavers}
