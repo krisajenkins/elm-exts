@@ -6,8 +6,8 @@ module Exts.List
 
 {-| Extensions to the core List library.
 
-@docs chunk,mergeBy, singleton
- -}
+@docs chunk, mergeBy, singleton
+-}
 
 import Array exposing (Array)
 import Trampoline exposing (..)

@@ -3,7 +3,7 @@ module Exts.Json.Encode where
 {-| Extensions to the core Json Encode library.
 
 @docs set
- -}
+-}
 
 import Json.Encode exposing (..)
 import Set as Set exposing (Set)
