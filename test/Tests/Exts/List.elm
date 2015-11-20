@@ -5,11 +5,12 @@ module Tests.Exts.List
 import ElmTest exposing (..)
 import Exts.List exposing (..)
 import Check exposing (..)
+import Check.Investigator exposing (..)
 import Set
 
 tests : Test
 tests =
-  suite "Exts.List"
+  ElmTest.suite "Exts.List"
     [chunkTests
     ,mergeByTests]
 
@@ -20,7 +21,7 @@ claims =
 
 chunkTests : Test
 chunkTests =
-  suite "chunk"
+  ElmTest.suite "chunk"
     [defaultTest (assertEqual [[]]
                               (chunk 0 []))
     ,defaultTest (assertEqual []
@@ -57,7 +58,7 @@ mergeByTests =
       t2a = {id = 2, name = "Two"}
       t2b = {id = 2, name = "Three!"}
   in
-  suite "mergeBy"
+  ElmTest.suite "mergeBy"
     [defaultTest (assertEqual []
                               (mergeBy .id [] []))
     ,defaultTest (assertEqual [t1, t2a]
