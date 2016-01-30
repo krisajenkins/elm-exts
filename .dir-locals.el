@@ -6,7 +6,7 @@
             '(lambda ()
                (interactive)
                (require 'magit)
-               (let ((compile-command (format "cd %s.. ; elm-make --yes --warn ; elm-make --yes --warn test/Tests.elm --output=tests.html"
+               (let ((compile-command (format "cd %s.. ; elm-make --yes --warn ; elm-make --yes --warn test/Tests.elm --output=Test.html"
                                               (magit-git-dir))))
                  (save-buffer)
                  (compile compile-command))))))
