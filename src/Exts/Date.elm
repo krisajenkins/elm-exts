@@ -17,7 +17,7 @@ toISOString d =
   (toString ((hour d) - 1)  |> String.padLeft 2 '0') ++ ":" ++
   (toString (minute d)      |> String.padLeft 2 '0') ++ ":" ++
   (toString (second d)      |> String.padLeft 2 '0') ++ "." ++
-  (toString (millisecond d) |> String.padLeft 2 '0') ++ "Z"
+  (toString (millisecond d) |> String.padLeft 3 '0') ++ "Z"
 
 monthNumber : Date -> Int
 monthNumber date =
