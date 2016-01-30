@@ -3,6 +3,7 @@ module Tests where
 import ElmTest exposing (test, Test, suite, defaultTest, elementRunner)
 import Tests.Exts.Date
 import Tests.Exts.Delta
+import Tests.Exts.Dict
 import Tests.Exts.List
 import Html exposing (..)
 import Html.Attributes exposing (style)
@@ -12,7 +13,8 @@ tests : Test
 tests =
   suite "All" [Tests.Exts.Date.tests
               ,Tests.Exts.Delta.tests
-              ,Tests.Exts.List.tests]
+              ,Tests.Exts.List.tests
+              ,Tests.Exts.Dict.tests]
 
 claims : Claim
 claims =

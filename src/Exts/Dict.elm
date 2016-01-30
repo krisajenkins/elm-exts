@@ -2,7 +2,7 @@ module Exts.Dict where
 
 {-| Extensions to the core Dict library.
 
-@docs indexBy, groupBy, frequency
+@docs indexBy, groupBy, frequency, getWithDefault
 
 -}
 
@@ -43,3 +43,7 @@ frequency =
                     Just n -> Just (n + 1)
       reducer x = Dict.update x updater
   in List.foldl reducer Dict.empty
+
+{-| Attempt to find a key, if it's not there, return a default value. -}
+getWithDefault : a -> comparable -> Dict comparable a -> a
+getWithDefault def key = Maybe.withDefault def << Dict.get key
