@@ -10,7 +10,7 @@ tests : Test
 tests = suite "Exts.Dict" [getWithDefaultTests]
 
 animals : Dict.Dict String String
-animals = Dict.fromList [ ("Tom", "cat"), ("Jerry", "mouse") ]
+animals = Dict.fromList [("Tom", "cat"), ("Jerry", "mouse")]
 
 getWithDefaultTests : Test
 getWithDefaultTests =
