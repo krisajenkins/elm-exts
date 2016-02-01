@@ -8,7 +8,7 @@ module Exts.String where
 
 import String exposing (dropLeft, length, startsWith)
 
-{-| Strip a leading string from a string. -}
+{-| Strip a leading string from a `String`. -}
 removePrefix : String -> String -> String
 removePrefix prefix s =
   if (startsWith prefix s)

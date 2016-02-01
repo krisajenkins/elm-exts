@@ -5,7 +5,7 @@ module Exts.Result where
 @docs bimap, isOk, isErr, resultWithDefault, mappend
 -}
 
-{-| Treat Result as a bifunctor. -}
+{-| Treat `Result` as a bifunctor, applying the first function to `Err` values and the second to `Ok` ones. -}
 bimap : (e -> f) -> (a -> b)  -> Result e a -> Result f b
 bimap f g r =
   case r of
@@ -23,7 +23,7 @@ isOk x =
 isErr : Result a b -> Bool
 isErr = not << isOk
 
-{-| Like Maybe.withDefault, for Results.-}
+{-| Like `Maybe.withDefault`, for `Results`.-}
 resultWithDefault : b -> Result a b ->  b
 resultWithDefault d x =
   case x of

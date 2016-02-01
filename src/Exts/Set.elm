@@ -13,9 +13,9 @@ import Set as Set exposing (Set, member)
 select : (a -> comparable) -> Set comparable -> List a -> List a
 select f keys = filter (\x -> member (f x) keys)
 
-{-| Dive into a List to get a set of values.
+{-| Dive into a `List` to get a set of values.
 
-  For example, pulling a Set of countries from a List of users.
+  For example, pulling a `Set` of countries from a `List` of users.
 -}
 uniqueItems : (a -> Maybe comparable) -> List a -> Set comparable
 uniqueItems accessor data = Set.fromList (List.filterMap accessor data)

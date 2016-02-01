@@ -4,8 +4,9 @@ module Exts.Html.Table
 
 {-| Helpers for simple data tables. Define how a list of items can be rendered as a table. The definition a list of (column-title, column-value-accessor) pairs.
 
-  I find this approach brakes down for all but simple tables, so be
-  ready to rewrite when this 80% case no longer suits.
+  I find this approach works well for simple tables, but breaks down
+  as soon as you need much customisation. Use it to get you started
+  quickly, but be ready to rewrite when this 80% case no longer suits.
 
 @docs CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup
 -}
@@ -15,8 +16,8 @@ import Html.Attributes exposing (..)
 
 {-| A table definition looks something like:
 
-  [(text "Name", .name >> text)
-  ,(text "Name", .age >> toString >> text)]
+    [(text "Name", .name >> text)
+    ,(text "Name", .age >> toString >> text)]
 
 -}
 type alias CellDef a = (Html, (a -> Html))
@@ -31,7 +32,8 @@ simpleTable tableDef items =
                                    tableDef)]
         ,tbody [] (List.map (simpleTableRow tableDef) items)]
 
-{-| Given a table definition, render an element to a <tr> tag. This is lower-level. Usually you will want `simpleTable` instead. -}
+{-| Given a table definition, render an element to a <tr> tag. This is
+lower-level. Usually you will want `simpleTable` instead. -}
 simpleTableRow : TableDef a -> a -> Html
 simpleTableRow tableDef item =
   tr []
@@ -40,9 +42,9 @@ simpleTableRow tableDef item =
 
 {-| titleGroup and valueGroup are used to create columns that stack multiple pairs. For example:
 
-  [(titleGroup ["Latitude", "Longitude"]
-   ,valueGroup [.location >> .lat >> toString >> text
-               ,.location >> .lng >> toString >> text])
+    [(titleGroup ["Latitude", "Longitude"]
+     ,valueGroup [.location >> .lat >> toString >> text
+                 ,.location >> .lng >> toString >> text])
 
 -}
 titleGroup : List String -> Html

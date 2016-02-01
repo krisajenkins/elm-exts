@@ -11,14 +11,14 @@ import Http exposing (..)
 import Json.Decode exposing (Decoder)
 import Task exposing (Task, andThen, mapError, succeed, fail)
 
-{-| Convert an Http.RawError into an Error, using the same rules Http uses internally. -}
+{-| Convert an `Http.RawError` into an `Error`, using the same rules `Http` uses internally. -}
 promoteError : RawError -> Error
 promoteError rawError =
   case rawError of
     RawTimeout -> Timeout
     RawNetworkError -> NetworkError
 
-{-| Send a simple PUT request. -}
+{-| Send a simple `PUT` request. -}
 put : Decoder value -> String -> Http.Body -> Task Error value
 put decoder url body =
   let request =
@@ -28,7 +28,7 @@ put decoder url body =
         , body = body}
   in fromJson decoder (send Http.defaultSettings request)
 
-{-| Send a POST request with appropriate headers form-encoding. -}
+{-| Send a `POST` request with appropriate headers form-encoding. -}
 postForm : Decoder value -> String -> Body -> Task Error value
 postForm decoder url body =
   let request =

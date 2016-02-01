@@ -1,6 +1,6 @@
 # Elm Extensions
 
-Extensions to the Elm core libraries which suit my tastes.
+A wide-ranging collection of extensions to the Elm core libraries.
 
 ## Testing
 

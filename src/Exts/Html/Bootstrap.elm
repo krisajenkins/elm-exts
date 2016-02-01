@@ -48,7 +48,8 @@ video ratio url =
                       ,src url]
                       []]]
 
-{-| Glyphicons. Supply the unprefixed glyph name (eg. 'zoom-in'). -}
+{-| Glyphicons. Supply the unprefixed glyph name (eg. `"zoom-in"' will
+give you `glyphicon-zoom-in`). -}
 glyphicon : String -> Html
 glyphicon name =
   span [class ("glyphicon glyphicon-" ++ name)]
