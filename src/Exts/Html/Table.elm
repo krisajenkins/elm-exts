@@ -2,7 +2,9 @@ module Exts.Html.Table
   (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup)
   where
 
-{-| Helpers for simple data tables. Define how a list of items can be rendered as a table. The definition a list of (column-title, column-value-accessor) pairs.
+{-| Helpers for simple data tables. Define how a list of items can be
+rendered as a table. The definition is a `List` of `(column-title,
+column-value-accessor)` pairs.
 
   I find this approach works well for simple tables, but breaks down
   as soon as you need much customisation. Use it to get you started
