@@ -25,7 +25,8 @@
         "Exts.Set",
         "Exts.String",
         "Exts.Task",
-        "Exts.Tuple"
+        "Exts.Tuple",
+        "Exts.Validation"
     ],
     "dependencies": {
         "NoRedInk/elm-check": "2.0.0 <= v < 3.0.0",
