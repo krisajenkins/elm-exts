@@ -1,5 +1,5 @@
 {
-    "version": "10.4.0",
+    "version": "10.4.1",
     "summary": "An opinionated collection of functions missing from the core.",
     "repository": "https://github.com/krisajenkins/elm-exts.git",
     "license": "BSD3",
