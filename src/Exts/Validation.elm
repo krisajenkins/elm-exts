@@ -28,7 +28,9 @@ either returns an error message, or a form that is definitely valid. For example
         |: (notBlank "Email is required and may not be blank." form.email)
         |: (required "Age is required" form.age)
 
-(Hat tip to CircuitHub, who inspired the syntax and guided the code with their [elm-json-extra library](http://package.elm-lang.org/packages/circuithub/elm-json-extra/latest))
+An error message is typically a `String`, but may be any type you choose.
+
+(Hat tip to CircuitHub, who inspired the syntax and guided the code with their [elm-json-extra](http://package.elm-lang.org/packages/circuithub/elm-json-extra/latest) library.)
 -}
 apply : Result e (a -> b) -> Result e a -> Result e b
 apply f aResult =
@@ -42,14 +44,14 @@ apply f aResult =
   apply
 
 
-{-| A field that might be Nothing, but is only valid if it is (Just x).
+{-| A field that might be `Nothing`, but is only valid if it is `Just a`.
 -}
 required : e -> Maybe a -> Result e a
 required err =
   Maybe.withDefault (Err err) << Maybe.map Ok
 
 
-{-| A field that might be Nothing, but is only valid if it is a non-empty string.
+{-| A field that might be `Nothing`, but is only valid if it is a non-empty `String`.
 -}
 notBlank : e -> Maybe String -> Result e String
 notBlank err str =
@@ -65,8 +67,10 @@ notBlank err str =
 
 
 {-| A basic email regex. This is incredibly simplistic, but is
-included for convenience. Remember that the only real way to validate
-an email address is to send something to it and get a reply.
+included for convenience.
+
+Remember that the only real way to validate an email address is to
+send something to it and get a reply.
 -}
 emailRegex : Regex
 emailRegex =
