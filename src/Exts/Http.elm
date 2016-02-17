@@ -1,8 +1,8 @@
-module Exts.Http (put, postForm, promoteError) where
+module Exts.Http (put, postContent, postForm, postJson, promoteError) where
 
 {-| Extensions to the main Http library.
 
-@docs promoteError, put, postForm
+@docs promoteError, put, postContent, postForm, postJson
 -}
 
 import Http exposing (..)
@@ -37,16 +37,30 @@ put decoder url body =
     fromJson decoder (send Http.defaultSettings request)
 
 
-{-| Send a `POST` request with appropriate headers form-encoding.
+{-| Send a `POST` request with the given content-type.
 -}
-postForm : Decoder value -> String -> Body -> Task Error value
-postForm decoder url body =
+postContent : String -> Decoder value -> String -> Body -> Task Error value
+postContent contentType decoder url body =
   let
     request =
       { verb = "POST"
-      , headers = [ ( "Content-Type", "application/x-www-form-urlencoded" ) ]
+      , headers = [ ( "Content-Type", contentType ) ]
       , url = url
       , body = body
       }
   in
     fromJson decoder (Http.send Http.defaultSettings request)
+
+
+{-| Send a `POST` request with appropriate headers form-encoding.
+-}
+postForm : Decoder value -> String -> Body -> Task Error value
+postForm =
+  postContent "application/x-www-form-urlencoded"
+
+
+{-| Send a `POST` request with appropriate headers form-encoding.
+-}
+postJson : Decoder value -> String -> Body -> Task Error value
+postJson =
+  postContent "application/json"
