@@ -52,7 +52,7 @@ mergeBy f xs ys =
     Dict.values (List.foldl reducer Dict.empty (xs ++ ys))
 
 
-{-| Wrap a single item into a list.
+{-| Wrap a single item into a `List`.
 -}
 singleton : a -> List a
 singleton x =
