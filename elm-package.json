@@ -14,6 +14,7 @@
         "Exts.Effects",
         "Exts.Float",
         "Exts.Html.Bootstrap",
+        "Exts.Html.Attributes",
         "Exts.Html.Events",
         "Exts.Html.Table",
         "Exts.Http",
