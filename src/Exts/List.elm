@@ -1,8 +1,8 @@
-module Exts.List (chunk, mergeBy, singleton) where
+module Exts.List (chunk, mergeBy, singleton, maybeSingleton) where
 
 {-| Extensions to the core List library.
 
-@docs chunk, mergeBy, singleton
+@docs chunk, mergeBy, singleton, maybeSingleton
 -}
 
 import Array exposing (Array)
@@ -57,3 +57,11 @@ mergeBy f xs ys =
 singleton : a -> List a
 singleton x =
   [ x ]
+
+
+{-| Wrap a maybe item into a list. If the item is `Nothing`, the `List` is empty.
+-}
+maybeSingleton : Maybe a -> List a
+maybeSingleton =
+  Maybe.map singleton
+    >> Maybe.withDefault []
