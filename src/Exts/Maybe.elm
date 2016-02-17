@@ -1,4 +1,4 @@
-module Exts.Maybe where
+module Exts.Maybe (..) where
 
 {-| Extensions to the core Maybe library.
 
@@ -7,32 +7,57 @@ module Exts.Maybe where
 
 import Maybe exposing (withDefault)
 
-{-| Boolean checks. -}
+
+{-| Boolean checks.
+-}
 isJust : Maybe a -> Bool
-isJust x = case x of
-             Just _ -> True
-             _ -> False
+isJust x =
+  case x of
+    Just _ ->
+      True
 
-{-|-}
+    _ ->
+      False
+
+
+{-| -}
 isNothing : Maybe a -> Bool
-isNothing = not << isJust
+isNothing =
+  not << isJust
 
-{-| Apply a function to a value, returning the default if the value is `Nothing`. -}
+
+{-| Apply a function to a value, returning the default if the value is `Nothing`.
+-}
 maybe : b -> (a -> b) -> Maybe a -> b
-maybe default f = withDefault default << Maybe.map f
+maybe default f =
+  withDefault default << Maybe.map f
 
-{-| Monoidal append - join two Maybes together as though they were one. -}
-mappend : Maybe a -> Maybe b -> Maybe (a,b)
+
+{-| Monoidal append - join two Maybes together as though they were one.
+-}
+mappend : Maybe a -> Maybe b -> Maybe ( a, b )
 mappend a b =
-  case (a,b) of
-    (Nothing,_) -> Nothing
-    (_,Nothing) -> Nothing
-    (Just x, Just y) -> Just (x,y)
+  case ( a, b ) of
+    ( Nothing, _ ) ->
+      Nothing
 
-{-| Extract all the `Just` values from a List of Maybes. -}
+    ( _, Nothing ) ->
+      Nothing
+
+    ( Just x, Just y ) ->
+      Just ( x, y )
+
+
+{-| Extract all the `Just` values from a List of Maybes.
+-}
 catMaybes : List (Maybe a) -> List a
 catMaybes xs =
   case xs of
-    [] -> []
-    (Nothing::xs') -> catMaybes xs'
-    (Just x::xs') -> x :: catMaybes xs'
+    [] ->
+      []
+
+    Nothing :: xs' ->
+      catMaybes xs'
+
+    (Just x) :: xs' ->
+      x :: catMaybes xs'

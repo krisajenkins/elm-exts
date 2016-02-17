@@ -1,4 +1,4 @@
-module Exts.Dict where
+module Exts.Dict (..) where
 
 {-| Extensions to the core Dict library.
 
@@ -6,7 +6,8 @@ module Exts.Dict where
 
 -}
 
-import Dict exposing (Dict,insert)
+import Dict exposing (Dict, insert)
+
 
 {-| Turn a list of items into an indexed dictionary.
 
@@ -18,7 +19,9 @@ import Dict exposing (Dict,insert)
   should use `groupBy` instead.
 -}
 indexBy : (v -> comparable) -> List v -> Dict comparable v
-indexBy f = List.foldl (\x -> insert (f x) x) Dict.empty
+indexBy f =
+  List.foldl (\x -> insert (f x) x) Dict.empty
+
 
 {-| Group a list of items by a key.
 
@@ -27,23 +30,49 @@ indexBy f = List.foldl (\x -> insert (f x) x) Dict.empty
 
   If the indexing function returns a unique key for every item, consider `indexBy` instead.
 -}
+
+
+
 -- TODO This function would be more efficient if it used Dict.update, instead of Dict.insert.
+
+
 groupBy : (v -> comparable) -> List v -> Dict comparable (List v)
 groupBy f =
-  let reducer g x d = let key = g x
-                          newValue = x :: Maybe.withDefault [] (Dict.get key d)
-                      in insert key newValue d
-  in List.foldl (reducer f) Dict.empty
+  let
+    reducer g x d =
+      let
+        key =
+          g x
 
-{-| Create a frequency-map from the given list. -}
+        newValue =
+          x :: Maybe.withDefault [] (Dict.get key d)
+      in
+        insert key newValue d
+  in
+    List.foldl (reducer f) Dict.empty
+
+
+{-| Create a frequency-map from the given list.
+-}
 frequency : List comparable -> Dict comparable Int
 frequency =
-  let updater m = case m of
-                    Nothing -> Just 1
-                    Just n -> Just (n + 1)
-      reducer x = Dict.update x updater
-  in List.foldl reducer Dict.empty
+  let
+    updater m =
+      case m of
+        Nothing ->
+          Just 1
 
-{-| Attempt to find a key, if it's not there, return a default value. -}
+        Just n ->
+          Just (n + 1)
+
+    reducer x =
+      Dict.update x updater
+  in
+    List.foldl reducer Dict.empty
+
+
+{-| Attempt to find a key, if it's not there, return a default value.
+-}
 getWithDefault : a -> comparable -> Dict comparable a -> a
-getWithDefault def key = Maybe.withDefault def << Dict.get key
+getWithDefault def key =
+  Maybe.withDefault def << Dict.get key

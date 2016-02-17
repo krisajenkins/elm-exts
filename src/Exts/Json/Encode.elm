@@ -1,4 +1,4 @@
-module Exts.Json.Encode where
+module Exts.Json.Encode (..) where
 
 {-| Extensions to the core Json Encode library.
 
@@ -8,6 +8,9 @@ module Exts.Json.Encode where
 import Json.Encode exposing (..)
 import Set as Set exposing (Set)
 
-{-| Encode a set to a JSON array . -}
+
+{-| Encode a set to a JSON array .
+-}
 set : (comparable -> Value) -> Set comparable -> Value
-set encodeElement = list << List.map encodeElement << List.sort << Set.toList
+set encodeElement =
+  list << List.map encodeElement << List.sort << Set.toList

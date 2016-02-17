@@ -1,4 +1,4 @@
-module Exts.String where
+module Exts.String (..) where
 
 {-| Extensions to the core String library.
 
@@ -8,9 +8,12 @@ module Exts.String where
 
 import String exposing (dropLeft, length, startsWith)
 
-{-| Strip a leading string from a `String`. -}
+
+{-| Strip a leading string from a `String`.
+-}
 removePrefix : String -> String -> String
 removePrefix prefix s =
-  if (startsWith prefix s)
-    then dropLeft (length prefix) s
-    else s
+  if (startsWith prefix s) then
+    dropLeft (length prefix) s
+  else
+    s

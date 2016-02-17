@@ -1,4 +1,4 @@
-module Exts.Task where
+module Exts.Task (..) where
 
 {-| Extensions for Tasks.
 
@@ -8,6 +8,9 @@ module Exts.Task where
 import Effects exposing (Effects)
 import Task exposing (Task)
 
-{-| Convert a `Task` to an `Effect` which conveys success or failure. -}
+
+{-| Convert a `Task` to an `Effect` which conveys success or failure.
+-}
 asEffect : Task a b -> Effects (Result a b)
-asEffect = Effects.task << Task.toResult
+asEffect =
+  Effects.task << Task.toResult

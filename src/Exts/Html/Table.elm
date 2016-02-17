@@ -1,6 +1,4 @@
-module Exts.Html.Table
-  (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup)
-  where
+module Exts.Html.Table (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup) where
 
 {-| Helpers for simple data tables. Define how a list of items can be
 rendered as a table. The definition is a `List` of `(column-title,
@@ -16,31 +14,53 @@ column-value-accessor)` pairs.
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
+
 {-| A table definition looks something like:
 
     [(text "Name", .name >> text)
     ,(text "Name", .age >> toString >> text)]
 
 -}
-type alias CellDef a = (Html, (a -> Html))
-{-|-}
-type alias TableDef a = List (CellDef a)
+type alias CellDef a =
+  ( Html, a -> Html )
 
-{-| Given a table definition, render a list of elements as HTML. -}
+
+{-| -}
+type alias TableDef a =
+  List (CellDef a)
+
+
+{-| Given a table definition, render a list of elements as HTML.
+-}
 simpleTable : TableDef a -> List a -> Html
 simpleTable tableDef items =
-  table [class "table table-bordered table-hover"]
-        [thead [] [tr [] (List.map (\ (title,_) -> (th [] [title]))
-                                   tableDef)]
-        ,tbody [] (List.map (simpleTableRow tableDef) items)]
+  table
+    [ class "table table-bordered table-hover" ]
+    [ thead
+        []
+        [ tr
+            []
+            (List.map
+              (\( title, _ ) -> (th [] [ title ]))
+              tableDef
+            )
+        ]
+    , tbody [] (List.map (simpleTableRow tableDef) items)
+    ]
+
 
 {-| Given a table definition, render an element to a <tr> tag. This is
-lower-level. Usually you will want `simpleTable` instead. -}
+lower-level. Usually you will want `simpleTable` instead.
+-}
 simpleTableRow : TableDef a -> a -> Html
 simpleTableRow tableDef item =
-  tr []
-     (List.map (\ (_,f) -> (td [] [f item]))
-               tableDef)
+  tr
+    []
+    (List.map
+      (\( _, f ) -> (td [] [ f item ]))
+      tableDef
+    )
+
 
 {-| titleGroup and valueGroup are used to create columns that stack multiple pairs. For example:
 
@@ -50,8 +70,11 @@ simpleTableRow tableDef item =
 
 -}
 titleGroup : List String -> Html
-titleGroup strings = div [] (List.map (\s -> div [] [text s]) strings)
+titleGroup strings =
+  div [] (List.map (\s -> div [] [ text s ]) strings)
 
-{-|-}
+
+{-| -}
 valueGroup : List (a -> Html) -> a -> Html
-valueGroup fs x = div [] (List.map (\f -> div [] [f x]) fs)
+valueGroup fs x =
+  div [] (List.map (\f -> div [] [ f x ]) fs)
