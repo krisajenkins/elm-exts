@@ -2,7 +2,7 @@ module Exts.Result (..) where
 
 {-| Extensions to the core Result library.
 
-@docs bimap, isOk, isErr, resultWithDefault, mappend
+@docs bimap, isOk, isErr, mappend
 -}
 
 
@@ -34,18 +34,6 @@ isOk x =
 isErr : Result a b -> Bool
 isErr =
   not << isOk
-
-
-{-| Like `Maybe.withDefault`, for `Results`.
--}
-resultWithDefault : b -> Result a b -> b
-resultWithDefault d x =
-  case x of
-    Ok y ->
-      y
-
-    Err _ ->
-      d
 
 
 {-| Monoidal append - join two Results together as though they were one.
