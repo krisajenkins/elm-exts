@@ -2,13 +2,13 @@
 
 A wide-ranging collection of extensions to the Elm core libraries.
 
-## Testing
+## Building & Testing
 
 ```
-elm-make --warn test/Tests.elm --output=Test.html
+make
 ```
 
-Then open Test.html in a browser.
+...will run the whole build.
 
 ## Documentation
 

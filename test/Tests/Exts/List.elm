@@ -1,9 +1,10 @@
-module Tests.Exts.List (tests, claims) where
+module Tests.Exts.List (tests) where
 
 import ElmTest exposing (..)
 import Exts.List exposing (..)
 import Check exposing (..)
-import Check.Investigator exposing (..)
+import Check.Producer exposing (..)
+import Check.Test
 import Set
 
 
@@ -14,13 +15,6 @@ tests =
     [ chunkTests
     , mergeByTests
     ]
-
-
-claims : Claim
-claims =
-  Check.suite
-    "Exts.List"
-    [ chunkClaims ]
 
 
 chunkTests : Test
@@ -47,6 +41,7 @@ chunkTests =
           ([ [1..4], [5..8], [9..12] ])
           (chunk 4 [1..12])
         )
+    , Check.Test.evidenceToTest (Check.quickCheck chunkClaims)
     ]
 
 
