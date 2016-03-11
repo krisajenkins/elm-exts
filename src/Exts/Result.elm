@@ -20,7 +20,7 @@ bimap f g r =
 
 {-| Boolean checks for success/failure.
 -}
-isOk : Result a b -> Bool
+isOk : Result e a -> Bool
 isOk x =
   case x of
     Ok _ ->
@@ -31,7 +31,7 @@ isOk x =
 
 
 {-| -}
-isErr : Result a b -> Bool
+isErr : Result e a -> Bool
 isErr =
   not << isOk
 
