@@ -7,6 +7,7 @@ import Tests.Exts.Date
 import Tests.Exts.Delta
 import Tests.Exts.Dict
 import Tests.Exts.List
+import Tests.Exts.Result
 
 
 tests : Test
@@ -17,6 +18,7 @@ tests =
     , Tests.Exts.Delta.tests
     , Tests.Exts.List.tests
     , Tests.Exts.Dict.tests
+    , Tests.Exts.Result.tests
     ]
 
 
