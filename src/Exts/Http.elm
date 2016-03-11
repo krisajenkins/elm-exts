@@ -1,8 +1,8 @@
-module Exts.Http (put, postContent, postForm, postJson, promoteError) where
+module Exts.Http (put, postContent, postForm, postJson, handleError) where
 
 {-| Extensions to the main Http library.
 
-@docs promoteError, put, postContent, postForm, postJson
+@docs handleError, put, postContent, postForm, postJson
 -}
 
 import Http exposing (..)
@@ -10,8 +10,6 @@ import Json.Decode exposing (Decoder)
 import Task exposing (Task, andThen, mapError, succeed, fail)
 
 
-{-| Convert an `Http.RawError` into an `Error`, using the same rules `Http` uses internally.
--}
 promoteError : RawError -> Error
 promoteError rawError =
   case rawError of
@@ -20,6 +18,22 @@ promoteError rawError =
 
     RawNetworkError ->
       NetworkError
+
+
+checkStatus : Response -> Task Error Response
+checkStatus response =
+  if 200 <= response.status && response.status < 300 then
+    Task.succeed response
+  else
+    Task.fail (BadResponse response.status response.statusText)
+
+
+{-| Lift a raw Http response into a 'Task Error Response', using the same rules `Http` uses internally.
+-}
+handleError : Task RawError Response -> Task Error Response
+handleError t =
+  Task.mapError promoteError t
+    `andThen` checkStatus
 
 
 {-| Send a simple `PUT` request.
