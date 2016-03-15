@@ -23,6 +23,7 @@
         "Exts.List",
         "Exts.Maybe",
         "Exts.Result",
+        "Exts.RemoteData",
         "Exts.Set",
         "Exts.String",
         "Exts.Task",
