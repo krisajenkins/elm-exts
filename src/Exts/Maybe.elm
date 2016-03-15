@@ -33,7 +33,7 @@ maybe default f =
   withDefault default << Maybe.map f
 
 
-{-| Monoidal append - join two Maybes together as though they were one.
+{-| Monoidal append - join two `Maybe`s together as though they were one.
 -}
 mappend : Maybe a -> Maybe b -> Maybe ( a, b )
 mappend a b =
