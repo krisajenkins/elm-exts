@@ -51,20 +51,20 @@ chunkClaims =
   Check.suite
     "chunk"
     [ claim "Concat restores the list."
-        `true` (\( n, xs ) -> (List.concat (chunk n xs)) == xs)
+        `that` (\( n, xs ) -> List.concat (chunk n xs))
+        `is` (\( n, xs ) -> xs)
         `for` (tuple ( int, list char ))
     , claim "Every chunk but the last should be <n> items long."
-        `true` (\( n, xs ) ->
-                  (chunk n xs
+        `that` (\( n, xs ) ->
+                  chunk n xs
                     |> List.reverse
                     |> List.tail
                     |> Maybe.withDefault []
                     |> List.map List.length
                     |> Set.fromList
                     |> Set.insert n
-                  )
-                    == Set.singleton n
                )
+        `is` (\( n, xs ) -> Set.singleton n)
         `for` (tuple ( int, list char ))
     ]
 
