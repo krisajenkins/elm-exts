@@ -57,7 +57,9 @@ withDefault default data =
 -}
 asEffect : Task Error a -> Effects (RemoteData a)
 asEffect =
-  Effects.map fromResult << Effects.task << Task.toResult
+  Task.toResult
+    >> Effects.task
+    >> Effects.map fromResult
 
 
 {-| Convert a `Result Error`, probably produced from elm-http, to a RemoteData value.
