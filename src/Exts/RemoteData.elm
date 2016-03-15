@@ -2,7 +2,7 @@ module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappe
 
 {-| A datatype representing fetched data.
 
-@docs RemoteData , fromResult, withDefault, asEffect, mappend, map
+@docs RemoteData, map, withDefault, fromResult, asEffect, mappend
 -}
 
 import Http exposing (Error(..))
@@ -10,7 +10,7 @@ import Task exposing (Task)
 import Effects exposing (Effects)
 
 
-{-| Frequently when you're fetching data from an API, you want to represent 4 different states:
+{-| Frequently when you're fetching data from an API, you want to represent four different states:
   * `NotAsked` - We haven't asked for the data yet.
   * `Loading` - We've asked, but haven't got an answer yet.
   * `Failure` - We asked, but something went wrong. Here's the `Error`.
