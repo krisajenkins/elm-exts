@@ -14,6 +14,7 @@ tests =
     "Exts.List"
     [ chunkTests
     , mergeByTests
+    , firstMatchTests
     ]
 
 
@@ -133,3 +134,38 @@ mergeByTests =
             )
           )
       ]
+
+
+firstMatchTests : Test
+firstMatchTests =
+  ElmTest.suite
+    "firstMatch"
+    [ defaultTest (assertEqual Nothing (firstMatch (always True) []))
+    , Check.Test.evidenceToTest (Check.quickCheck firstMatchClaims)
+    ]
+
+
+isEven : Int -> Bool
+isEven n =
+  n % 2 == 0
+
+
+firstMatchClaims : Claim
+firstMatchClaims =
+  Check.suite
+    "firstMatch"
+    [ claim
+        "An always-false predicate is the same as Nothing."
+        `that` firstMatch (always False)
+        `is` (always Nothing)
+        `for` list int
+    , claim "An always-true predicate is the same as List.head."
+        `that` firstMatch (always True)
+        `is` List.head
+        `for` list int
+    , claim
+        "An always-false predicate is the same as Nothing."
+        `that` firstMatch isEven
+        `is` (List.head << List.filter isEven)
+        `for` list int
+    ]

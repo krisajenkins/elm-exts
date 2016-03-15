@@ -1,8 +1,8 @@
-module Exts.List (chunk, mergeBy, singleton, maybeSingleton) where
+module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch) where
 
 {-| Extensions to the core List library.
 
-@docs chunk, mergeBy, singleton, maybeSingleton
+@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch
 -}
 
 import Array exposing (Array)
@@ -65,3 +65,18 @@ maybeSingleton : Maybe a -> List a
 maybeSingleton =
   Maybe.map singleton
     >> Maybe.withDefault []
+
+
+{-| Find the first element in the `List` that matches the given predicate.
+-}
+firstMatch : (a -> Bool) -> List a -> Maybe a
+firstMatch predicate items =
+  case items of
+    [] ->
+      Nothing
+
+    x :: xs ->
+      if predicate x then
+        Just x
+      else
+        (firstMatch predicate xs)
