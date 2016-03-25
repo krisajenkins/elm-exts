@@ -2,7 +2,7 @@ module Exts.Dict (..) where
 
 {-| Extensions to the core Dict library.
 
-@docs indexBy, groupBy, frequency, getWithDefault
+@docs indexBy, groupBy, frequency, getWithDefault, foldToList
 
 -}
 
@@ -76,3 +76,13 @@ frequency =
 getWithDefault : a -> comparable -> Dict comparable a -> a
 getWithDefault def key =
   Maybe.withDefault def << Dict.get key
+
+
+{-| Run a function over the dictionary entries, resulting in a list of the final results.
+-}
+foldToList : (comparable -> v -> b) -> Dict.Dict comparable v -> List b
+foldToList f dict =
+  Dict.foldr
+    (\k v -> (::) (f k v))
+    []
+    dict
