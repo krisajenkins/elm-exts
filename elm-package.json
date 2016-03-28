@@ -8,6 +8,7 @@
         "test"
     ],
     "exposed-modules": [
+        "Exts.Array",
         "Exts.Delta",
         "Exts.Date",
         "Exts.Dict",
