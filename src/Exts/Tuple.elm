@@ -1,8 +1,8 @@
-module Exts.Tuple (indexedPair, first, second, (***), (&&&)) where
+module Exts.Tuple (indexedPair, first, second, both, (***), (&&&)) where
 
 {-| Extensions for tuples.
 
-@docs indexedPair, first, second, (***), (&&&)
+@docs indexedPair, first, second, both, (***), (&&&)
 
 -}
 
@@ -28,6 +28,13 @@ first f ( x, y ) =
 second : (b -> b') -> ( a, b ) -> ( a, b' )
 second f ( x, y ) =
   ( x, f y )
+
+
+{-| Update both components of a pair.
+-}
+both : (a -> b) -> ( a, a ) -> ( b, b )
+both f ( x, y ) =
+  ( f x, f y )
 
 
 {-| Update the both components of a pair.
