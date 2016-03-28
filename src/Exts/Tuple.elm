@@ -49,3 +49,7 @@ both f ( x, y ) =
 (&&&) : (a -> b) -> (a -> c) -> a -> ( b, c )
 (&&&) fX fY v =
   ( fX v, fY v )
+
+
+infixr 3 ***
+infixr 3 &&&
