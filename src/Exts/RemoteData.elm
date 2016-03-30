@@ -1,8 +1,8 @@
-module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map) where
+module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess) where
 
 {-| A datatype representing fetched data.
 
-@docs RemoteData, map, withDefault, fromResult, asEffect, mappend
+@docs RemoteData, map, withDefault, fromResult, asEffect, mappend, isSuccess
 -}
 
 import Http exposing (Error(..))
@@ -100,3 +100,15 @@ mappend a b =
 
     ( _, Loading ) ->
       Loading
+
+
+{-| State-checking predicate. Returns true if we've successfully loaded some data.
+-}
+isSuccess : RemoteData a -> Bool
+isSuccess data =
+  case data of
+    Success x ->
+      True
+
+    _ ->
+      False
