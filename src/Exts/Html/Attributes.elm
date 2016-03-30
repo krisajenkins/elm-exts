@@ -1,12 +1,12 @@
-module Exts.Html.Attributes (defaultValue, defaultString, defaultInt, defaultFloat) where
+module Exts.Html.Attributes (defaultValue, defaultString, defaultInt, defaultFloat, styleList) where
 
 {-| Extensions to the Html.Attributes library.
 
-@docs defaultValue, defaultString, defaultInt, defaultFloat
+@docs defaultValue, defaultString, defaultInt, defaultFloat, styleList
 -}
 
 import Html exposing (Attribute)
-import Html.Attributes exposing (property)
+import Html.Attributes exposing (property, style)
 import Json.Encode
 
 
@@ -36,3 +36,18 @@ defaultInt =
 defaultFloat : Float -> Attribute
 defaultFloat =
   defaultValue << Json.Encode.float
+
+
+{-| This function makes it easier to specify a conditional set of styles.
+   This the style-equivalent of elm-html's classList.
+-}
+styleList : List ( String, String, Bool ) -> Attribute
+styleList =
+  let
+    withActive ( name, value, active ) =
+      if active then
+        Just ( name, value )
+      else
+        Nothing
+  in
+    List.filterMap withActive >> Html.Attributes.style
