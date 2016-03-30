@@ -1,13 +1,13 @@
-module Exts.Html.Events (onEnter, onCheckbox) where
+module Exts.Html.Events (onEnter, onCheckbox, onSelect) where
 
 {-| Extensions to the Html.Events library.
 
-@docs onEnter, onCheckbox
+@docs onEnter, onCheckbox, onSelect
 -}
 
 import Html exposing (Attribute)
 import Html.Events exposing (..)
-import Json.Decode exposing (customDecoder)
+import Json.Decode as Decode exposing (customDecoder, Decoder)
 import Signal exposing (Message, Address)
 
 
@@ -46,3 +46,26 @@ onCheckbox address function =
     "change"
     targetChecked
     (Signal.message address << function)
+
+
+emptyIsNothing : String -> Maybe String
+emptyIsNothing s =
+  if s == "" then
+    Nothing
+  else
+    Just s
+
+
+maybeTargetValue : Decoder (Maybe String)
+maybeTargetValue =
+  Decode.map emptyIsNothing targetValue
+
+
+{-| An event handler for `<select> tags. Set the child `<option>` tag's value to "" to get a `Nothing`.
+-}
+onSelect : Address a -> (Maybe String -> a) -> Attribute
+onSelect address f =
+  on
+    "change"
+    maybeTargetValue
+    (Signal.message address << f)
