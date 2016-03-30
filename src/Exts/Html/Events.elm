@@ -1,14 +1,14 @@
-module Exts.Html.Events (onEnter) where
+module Exts.Html.Events (onEnter, onCheckbox) where
 
 {-| Extensions to the Html.Events library.
 
-@docs onEnter
+@docs onEnter, onCheckbox
 -}
 
 import Html exposing (Attribute)
-import Html.Events exposing (onWithOptions, keyCode)
+import Html.Events exposing (..)
 import Json.Decode exposing (customDecoder)
-import Signal exposing (Message)
+import Signal exposing (Message, Address)
 
 
 keyCodeIs : Int -> Int -> Result String ()
@@ -35,3 +35,14 @@ onEnter message =
     }
     (customDecoder keyCode enterKey)
     (always message)
+
+
+{-| Send a message whenever a checkbox is clicked. You supply a
+`function` which takes a `Bool` and returns an appropriate message.
+-}
+onCheckbox : Address a -> (Bool -> a) -> Attribute
+onCheckbox address function =
+  on
+    "change"
+    targetChecked
+    (Signal.message address << function)
