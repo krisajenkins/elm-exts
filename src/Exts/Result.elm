@@ -2,14 +2,14 @@ module Exts.Result (..) where
 
 {-| Extensions to the core `Result` library.
 
-@docs bimap, isOk, isErr, fromOk, fromErr, mappend
+@docs mapBoth, isOk, isErr, fromOk, fromErr, mappend
 -}
 
 
-{-| Treat `Result` as a bifunctor, applying the first function to `Err` values and the second to `Ok` ones.
+{-| Apply functions to both sides of a `Result`, transforming the error and ok types.
 -}
-bimap : (e -> f) -> (a -> b) -> Result e a -> Result f b
-bimap f g r =
+mapBoth : (e -> f) -> (a -> b) -> Result e a -> Result f b
+mapBoth f g r =
   case r of
     Ok x ->
       Ok (g x)
