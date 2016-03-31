@@ -1,6 +1,6 @@
 module Exts.Set (..) where
 
-{-| Extensions to the core Set library.
+{-| Extensions to the core `Set` library.
 
 @docs select, uniqueItems
 

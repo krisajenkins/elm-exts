@@ -1,6 +1,6 @@
 module Exts.Result (..) where
 
-{-| Extensions to the core Result library.
+{-| Extensions to the core `Result` library.
 
 @docs bimap, isOk, isErr, fromOk, fromErr, mappend
 -}

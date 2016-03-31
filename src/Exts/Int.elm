@@ -1,6 +1,6 @@
 module Exts.Int (floorBy) where
 
-{-| Extensions to the core Int library.
+{-| Extensions to the core `Int` library.
 
 @docs floorBy
 -}

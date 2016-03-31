@@ -1,6 +1,6 @@
 module Exts.Http (put, postContent, postForm, postJson, handleError) where
 
-{-| Extensions to the main Http library.
+{-| Extensions to the `Http` library.
 
 @docs handleError, put, postContent, postForm, postJson
 -}
@@ -28,7 +28,7 @@ checkStatus response =
     Task.fail (BadResponse response.status response.statusText)
 
 
-{-| Lift a raw Http response into a 'Task Error Response', using the same rules `Http` uses internally.
+{-| Lift a raw Http response into a `Task Error Response`, using the same rules `Http` uses internally.
 -}
 handleError : Task RawError Response -> Task Error Response
 handleError t =

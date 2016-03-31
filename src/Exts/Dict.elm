@@ -1,6 +1,6 @@
 module Exts.Dict (..) where
 
-{-| Extensions to the core Dict library.
+{-| Extensions to the core `Dict` library.
 
 @docs indexBy, groupBy, frequency, getWithDefault, foldToList
 

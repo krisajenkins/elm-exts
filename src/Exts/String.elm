@@ -1,6 +1,6 @@
 module Exts.String (..) where
 
-{-| Extensions to the core String library.
+{-| Extensions to the core `String` library.
 
 @docs removePrefix
 

@@ -1,12 +1,12 @@
 module Exts.Float (..) where
 
-{-| Extensions to the core Float library.
+{-| Extensions to the core `Float` library.
 
 @docs roundTo
 -}
 
 
-{-| Round a float to a given number of decimal places.
+{-| Round a `Float` to a given number of decimal places.
 -}
 roundTo : Int -> Float -> Float
 roundTo places =

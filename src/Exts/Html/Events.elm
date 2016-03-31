@@ -1,6 +1,6 @@
 module Exts.Html.Events (onEnter, onCheckbox, onSelect) where
 
-{-| Extensions to the Html.Events library.
+{-| Extensions to the `Html.Events` library.
 
 @docs onEnter, onCheckbox, onSelect
 -}
@@ -61,7 +61,7 @@ maybeTargetValue =
   Decode.map emptyIsNothing targetValue
 
 
-{-| An event handler for `<select> tags. Set the child `<option>` tag's value to "" to get a `Nothing`.
+{-| An event handler for `<select>` tags. Set the child `<option>` tag's value to "" to get a `Nothing`.
 -}
 onSelect : Address a -> (Maybe String -> a) -> Attribute
 onSelect address f =

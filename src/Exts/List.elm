@@ -1,6 +1,6 @@
 module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch) where
 
-{-| Extensions to the core List library.
+{-| Extensions to the core `List` library.
 
 @docs chunk, mergeBy, singleton, maybeSingleton, firstMatch
 -}
@@ -11,9 +11,9 @@ import List exposing (take, drop, length)
 import Dict
 
 
-{-| Split a list into chunks of length n.
+{-| Split a list into chunks of length `n`.
 
-  Be aware that the last sub-list may be smaller than n-items long.
+  Be aware that the last sub-list may be smaller than `n`-items long.
 
   For example `chunk 3 [1..10] => [[1,2,3], [4,5,6], [7,8,9], [10]]`
 -}
@@ -59,7 +59,7 @@ singleton x =
   [ x ]
 
 
-{-| Wrap a maybe item into a list. If the item is `Nothing`, the `List` is empty.
+{-| Wrap a maybe item into a `List`. If the item is `Nothing`, the `List` is empty.
 -}
 maybeSingleton : Maybe a -> List a
 maybeSingleton =

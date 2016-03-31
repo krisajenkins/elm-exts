@@ -1,6 +1,6 @@
 module Exts.Html.Attributes (defaultValue, defaultString, defaultInt, defaultFloat, styleList) where
 
-{-| Extensions to the Html.Attributes library.
+{-| Extensions to the `Html.Attributes` library.
 
 @docs defaultValue, defaultString, defaultInt, defaultFloat, styleList
 -}
@@ -17,21 +17,21 @@ defaultValue =
   property "defaultValue"
 
 
-{-| Convenience version of defaultValue, for `String`s.
+{-| Convenience version of `defaultValue`, for `String`s.
 -}
 defaultString : String -> Attribute
 defaultString =
   defaultValue << Json.Encode.string
 
 
-{-| Convenience version of defaultValue, for `Int`s.
+{-| Convenience version of `defaultValue`, for `Int`s.
 -}
 defaultInt : Int -> Attribute
 defaultInt =
   defaultValue << Json.Encode.int
 
 
-{-| Convenience version of defaultValue, for `Float`s.
+{-| Convenience version of `defaultValue`, for `Float`s.
 -}
 defaultFloat : Float -> Attribute
 defaultFloat =

@@ -132,7 +132,7 @@ popover direction isShown styles title body =
 
 {-| A type-safe list of all available glyphicons in Bootstrap. To fit
 Elm's syntax we convert from kebab-case to CamelCase, so
-"glyphicon-star-empty" becomes the type constructor StarEmpty.
+`"glyphicon-star-empty"` becomes the type constructor `StarEmpty`.
 -}
 type Glyphicon
   = Asterisk

@@ -1,6 +1,6 @@
 module Exts.Array (update) where
 
-{-| Extensions to the core Array library.
+{-| Extensions to the core `Array` library.
 
 @docs update
 -}

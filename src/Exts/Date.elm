@@ -1,6 +1,6 @@
 module Exts.Date (toISOString) where
 
-{-| Extensions to the core date library.
+{-| Extensions to the core `Date` library.
 
 @docs toISOString
 -}

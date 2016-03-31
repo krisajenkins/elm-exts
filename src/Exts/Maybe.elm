@@ -1,6 +1,6 @@
 module Exts.Maybe (..) where
 
-{-| Extensions to the core Maybe library.
+{-| Extensions to the core `Maybe` library.
 
 @docs isJust, isNothing, maybe, mappend, catMaybes
 -}
@@ -33,7 +33,7 @@ maybe default f =
   withDefault default << Maybe.map f
 
 
-{-| Monoidal append - join two `Maybe`s together as though they were one.
+{-| Join two `Maybe`s together as though they were one.
 -}
 mappend : Maybe a -> Maybe b -> Maybe ( a, b )
 mappend a b =
