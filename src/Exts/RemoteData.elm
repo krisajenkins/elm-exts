@@ -1,11 +1,10 @@
-module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess) where
+module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess, mapFailure, mapBoth) where
 
 {-| A datatype representing fetched data.
 
-@docs RemoteData, map, withDefault, fromResult, asEffect, mappend, isSuccess
+@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asEffect, mappend, isSuccess
 -}
 
-import Http exposing (Error(..))
 import Task exposing (Task)
 import Effects exposing (Effects)
 
@@ -13,19 +12,19 @@ import Effects exposing (Effects)
 {-| Frequently when you're fetching data from an API, you want to represent four different states:
   * `NotAsked` - We haven't asked for the data yet.
   * `Loading` - We've asked, but haven't got an answer yet.
-  * `Failure` - We asked, but something went wrong. Here's the `Error`.
+  * `Failure` - We asked, but something went wrong. Here's the error.
   * `Success` - Everything worked, and here's the data.
 -}
-type RemoteData a
+type RemoteData e a
   = NotAsked
   | Loading
-  | Failure Error
+  | Failure e
   | Success a
 
 
 {-| Map a function into the `Success` value.
 -}
-map : (a -> b) -> RemoteData a -> RemoteData b
+map : (a -> b) -> RemoteData e a -> RemoteData e b
 map f data =
   case data of
     Success x ->
@@ -41,9 +40,45 @@ map f data =
       NotAsked
 
 
+{-| Map a function into the `Failure` value.
+-}
+mapFailure : (e -> f) -> RemoteData e a -> RemoteData f a
+mapFailure f data =
+  case data of
+    Success x ->
+      Success x
+
+    Failure e ->
+      Failure (f e)
+
+    Loading ->
+      Loading
+
+    NotAsked ->
+      NotAsked
+
+
+{-| Map function into both the `Success` and `Failure` value.
+-}
+mapBoth : (a -> b) -> (e -> f) -> RemoteData e a -> RemoteData f b
+mapBoth successFn errorFn data =
+  case data of
+    Success x ->
+      Success (successFn x)
+
+    Failure e ->
+      Failure (errorFn e)
+
+    Loading ->
+      Loading
+
+    NotAsked ->
+      NotAsked
+
+
 {-| Return the `Success` value, or the default.
 -}
-withDefault : a -> RemoteData a -> a
+withDefault : a -> RemoteData e a -> a
 withDefault default data =
   case data of
     Success x ->
@@ -55,7 +90,7 @@ withDefault default data =
 
 {-| Convert a web `Task`, probably produced from elm-http, to a RemoteData Effect.
 -}
-asEffect : Task Error a -> Effects (RemoteData a)
+asEffect : Task e a -> Effects (RemoteData e a)
 asEffect =
   Task.toResult
     >> Effects.task
@@ -64,7 +99,7 @@ asEffect =
 
 {-| Convert a `Result Error`, probably produced from elm-http, to a RemoteData value.
 -}
-fromResult : Result Error a -> RemoteData a
+fromResult : Result e a -> RemoteData e a
 fromResult result =
   case result of
     Err e ->
@@ -77,7 +112,7 @@ fromResult result =
 {-| Monoidal append - join two `RemoteData` values together as though
 they were one. If both values are Failure, the left one wins.
 -}
-mappend : RemoteData a -> RemoteData b -> RemoteData ( a, b )
+mappend : RemoteData e a -> RemoteData e b -> RemoteData e ( a, b )
 mappend a b =
   case ( a, b ) of
     ( Success x, Success y ) ->
@@ -104,7 +139,7 @@ mappend a b =
 
 {-| State-checking predicate. Returns true if we've successfully loaded some data.
 -}
-isSuccess : RemoteData a -> Bool
+isSuccess : RemoteData e a -> Bool
 isSuccess data =
   case data of
     Success x ->
