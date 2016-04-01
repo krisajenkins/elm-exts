@@ -15,6 +15,7 @@
         "Exts.Effects",
         "Exts.Float",
         "Exts.Html.Bootstrap",
+        "Exts.Html.Bootstrap.Glyphicons",
         "Exts.Html.Attributes",
         "Exts.Html.Events",
         "Exts.Html.Table",
