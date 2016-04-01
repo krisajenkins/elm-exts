@@ -30,14 +30,14 @@ second f ( x, y ) =
   ( x, f y )
 
 
-{-| Update both components of a pair.
+{-| Update both components of a pair with a single function.
 -}
 both : (a -> b) -> ( a, a ) -> ( b, b )
 both f ( x, y ) =
   ( f x, f y )
 
 
-{-| Update the both components of a pair.
+{-| Update both components of a pair with two functions.
 -}
 (***) : (a -> a') -> (b -> b') -> ( a, b ) -> ( a', b' )
 (***) fX fY ( x, y ) =
