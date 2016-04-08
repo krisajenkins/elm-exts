@@ -4,7 +4,7 @@ import ElmTest exposing (..)
 import Exts.List exposing (..)
 import Check exposing (..)
 import Check.Producer exposing (..)
-import Check.Test
+import Check.Test exposing (evidenceToTest)
 import Set
 
 
@@ -13,8 +13,10 @@ tests =
   ElmTest.suite
     "Exts.List"
     [ chunkTests
+    , evidenceToTest (quickCheck chunkClaims)
     , mergeByTests
     , firstMatchTests
+    , evidenceToTest (quickCheck firstMatchClaims)
     ]
 
 
@@ -42,7 +44,6 @@ chunkTests =
           ([ [1..4], [5..8], [9..12] ])
           (chunk 4 [1..12])
         )
-    , Check.Test.evidenceToTest (Check.quickCheck chunkClaims)
     ]
 
 
@@ -141,7 +142,6 @@ firstMatchTests =
   ElmTest.suite
     "firstMatch"
     [ defaultTest (assertEqual Nothing (firstMatch (always True) []))
-    , Check.Test.evidenceToTest (Check.quickCheck firstMatchClaims)
     ]
 
 
