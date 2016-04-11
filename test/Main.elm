@@ -1,8 +1,8 @@
 module Main (..) where
 
 import Console
-import Task exposing (Task)
 import ElmTest exposing (..)
+import Task exposing (Task)
 import Tests.Exts.Array
 import Tests.Exts.Date
 import Tests.Exts.Delta
@@ -16,13 +16,13 @@ tests : Test
 tests =
   suite
     "All"
-    [ Tests.Exts.Array.tests
-    , Tests.Exts.Date.tests
+    [ Tests.Exts.Date.tests
     , Tests.Exts.Delta.tests
-    , Tests.Exts.List.tests
     , Tests.Exts.Dict.tests
+    , Tests.Exts.List.tests
     , Tests.Exts.Result.tests
     , Tests.Exts.String.tests
+    , Tests.Exts.Array.tests
     ]
 
 
