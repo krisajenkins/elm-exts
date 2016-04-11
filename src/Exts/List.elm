@@ -1,8 +1,8 @@
-module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch) where
+module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest) where
 
 {-| Extensions to the core `List` library.
 
-@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch
+@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest
 -}
 
 import Array exposing (Array)
@@ -80,3 +80,11 @@ firstMatch predicate items =
         Just x
       else
         (firstMatch predicate xs)
+
+
+{-| Like List.tail, but if the list is empty it returns an empty list rather than `Nothing`.
+-}
+rest : List a -> List a
+rest =
+  List.tail
+    >> Maybe.withDefault []
