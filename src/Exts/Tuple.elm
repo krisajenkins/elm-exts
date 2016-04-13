@@ -1,8 +1,8 @@
-module Exts.Tuple (indexedPair, first, second, both, (***), (&&&)) where
+module Exts.Tuple (indexedPair, first, second, both, pair, fork) where
 
 {-| Extensions for tuples.
 
-@docs indexedPair, first, second, both, (***), (&&&)
+@docs indexedPair, first, second, both, pair, fork
 
 -}
 
@@ -39,17 +39,13 @@ both f ( x, y ) =
 
 {-| Update both components of a pair with two functions.
 -}
-(***) : (a -> a') -> (b -> b') -> ( a, b ) -> ( a', b' )
-(***) fX fY ( x, y ) =
+pair : (a -> a') -> (b -> b') -> ( a, b ) -> ( a', b' )
+pair fX fY ( x, y ) =
   ( fX x, fY y )
 
 
 {-| Generate a pair from a single value and a left & right function.
 -}
-(&&&) : (a -> b) -> (a -> c) -> a -> ( b, c )
-(&&&) fX fY v =
+fork : (a -> b) -> (a -> c) -> a -> ( b, c )
+fork fX fY v =
   ( fX v, fY v )
-
-
-infixr 3 ***
-infixr 3 &&&
