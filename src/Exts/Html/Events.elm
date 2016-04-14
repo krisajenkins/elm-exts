@@ -69,3 +69,14 @@ onSelect address f =
     "change"
     maybeTargetValue
     (message address << f)
+
+
+{-| Similar to onChange, but it fires as soon as the value has changed,
+whereas onChange waits until the input loses focus.
+-}
+onInput : Address a -> (String -> a) -> Attribute
+onInput address f =
+  on
+    "input"
+    targetValue
+    (message address << f)
