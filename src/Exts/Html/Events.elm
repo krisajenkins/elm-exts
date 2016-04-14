@@ -8,7 +8,7 @@ module Exts.Html.Events (onEnter, onCheckbox, onSelect) where
 import Html exposing (Attribute)
 import Html.Events exposing (..)
 import Json.Decode as Decode exposing (customDecoder, Decoder)
-import Signal exposing (Message, Address)
+import Signal exposing (Message, Address, message)
 
 
 keyCodeIs : Int -> Int -> Result String ()
@@ -68,4 +68,4 @@ onSelect address f =
   on
     "change"
     maybeTargetValue
-    (Signal.message address << f)
+    (message address << f)
