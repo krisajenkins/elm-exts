@@ -1,8 +1,8 @@
-module Exts.Html.Events (onEnter, onCheckbox, onSelect) where
+module Exts.Html.Events (onEnter, onCheckbox, onSelect, onInput) where
 
 {-| Extensions to the `Html.Events` library.
 
-@docs onEnter, onCheckbox, onSelect
+@docs onEnter, onCheckbox, onSelect, onInput
 -}
 
 import Html exposing (Attribute)
