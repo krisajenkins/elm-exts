@@ -11,6 +11,6 @@ import Task exposing (Task)
 
 {-| Convert a `Task` to an `Effect` which conveys success or failure.
 -}
-asEffect : Task a b -> Effects (Result a b)
+asEffect : Task e a -> Effects (Result e a)
 asEffect =
   Effects.task << Task.toResult
