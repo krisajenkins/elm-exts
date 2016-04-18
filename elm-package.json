@@ -28,6 +28,7 @@
         "Exts.Result",
         "Exts.RemoteData",
         "Exts.Set",
+        "Exts.StartApp",
         "Exts.String",
         "Exts.State",
         "Exts.Tuple",
