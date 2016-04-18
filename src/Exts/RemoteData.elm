@@ -7,7 +7,7 @@ module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappe
 
 import Task exposing (Task)
 import Effects exposing (Effects)
-import Exts.Task
+import Exts.Effects
 
 
 {-| Frequently when you're fetching data from an API, you want to represent four different states:
@@ -93,7 +93,7 @@ withDefault default data =
 -}
 asEffect : Task e a -> Effects (RemoteData e a)
 asEffect =
-  Exts.Task.asEffect
+  Exts.Effects.fromTask
     >> Effects.map fromResult
 
 

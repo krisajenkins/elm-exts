@@ -12,6 +12,7 @@
         "Exts.Delta",
         "Exts.Date",
         "Exts.Dict",
+        "Exts.Effects",
         "Exts.Float",
         "Exts.Html",
         "Exts.Html.Bootstrap",
@@ -29,7 +30,6 @@
         "Exts.Set",
         "Exts.String",
         "Exts.State",
-        "Exts.Task",
         "Exts.Tuple",
         "Exts.Validation"
     ],
