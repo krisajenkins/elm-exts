@@ -1,6 +1,6 @@
 module Exts.State (subUpdate) where
 
-{-| Extensions to the core `Array` library.
+{-| Extensions for managing State.
 
 @docs subUpdate
 -}
