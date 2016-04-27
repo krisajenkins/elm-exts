@@ -1,4 +1,4 @@
-module Exts.Html.Table (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup) where
+module Exts.Html.Table exposing (CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup)
 
 {-| Helpers for simple data tables. Define how a list of items can be
 rendered as a table. The definition is a `List` of `(column-title,
@@ -21,18 +21,18 @@ import Html.Attributes exposing (..)
     ,(text "Name", .age >> toString >> text)]
 
 -}
-type alias CellDef a =
-  ( Html, a -> Html )
+type alias CellDef a msg =
+  ( Html msg, a -> Html msg )
 
 
 {-| -}
-type alias TableDef a =
-  List (CellDef a)
+type alias TableDef a msg =
+  List (CellDef a msg)
 
 
 {-| Given a table definition, render a list of elements as HTML.
 -}
-simpleTable : TableDef a -> List a -> Html
+simpleTable : TableDef a msg -> List a -> (Html msg)
 simpleTable tableDef items =
   table
     [ class "table table-bordered table-hover" ]
@@ -52,7 +52,7 @@ simpleTable tableDef items =
 {-| Given a table definition, render an element to a <tr> tag. This is
 lower-level. Usually you will want `simpleTable` instead.
 -}
-simpleTableRow : TableDef a -> a -> Html
+simpleTableRow : TableDef a msg -> a -> (Html msg)
 simpleTableRow tableDef item =
   tr
     []
@@ -69,12 +69,12 @@ simpleTableRow tableDef item =
                  ,.location >> .lng >> toString >> text])
 
 -}
-titleGroup : List String -> Html
+titleGroup : List String -> (Html msg)
 titleGroup strings =
   div [] (List.map (\s -> div [] [ text s ]) strings)
 
 
 {-| -}
-valueGroup : List (a -> Html) -> a -> Html
+valueGroup : List (a -> (Html msg)) -> a -> (Html msg)
 valueGroup fs x =
   div [] (List.map (\f -> div [] [ f x ]) fs)

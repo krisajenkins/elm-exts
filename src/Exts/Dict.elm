@@ -1,4 +1,4 @@
-module Exts.Dict (..) where
+module Exts.Dict exposing (..)
 
 {-| Extensions to the core `Dict` library.
 

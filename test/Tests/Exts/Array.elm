@@ -1,4 +1,4 @@
-module Tests.Exts.Array (tests) where
+module Tests.Exts.Array exposing (tests)
 
 import ElmTest exposing (..)
 import Array exposing (..)

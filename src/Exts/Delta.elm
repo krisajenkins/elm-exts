@@ -1,4 +1,4 @@
-module Exts.Delta (Delta, empty, generation) where
+module Exts.Delta exposing (Delta, empty, generation)
 
 {-| A system for tracking players that enter and leave a stage, a-la D3.
 

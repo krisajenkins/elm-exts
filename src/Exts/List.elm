@@ -1,4 +1,4 @@
-module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest) where
+module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest)
 
 {-| Extensions to the core `List` library.
 
@@ -6,7 +6,6 @@ module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest) w
 -}
 
 import Array exposing (Array)
-import Trampoline exposing (..)
 import List exposing (take, drop, length)
 import Dict
 
@@ -22,21 +21,18 @@ chunk n xs =
   if n < 1 then
     singleton xs
   else
-    trampoline (chunk' n xs Array.empty)
+    (chunk' n xs Array.empty)
 
 
-chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))
+chunk' : Int -> List a -> Array (List a) -> (List (List a))
 chunk' n xs accum =
   if List.isEmpty xs then
-    Done (Array.toList accum)
+    (Array.toList accum)
   else
-    Continue
-      (\() ->
         chunk'
           n
           (drop n xs)
           (Array.push (take n xs) accum)
-      )
 
 
 {-| Merge two lists. The first argument is a function which returns

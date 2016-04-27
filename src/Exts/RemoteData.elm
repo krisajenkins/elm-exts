@@ -1,14 +1,9 @@
-module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess, mapFailure, mapBoth) where
+module Exts.RemoteData exposing (RemoteData(..), fromResult, withDefault, mappend, map, isSuccess, mapFailure, mapBoth)
 
 {-| A datatype representing fetched data.
 
-@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asEffect, mappend, isSuccess
+@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, mappend, isSuccess
 -}
-
-import Task exposing (Task)
-import Effects exposing (Effects)
-import Exts.Effects
-
 
 {-| Frequently when you're fetching data from an API, you want to represent four different states:
   * `NotAsked` - We haven't asked for the data yet.
@@ -88,13 +83,6 @@ withDefault default data =
     _ ->
       default
 
-
-{-| Convert a web `Task`, probably produced from elm-http, to a RemoteData Effect.
--}
-asEffect : Task e a -> Effects (RemoteData e a)
-asEffect =
-  Exts.Effects.fromTask
-    >> Effects.map fromResult
 
 
 {-| Convert a `Result Error`, probably produced from elm-http, to a RemoteData value.

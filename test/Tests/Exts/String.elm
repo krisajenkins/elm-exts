@@ -1,4 +1,4 @@
-module Tests.Exts.String (tests) where
+module Tests.Exts.String exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.String exposing (..)

@@ -1,4 +1,4 @@
-module Exts.String (..) where
+module Exts.String exposing (..)
 
 {-| Extensions to the core `String` library.
 

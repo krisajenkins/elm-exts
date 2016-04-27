@@ -1,4 +1,4 @@
-module Tests.Exts.Delta (tests) where
+module Tests.Exts.Delta exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.Delta exposing (..)

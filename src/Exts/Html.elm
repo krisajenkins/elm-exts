@@ -1,4 +1,4 @@
-module Exts.Html (matchText) where
+module Exts.Html exposing (matchText)
 
 {-| Extensions to the `Html` library.
 
@@ -35,7 +35,7 @@ import String exposing (length)
     (Note that you can supply any attributes you like for the matched sections, or an empty list.)
 
 -}
-matchText : List Attribute -> Regex -> String -> List Html
+matchText : List (Attribute msg) -> Regex -> String -> List (Html msg)
 matchText attributes search string =
   let
     matches =

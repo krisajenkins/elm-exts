@@ -1,4 +1,4 @@
-module Exts.LatLng (..) where
+module Exts.LatLng exposing (..)
 
 {-| Calculations between points on the earth.
 

@@ -1,4 +1,4 @@
-module Exts.Html.Bootstrap (container, containerFluid, row, empty, twoColumns, Ratio(..), video, popover, PopoverDirection(..)) where
+module Exts.Html.Bootstrap exposing (container, containerFluid, row, empty, twoColumns, Ratio(..), video, popover, PopoverDirection(..))
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
@@ -11,35 +11,35 @@ import Html.Attributes exposing (..)
 
 {-| Bootstrap grid container.
 -}
-container : List Html -> Html
+container : List (Html msg) -> (Html msg)
 container =
   div [ class "container" ]
 
 
 {-| Bootstrap grid fluid container.
 -}
-containerFluid : List Html -> Html
+containerFluid : List (Html msg) -> (Html msg)
 containerFluid =
   div [ class "container-fluid" ]
 
 
 {-| Bootstrap grid row.
 -}
-row : List Html -> Html
+row : List (Html msg) -> (Html msg)
 row =
   div [ class "row" ]
 
 
 {-| The minimum markup - an empty span.
 -}
-empty : Html
+empty : (Html msg)
 empty =
   span [] []
 
 
 {-| Two evenly-sized columns. Must be used within a row.
 -}
-twoColumns : List Html -> List Html -> Html
+twoColumns : List (Html msg) -> List (Html msg) -> (Html msg)
 twoColumns left right =
   row
     [ div [ class "col-xs-6" ] left
@@ -56,7 +56,7 @@ type Ratio
 
 {-| Embed a responsive video.
 -}
-video : Ratio -> String -> Html
+video : Ratio -> String -> (Html msg)
 video ratio url =
   let
     ratioClass =
@@ -97,7 +97,7 @@ type PopoverDirection
 
 {-| Interface to the bootstrap popover that does not require bootstrap.js.
 -}
-popover : PopoverDirection -> Bool -> List ( String, String ) -> Maybe String -> List Html -> Html
+popover : PopoverDirection -> Bool -> List ( String, String ) -> Maybe String -> List (Html msg) -> (Html msg)
 popover direction isShown styles title body =
   div
     [ classList

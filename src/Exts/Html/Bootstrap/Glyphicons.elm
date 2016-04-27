@@ -1,4 +1,4 @@
-module Exts.Html.Bootstrap.Glyphicons (glyphicon, Glyphicon(..)) where
+module Exts.Html.Bootstrap.Glyphicons exposing (glyphicon, Glyphicon(..))
 
 {-| Type-safe glyphicons for Twitter Bootstrap 3 users.
 
@@ -281,7 +281,7 @@ type Glyphicon
 
 {-| Type-checked Glyphicons.
 -}
-glyphicon : Glyphicon -> Html
+glyphicon : Glyphicon -> Html msg
 glyphicon icon =
   span
     [ classList

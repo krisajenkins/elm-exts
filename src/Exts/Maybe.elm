@@ -1,4 +1,4 @@
-module Exts.Maybe (..) where
+module Exts.Maybe exposing (..)
 
 {-| Extensions to the core `Maybe` library.
 

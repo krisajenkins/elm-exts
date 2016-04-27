@@ -1,4 +1,4 @@
-module Exts.Set (..) where
+module Exts.Set exposing (..)
 
 {-| Extensions to the core `Set` library.
 

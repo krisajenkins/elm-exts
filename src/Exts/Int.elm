@@ -1,4 +1,4 @@
-module Exts.Int (floorBy) where
+module Exts.Int exposing (floorBy)
 
 {-| Extensions to the core `Int` library.
 

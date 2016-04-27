@@ -1,14 +1,13 @@
-module Exts.Html.Events (onEnter, onCheckbox, onSelect, onInput) where
+module Exts.Html.Events exposing (onEnter, onSelect)
 
 {-| Extensions to the `Html.Events` library.
 
-@docs onEnter, onCheckbox, onSelect, onInput
+@docs onEnter, onSelect
 -}
 
 import Html exposing (Attribute)
 import Html.Events exposing (..)
-import Json.Decode as Decode exposing (customDecoder, Decoder)
-import Signal exposing (Message, Address, message)
+import Json.Decode as Decode exposing (customDecoder, Decoder, andThen, succeed)
 
 
 keyCodeIs : Int -> Int -> Result String ()
@@ -26,26 +25,14 @@ enterKey =
 
 {-| Send a message when the user hits enter.
 -}
-onEnter : Message -> Attribute
+onEnter : msg -> Attribute msg
 onEnter message =
   onWithOptions
     "keydown"
     { preventDefault = True
     , stopPropagation = False
     }
-    (customDecoder keyCode enterKey)
-    (always message)
-
-
-{-| Send a message whenever a checkbox is clicked. You supply a
-`function` which takes a `Bool` and returns an appropriate message.
--}
-onCheckbox : Address a -> (Bool -> a) -> Attribute
-onCheckbox address function =
-  on
-    "change"
-    targetChecked
-    (Signal.message address << function)
+    ((customDecoder keyCode enterKey) `andThen` (\_ -> succeed message))
 
 
 emptyIsNothing : String -> Maybe String
@@ -63,20 +50,8 @@ maybeTargetValue =
 
 {-| An event handler for `<select>` tags. Set the child `<option>` tag's value to "" to get a `Nothing`.
 -}
-onSelect : Address a -> (Maybe String -> a) -> Attribute
-onSelect address f =
+onSelect : (Maybe String -> msg) -> Attribute msg
+onSelect f =
   on
     "change"
-    maybeTargetValue
-    (message address << f)
-
-
-{-| Similar to onChange, but it fires as soon as the value has changed,
-whereas onChange waits until the input loses focus.
--}
-onInput : Address a -> (String -> a) -> Attribute
-onInput address f =
-  on
-    "input"
-    targetValue
-    (message address << f)
+    (Decode.map f maybeTargetValue)

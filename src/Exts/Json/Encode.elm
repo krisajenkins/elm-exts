@@ -1,4 +1,4 @@
-module Exts.Json.Encode (..) where
+module Exts.Json.Encode exposing (..)
 
 {-| Extensions to the core `Json.Encode` library.
 
