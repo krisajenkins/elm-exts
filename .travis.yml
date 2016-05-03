@@ -1,6 +1,6 @@
 language: haskell
 install:
-  - npm install -g elm
+  - npm install -g elm@alpha
   - elm-package install -y
 script:
   - make
