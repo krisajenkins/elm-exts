@@ -1,5 +1,7 @@
 # Elm Extensions
 
+[![Build Status](https://travis-ci.org/krisajenkins/elm-exts.svg?branch=travis)](https://travis-ci.org/krisajenkins/elm-exts)
+
 A wide-ranging collection of extensions to the Elm core libraries.
 
 ## Documentation
