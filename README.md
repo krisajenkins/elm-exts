@@ -15,7 +15,7 @@ $ elm package install krisajenkins/elm-dialog
 
 ## Documentation
 
-...is available on [the Elm Packages page](http://package.elm-lang.org/packages/krisajenkins/elm-exts/latest/).
+[See the Elm package for full usage docs](http://package.elm-lang.org/packages/krisajenkins/elm-exts/latest).
 
 ## Building & Testing
 
