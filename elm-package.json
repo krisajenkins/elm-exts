@@ -31,6 +31,7 @@
         "Exts.StartApp",
         "Exts.String",
         "Exts.State",
+        "Exts.Task",
         "Exts.Tuple",
         "Exts.Validation"
     ],
