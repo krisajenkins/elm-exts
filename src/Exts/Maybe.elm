@@ -2,7 +2,7 @@ module Exts.Maybe (..) where
 
 {-| Extensions to the core `Maybe` library.
 
-@docs isJust, isNothing, maybe, mappend, catMaybes
+@docs isJust, isNothing, maybe, mappend, catMaybes, join
 -}
 
 import Maybe exposing (withDefault)
@@ -61,3 +61,16 @@ catMaybes xs =
 
     (Just x) :: xs' ->
       x :: catMaybes xs'
+
+
+{-| Join together two `Maybe` values using the supplied function. If
+either value is `Nothing`, the result is `Nothing`.
+-}
+join : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+join f left right =
+  case ( left, right ) of
+    ( Just x, Just y ) ->
+      Just (f x y)
+
+    _ ->
+      Nothing
