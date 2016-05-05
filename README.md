@@ -4,6 +4,15 @@
 
 A wide-ranging collection of extensions to the Elm core libraries.
 
+## Installation
+
+From your top-level directory - the one with `elm-package.json` in - call:
+
+```
+
+$ elm package install krisajenkins/elm-dialog
+```
+
 ## Documentation
 
 ...is available on [the Elm Packages page](http://package.elm-lang.org/packages/krisajenkins/elm-exts/latest/).
