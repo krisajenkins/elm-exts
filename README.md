@@ -14,4 +14,10 @@ A wide-ranging collection of extensions to the Elm core libraries.
 make
 ```
 
-...will run the whole build.
+...will run the whole build and test suite.
+
+## License
+
+Copyright © 2015-2016 Kris Jenkins
+
+Distributed under the MIT license.
