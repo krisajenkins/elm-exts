@@ -2,6 +2,12 @@ module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappe
 
 {-| A datatype representing fetched data.
 
+If you find yourself continually using `Maybe (Result Error a)` to
+represent loaded data, or you have a habit of shuffling errors away to
+where they can be quietly ignored, consider using this. It makes it
+easier to represent the real state of a remote data fetch and handle
+it properly.
+
 @docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asEffect, mappend, isSuccess
 -}
 
