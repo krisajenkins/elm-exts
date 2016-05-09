@@ -25,8 +25,8 @@ either returns an error message, or a form that is definitely valid. For example
     validateForm : Form -> Result String ValidForm
     validateForm form =
       Ok ValidForm
-        |: (notBlank "Email is required and may not be blank." form.email)
-        |: (required "Age is required" form.age)
+        |: notBlank "Message is required and may not be blank." form.message
+        |: required "Age is required" form.age
 
 An error message is typically a `String`, but may be any type you choose.
 
