@@ -2,7 +2,7 @@ module Exts.Validation (..) where
 
 {-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest)
 
-@docs Validator, apply, (|:), required, notBlank, matches, emailRegex
+@docs Validator, apply, (|:), required, notBlank, matches, email, emailRegex
 -}
 
 import Regex exposing (Regex, caseInsensitive, regex, contains)
@@ -26,6 +26,7 @@ either returns an error message, or a form that is definitely valid. For example
     validateForm form =
       Ok ValidForm
         |: notBlank "Message is required and may not be blank." form.message
+        |: email "Email is required and may not be blank." form.email
         |: matches (caseInsensitive (regex "^\\[a-z]+$")) "First name may only contain letters." form.firstName
         |: required "Age is required" form.age
 
@@ -91,11 +92,15 @@ matches expression err str =
 {-| A basic email regex. This is incredibly simplistic, but is
 included for convenience.
 
-Use it like:
-
 Remember that the only real way to validate an email address is to
 send something to it and get a reply.
 -}
+email : e -> Validator e String
+email =
+  matches emailRegex
+
+
+{-| -}
 emailRegex : Regex
 emailRegex =
-  caseInsensitive (regex ".+@.+\\..+")
+  caseInsensitive (regex "^\\S+@\\S+\\.\\S+$")

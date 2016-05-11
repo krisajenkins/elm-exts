@@ -11,6 +11,7 @@ import Tests.Exts.List
 import Tests.Exts.Maybe
 import Tests.Exts.Result
 import Tests.Exts.String
+import Tests.Exts.Validation
 
 
 tests : Test
@@ -25,6 +26,7 @@ tests =
     , Tests.Exts.Result.tests
     , Tests.Exts.String.tests
     , Tests.Exts.Date.tests
+    , Tests.Exts.Validation.tests
     ]
 
 
