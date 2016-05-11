@@ -2,12 +2,11 @@ module Exts.Validation (..) where
 
 {-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest)
 
-@docs apply, (|:), required, notBlank, matches, emailRegex
+@docs Validator, apply, (|:), required, notBlank, matches, emailRegex
 -}
 
 import Regex exposing (Regex, caseInsensitive, regex, contains)
 import Result exposing (andThen, map)
-import Exts.Maybe exposing (maybe)
 
 
 {-| A validator is a function that takes a possibly-invalid form, and
@@ -27,10 +26,16 @@ either returns an error message, or a form that is definitely valid. For example
     validateForm form =
       Ok ValidForm
         |: notBlank "Message is required and may not be blank." form.message
-        |: matches emailRegex "Email is required and may not be blank." form.email
+        |: matches (caseInsensitive (regex "^\\[a-z]+$")) "First name may only contain letters." form.firstName
         |: required "Age is required" form.age
 
 An error message is typically a `String`, but may be any type you choose.
+-}
+type alias Validator e a =
+  Maybe a -> Result e a
+
+
+{-| Chain valiadators together.
 
 (Hat tip to CircuitHub, who inspired the syntax and guided the code with their [elm-json-extra](http://package.elm-lang.org/packages/circuithub/elm-json-extra/latest) library.)
 -}
@@ -48,14 +53,14 @@ apply f aResult =
 
 {-| A field that might be `Nothing`, but is only valid if it is `Just a`.
 -}
-required : e -> Maybe a -> Result e a
+required : e -> Validator e a
 required err =
   Maybe.withDefault (Err err) << Maybe.map Ok
 
 
 {-| A field that might be `Nothing`, but is only valid if it is a non-empty `String`.
 -}
-notBlank : e -> Maybe String -> Result e String
+notBlank : e -> Validator e String
 notBlank err str =
   case str of
     Nothing ->
@@ -70,7 +75,7 @@ notBlank err str =
 
 {-| A field that must match the given regex.
 -}
-matches : Regex -> e -> Maybe String -> Result e String
+matches : Regex -> e -> Validator e String
 matches expression err str =
   case str of
     Nothing ->
