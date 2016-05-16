@@ -1,4 +1,4 @@
-module Exts.Float (..) where
+module Exts.Float exposing (..)
 
 {-| Extensions to the core `Float` library.
 

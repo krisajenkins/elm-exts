@@ -1,4 +1,4 @@
-module Tests.Exts.Validation (tests) where
+module Tests.Exts.Validation exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.Result exposing (..)
@@ -7,8 +7,7 @@ import Exts.Validation exposing (..)
 
 tests : Test
 tests =
-  ElmTest.suite
-    "Exts.Validation"
+  ElmTest.suite "Exts.Validation"
     [ emailTests ]
 
 

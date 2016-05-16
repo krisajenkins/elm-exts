@@ -1,4 +1,4 @@
-module Exts.Dict (..) where
+module Exts.Dict exposing (..)
 
 {-| Extensions to the core `Dict` library.
 
@@ -82,7 +82,6 @@ getWithDefault def key =
 -}
 foldToList : (comparable -> v -> b) -> Dict.Dict comparable v -> List b
 foldToList f dict =
-  Dict.foldr
-    (\k v -> (::) (f k v))
+  Dict.foldr (\k v -> (::) (f k v))
     []
     dict

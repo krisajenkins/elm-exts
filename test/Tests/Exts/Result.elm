@@ -1,4 +1,4 @@
-module Tests.Exts.Result (tests) where
+module Tests.Exts.Result exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.Result exposing (..)
@@ -6,8 +6,7 @@ import Exts.Result exposing (..)
 
 tests : Test
 tests =
-  ElmTest.suite
-    "Exts.Result"
+  ElmTest.suite "Exts.Result"
     [ fromOkTests
     , fromErrTests
     ]
@@ -15,8 +14,7 @@ tests =
 
 fromOkTests : Test
 fromOkTests =
-  ElmTest.suite
-    "fromOk"
+  ElmTest.suite "fromOk"
     [ defaultTest (assertEqual (Just 5) (fromOk (Ok 5)))
     , defaultTest (assertEqual Nothing (fromOk (Err 5)))
     ]
@@ -24,8 +22,7 @@ fromOkTests =
 
 fromErrTests : Test
 fromErrTests =
-  ElmTest.suite
-    "fromErr"
+  ElmTest.suite "fromErr"
     [ defaultTest (assertEqual (Just 5) (fromErr (Err 5)))
     , defaultTest (assertEqual Nothing (fromErr (Ok 5)))
     ]

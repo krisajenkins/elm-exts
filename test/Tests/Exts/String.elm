@@ -1,4 +1,4 @@
-module Tests.Exts.String (tests) where
+module Tests.Exts.String exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.String exposing (..)
@@ -10,8 +10,7 @@ import String
 
 tests : Test
 tests =
-  ElmTest.suite
-    "Exts.String"
+  ElmTest.suite "Exts.String"
     [ removePrefixTests
     ]
 
@@ -26,8 +25,7 @@ validIndex n s =
 
 removePrefixTests : Test
 removePrefixTests =
-  ElmTest.suite
-    "removePrefix"
+  ElmTest.suite "removePrefix"
     [ ElmTest.defaultTest (assertEqual "elm" (removePrefix "cr" "crelm"))
     , ElmTest.defaultTest (assertEqual "mouthwash" (removePrefix "cr" "mouthwash"))
     , Check.Test.evidenceToTest (Check.quickCheck removePrefixClaims)
@@ -36,13 +34,11 @@ removePrefixTests =
 
 removePrefixClaims : Claim
 removePrefixClaims =
-  Check.suite
-    "removePrefix"
+  Check.suite "removePrefix"
     [ claim "String length is preserved."
         `that` (\( n, s ) -> String.dropLeft n s)
         `is` (\( n, s ) -> removePrefix (String.slice 0 n s) s)
-        `for` (filter
-                (uncurry validIndex)
+        `for` (filter (uncurry validIndex)
                 (tuple ( int, string ))
               )
     ]

@@ -1,4 +1,4 @@
-module Exts.List (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest) where
+module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest)
 
 {-| Extensions to the core `List` library.
 
@@ -22,18 +22,17 @@ chunk n xs =
   if n < 1 then
     singleton xs
   else
-    trampoline (chunk' n xs Array.empty)
+    evaluate (chunk' n xs Array.empty)
 
 
 chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))
 chunk' n xs accum =
   if List.isEmpty xs then
-    Done (Array.toList accum)
+    done (Array.toList accum)
   else
-    Continue
+    jump
       (\() ->
-        chunk'
-          n
+        chunk' n
           (drop n xs)
           (Array.push (take n xs) accum)
       )

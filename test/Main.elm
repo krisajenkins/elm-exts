@@ -1,8 +1,6 @@
-module Main (..) where
+module Main exposing (..)
 
-import Console
 import ElmTest exposing (..)
-import Task exposing (Task)
 import Tests.Exts.Array
 import Tests.Exts.Date
 import Tests.Exts.Delta
@@ -16,8 +14,7 @@ import Tests.Exts.Validation
 
 tests : Test
 tests =
-  suite
-    "All"
+  suite "All"
     [ Tests.Exts.Array.tests
     , Tests.Exts.Delta.tests
     , Tests.Exts.Dict.tests
@@ -30,6 +27,6 @@ tests =
     ]
 
 
-port runner : Signal (Task x ())
-port runner =
-  Console.run (consoleRunner tests)
+main : Program Never
+main =
+  runSuite tests

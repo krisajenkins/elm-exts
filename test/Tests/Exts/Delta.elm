@@ -1,4 +1,4 @@
-module Tests.Exts.Delta (tests) where
+module Tests.Exts.Delta exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.Delta exposing (..)
@@ -11,11 +11,9 @@ tests =
 
 generationTests : Test
 generationTests =
-  suite
-    "generation"
+  suite "generation"
     [ defaultTest
-        (assertEqual
-          { empty | entering = [ 1, 2 ] }
+        (assertEqual { empty | entering = [ 1, 2 ] }
           (generation [ 1, 2 ] empty)
         )
     , defaultTest
@@ -25,8 +23,7 @@ generationTests =
             , continuing = [ 2 ]
             , leaving = [ 1 ]
           }
-          (generation
-            [ 2, 3, 4 ]
+          (generation [ 2, 3, 4 ]
             { empty | entering = [ 1, 2 ] }
           )
         )
@@ -37,8 +34,7 @@ generationTests =
             , continuing = [ 1, 2, 3, 4, 5 ]
             , leaving = []
           }
-          (generation
-            [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+          (generation [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
             { empty
               | entering = [ 1, 2 ]
               , continuing = [ 3, 4, 5 ]
@@ -53,8 +49,7 @@ generationTests =
             , continuing = [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
             , leaving = []
           }
-          (generation
-            [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 ]
+          (generation [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 ]
             { empty
               | entering = [ 1.0, 2.0 ]
               , continuing = [ 3.0, 4.0, 5.0 ]
@@ -69,8 +64,7 @@ generationTests =
             , continuing = [ { a = 2 } ]
             , leaving = [ { a = 3 } ]
           }
-          (generation
-            [ { a = 1 }, { a = 2 } ]
+          (generation [ { a = 1 }, { a = 2 } ]
             { empty
               | entering = [ { a = 2 } ]
               , continuing = [ { a = 3 } ]

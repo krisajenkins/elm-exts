@@ -1,10 +1,11 @@
-module Exts.Task (delay) where
+module Exts.Task exposing (delay)
 
-{-| Extensions to the core `Delay` library.
+{-| Extensions to the core `Process` library.
 
 @docs delay
 -}
 
+import Process exposing (..)
 import Task exposing (..)
 import Time exposing (Time)
 

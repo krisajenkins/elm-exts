@@ -1,4 +1,4 @@
-module Exts.Result (..) where
+module Exts.Result exposing (..)
 
 {-| Extensions to the core `Result` library.
 

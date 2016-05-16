@@ -1,4 +1,4 @@
-module Exts.Array (update) where
+module Exts.Array exposing (update)
 
 {-| Extensions to the core `Array` library.
 

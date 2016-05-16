@@ -1,4 +1,4 @@
-module Exts.Validation (..) where
+module Exts.Validation exposing (..)
 
 {-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest)
 

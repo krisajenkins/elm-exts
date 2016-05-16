@@ -1,8 +1,8 @@
-module Exts.Maybe (..) where
+module Exts.Maybe exposing (..)
 
 {-| Extensions to the core `Maybe` library.
 
-@docs isJust, isNothing, maybe, mappend, catMaybes, join
+@docs isJust, isNothing, maybe, mappend, catMaybes, join, maybeDefault
 -}
 
 import Maybe exposing (withDefault)
@@ -74,3 +74,15 @@ join f left right =
 
     _ ->
       Nothing
+
+
+{-| If `x` is a `Just _` value, return it, otherwise return `Just default`.
+-}
+maybeDefault : a -> Maybe a -> Maybe a
+maybeDefault default x =
+  case x of
+    Just x ->
+      Just x
+
+    Nothing ->
+      Just default

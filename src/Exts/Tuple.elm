@@ -1,4 +1,4 @@
-module Exts.Tuple (indexedPair, first, second, both, pair, fork) where
+module Exts.Tuple exposing (indexedPair, first, second, both, pair, fork)
 
 {-| Extensions for tuples.
 

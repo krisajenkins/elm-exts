@@ -1,4 +1,4 @@
-module Tests.Exts.Dict (tests) where
+module Tests.Exts.Dict exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.Dict exposing (..)
@@ -11,8 +11,7 @@ import String
 
 tests : Test
 tests =
-  ElmTest.suite
-    "Exts.Dict"
+  ElmTest.suite "Exts.Dict"
     [ getWithDefaultTests
     , evidenceToTest (quickCheck foldToListClaims)
     ]
@@ -25,8 +24,7 @@ animals =
 
 getWithDefaultTests : Test
 getWithDefaultTests =
-  ElmTest.suite
-    "getWithDefault"
+  ElmTest.suite "getWithDefault"
     [ defaultTest <| assertEqual (getWithDefault "def" "Tom" animals) "cat"
     , defaultTest <| assertEqual (getWithDefault "def" "Mickey" animals) "def"
     ]
@@ -34,13 +32,11 @@ getWithDefaultTests =
 
 foldToListClaims : Claim
 foldToListClaims =
-  Check.suite
-    "foldToList"
+  Check.suite "foldToList"
     [ claim "foldToList is equivalent to flattening the list and mapping the function."
         `that` foldToList String.repeat
         `is` (\dict -> List.map (uncurry String.repeat) (Dict.toList dict))
-        `for` Producer.map
-                Dict.fromList
+        `for` Producer.map Dict.fromList
                 (list
                   (tuple
                     ( (filter ((>) 1000) int)

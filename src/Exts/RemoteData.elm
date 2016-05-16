@@ -1,4 +1,4 @@
-module Exts.RemoteData (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess, mapFailure, mapBoth) where
+module Exts.RemoteData exposing (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess, mapFailure, mapBoth)
 
 {-| A datatype representing fetched data.
 
@@ -12,8 +12,6 @@ it properly.
 -}
 
 import Task exposing (Task)
-import Effects exposing (Effects)
-import Exts.Effects
 
 
 {-| Frequently when you're fetching data from an API, you want to represent four different states:
@@ -97,10 +95,9 @@ withDefault default data =
 
 {-| Convert a web `Task`, probably produced from elm-http, to a RemoteData Effect.
 -}
-asEffect : Task e a -> Effects (RemoteData e a)
-asEffect =
-  Exts.Effects.fromTask
-    >> Effects.map fromResult
+asEffect : Task e a -> Cmd (RemoteData e a)
+asEffect task =
+  Task.perform Failure Success task
 
 
 {-| Convert a `Result Error`, probably produced from elm-http, to a RemoteData value.

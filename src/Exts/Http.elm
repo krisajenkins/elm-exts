@@ -1,4 +1,4 @@
-module Exts.Http (put, postContent, postForm, postJson, handleError) where
+module Exts.Http exposing (put, postContent, postForm, postJson, handleError)
 
 {-| Extensions to the `Http` library.
 

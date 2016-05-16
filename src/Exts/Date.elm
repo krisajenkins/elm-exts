@@ -1,4 +1,4 @@
-module Exts.Date (toISOString) where
+module Exts.Date exposing (toISOString)
 
 {-| Extensions to the core `Date` library.
 

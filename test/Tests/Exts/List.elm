@@ -1,4 +1,4 @@
-module Tests.Exts.List (tests) where
+module Tests.Exts.List exposing (tests)
 
 import ElmTest exposing (..)
 import Exts.List exposing (..)
@@ -10,8 +10,7 @@ import Set
 
 tests : Test
 tests =
-  ElmTest.suite
-    "Exts.List"
+  ElmTest.suite "Exts.List"
     [ chunkTests
     , evidenceToTest (quickCheck chunkClaims)
     , mergeByTests
@@ -22,26 +21,21 @@ tests =
 
 chunkTests : Test
 chunkTests =
-  ElmTest.suite
-    "chunk"
+  ElmTest.suite "chunk"
     [ defaultTest
-        (assertEqual
-          [ [] ]
+        (assertEqual [ [] ]
           (chunk 0 [])
         )
     , defaultTest
-        (assertEqual
-          []
+        (assertEqual []
           (chunk 3 [])
         )
     , defaultTest
-        (assertEqual
-          ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
+        (assertEqual ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
           (chunk 3 [1..10])
         )
     , defaultTest
-        (assertEqual
-          ([ [1..4], [5..8], [9..12] ])
+        (assertEqual ([ [1..4], [5..8], [9..12] ])
           (chunk 4 [1..12])
         )
     ]
@@ -49,8 +43,7 @@ chunkTests =
 
 chunkClaims : Claim
 chunkClaims =
-  Check.suite
-    "chunk"
+  Check.suite "chunk"
     [ claim "Concat restores the list."
         `that` (\( n, xs ) -> List.concat (chunk n xs))
         `is` (\( n, xs ) -> xs)
@@ -82,54 +75,42 @@ mergeByTests =
     t2b =
       { id = 2, name = "Three!" }
   in
-    ElmTest.suite
-      "mergeBy"
+    ElmTest.suite "mergeBy"
       [ defaultTest
-          (assertEqual
-            []
+          (assertEqual []
             (mergeBy .id [] [])
           )
       , defaultTest
-          (assertEqual
-            [ t1, t2a ]
-            (mergeBy
-              .id
+          (assertEqual [ t1, t2a ]
+            (mergeBy .id
               [ t1, t2a ]
               []
             )
           )
       , defaultTest
-          (assertEqual
-            [ t1, t2a ]
-            (mergeBy
-              .id
+          (assertEqual [ t1, t2a ]
+            (mergeBy .id
               []
               [ t1, t2a ]
             )
           )
       , defaultTest
-          (assertEqual
-            [ t1, t2b ]
-            (mergeBy
-              .id
+          (assertEqual [ t1, t2b ]
+            (mergeBy .id
               [ t1, t2a, t2b ]
               []
             )
           )
       , defaultTest
-          (assertEqual
-            [ t1, t2b ]
-            (mergeBy
-              .id
+          (assertEqual [ t1, t2b ]
+            (mergeBy .id
               [ t1, t2a ]
               [ t2b ]
             )
           )
       , defaultTest
-          (assertEqual
-            [ t1, t2a ]
-            (mergeBy
-              .id
+          (assertEqual [ t1, t2a ]
+            (mergeBy .id
               [ t2b ]
               [ t1, t2a ]
             )
@@ -139,8 +120,7 @@ mergeByTests =
 
 firstMatchTests : Test
 firstMatchTests =
-  ElmTest.suite
-    "firstMatch"
+  ElmTest.suite "firstMatch"
     [ defaultTest (assertEqual Nothing (firstMatch (always True) []))
     ]
 
@@ -152,10 +132,8 @@ isEven n =
 
 firstMatchClaims : Claim
 firstMatchClaims =
-  Check.suite
-    "firstMatch"
-    [ claim
-        "An always-false predicate is the same as Nothing."
+  Check.suite "firstMatch"
+    [ claim "An always-false predicate is the same as Nothing."
         `that` firstMatch (always False)
         `is` (always Nothing)
         `for` list int
@@ -163,8 +141,7 @@ firstMatchClaims =
         `that` firstMatch (always True)
         `is` List.head
         `for` list int
-    , claim
-        "An always-false predicate is the same as Nothing."
+    , claim "An always-false predicate is the same as Nothing."
         `that` firstMatch isEven
         `is` (List.head << List.filter isEven)
         `for` list int
