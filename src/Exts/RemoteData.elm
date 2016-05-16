@@ -1,4 +1,4 @@
-module Exts.RemoteData exposing (RemoteData(..), fromResult, withDefault, asEffect, mappend, map, isSuccess, mapFailure, mapBoth)
+module Exts.RemoteData exposing (RemoteData(..), fromResult, withDefault, asCmd, mappend, map, isSuccess, mapFailure, mapBoth)
 
 {-| A datatype representing fetched data.
 
@@ -8,7 +8,7 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asEffect, mappend, isSuccess
+@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, mappend, isSuccess
 -}
 
 import Task exposing (Task)
@@ -93,10 +93,10 @@ withDefault default data =
       default
 
 
-{-| Convert a web `Task`, probably produced from elm-http, to a RemoteData Effect.
+{-| Convert a web `Task`, probably produced from elm-http, to a `Cmd (RemoteData e a)`.
 -}
-asEffect : Task e a -> Cmd (RemoteData e a)
-asEffect task =
+asCmd : Task e a -> Cmd (RemoteData e a)
+asCmd task =
   Task.perform Failure Success task
 
 
