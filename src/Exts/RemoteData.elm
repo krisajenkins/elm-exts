@@ -1,4 +1,4 @@
-module Exts.RemoteData exposing (RemoteData(..), fromResult, withDefault, asCmd, mappend, map, isSuccess, mapFailure, mapBoth)
+module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, mappend, map, isSuccess, mapFailure, mapBoth)
 
 {-| A datatype representing fetched data.
 
@@ -8,9 +8,10 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, mappend, isSuccess
+@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, mappend, isSuccess
 -}
 
+import Http
 import Task exposing (Task)
 
 
@@ -25,6 +26,15 @@ type RemoteData e a
   | Loading
   | Failure e
   | Success a
+
+
+{-| While `RemoteData` can accept any type of error, the most common
+one you'll actually use is when you fetch data from a REST interface,
+and get back `RemoteData Http.Error a`. Because that case is so
+common, `WebData` is provided as a useful alias.
+-}
+type alias WebData a =
+  RemoteData Http.Error a
 
 
 {-| Map a function into the `Success` value.
