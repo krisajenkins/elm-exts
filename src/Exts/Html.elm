@@ -37,39 +37,39 @@ import String exposing (length)
 -}
 matchText : List (Attribute msg) -> Regex -> String -> List (Html msg)
 matchText attributes search string =
-  let
-    matches =
-      find All search string
+    let
+        matches =
+            find All search string
 
-    matchBoundaries place =
-      [ ( place.index, True )
-      , ( place.index + length place.match
-        , False
-        )
-      ]
+        matchBoundaries place =
+            [ ( place.index, True )
+            , ( place.index + length place.match
+              , False
+              )
+            ]
 
-    matchStringStart =
-      [ ( 0, False ) ]
+        matchStringStart =
+            [ ( 0, False ) ]
 
-    matchStringEnd =
-      [ ( length string, False ) ]
+        matchStringEnd =
+            [ ( length string, False ) ]
 
-    allSegmentBoundaries =
-      matchStringStart
-        ++ (List.concatMap matchBoundaries
-              matches
-           )
-        ++ matchStringEnd
+        allSegmentBoundaries =
+            matchStringStart
+                ++ (List.concatMap matchBoundaries
+                        matches
+                   )
+                ++ matchStringEnd
 
-    sliceSegments ( start, match ) ( end, _ ) =
-      span
-        (if match then
-          attributes
-         else
-          []
-        )
-        [ text (String.slice start end string) ]
-  in
-    List.map2 sliceSegments
-      allSegmentBoundaries
-      (rest allSegmentBoundaries)
+        sliceSegments ( start, match ) ( end, _ ) =
+            span
+                (if match then
+                    attributes
+                 else
+                    []
+                )
+                [ text (String.slice start end string) ]
+    in
+        List.map2 sliceSegments
+            allSegmentBoundaries
+            (rest allSegmentBoundaries)

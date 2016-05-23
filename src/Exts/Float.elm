@@ -10,8 +10,8 @@ module Exts.Float exposing (..)
 -}
 roundTo : Int -> Float -> Float
 roundTo places =
-  let
-    factor =
-      10 ^ places
-  in
-    (*) factor >> round >> toFloat >> (\n -> n / factor)
+    let
+        factor =
+            10 ^ places
+    in
+        (*) factor >> round >> toFloat >> (\n -> n / factor)

@@ -33,7 +33,7 @@ either returns an error message, or a form that is definitely valid. For example
 An error message is typically a `String`, but may be any type you choose.
 -}
 type alias Validator e a b =
-  Maybe a -> Result e b
+    Maybe a -> Result e b
 
 
 {-| Chain valiadators together.
@@ -42,51 +42,51 @@ type alias Validator e a b =
 -}
 apply : Result e (a -> b) -> Result e a -> Result e b
 apply f aResult =
-  f `andThen` (\f' -> f' `map` aResult)
+    f `andThen` (\f' -> f' `map` aResult)
 
 
 {-| Convenient synonym for `apply`.
 -}
 (|:) : Result e (a -> b) -> Result e a -> Result e b
 (|:) =
-  apply
+    apply
 
 
 {-| A field that might be `Nothing`, but is only valid if it is `Just a`.
 -}
 required : e -> Validator e a a
 required err =
-  Maybe.withDefault (Err err) << Maybe.map Ok
+    Maybe.withDefault (Err err) << Maybe.map Ok
 
 
 {-| A field that might be `Nothing`, but is only valid if it is a non-empty `String`.
 -}
 notBlank : e -> Validator e String String
 notBlank err str =
-  case str of
-    Nothing ->
-      Err err
+    case str of
+        Nothing ->
+            Err err
 
-    Just "" ->
-      Err err
+        Just "" ->
+            Err err
 
-    Just x ->
-      Ok x
+        Just x ->
+            Ok x
 
 
 {-| A field that must match the given regex.
 -}
 matches : Regex -> e -> Validator e String String
 matches expression err str =
-  case str of
-    Nothing ->
-      Err err
+    case str of
+        Nothing ->
+            Err err
 
-    Just s ->
-      if Regex.contains expression s then
-        Ok s
-      else
-        Err err
+        Just s ->
+            if Regex.contains expression s then
+                Ok s
+            else
+                Err err
 
 
 {-| A basic email regex. This is incredibly simplistic, but is
@@ -97,10 +97,10 @@ send something to it and get a reply.
 -}
 email : e -> Validator e String String
 email =
-  matches emailRegex
+    matches emailRegex
 
 
 {-| -}
 emailRegex : Regex
 emailRegex =
-  caseInsensitive (regex "^\\S+@\\S+\\.\\S+$")
+    caseInsensitive (regex "^\\S+@\\S+\\.\\S+$")

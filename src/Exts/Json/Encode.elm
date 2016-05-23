@@ -14,18 +14,18 @@ import Dict exposing (Dict)
 -}
 set : (comparable -> Value) -> Set comparable -> Value
 set encodeElement =
-  list << List.map encodeElement << List.sort << Set.toList
+    list << List.map encodeElement << List.sort << Set.toList
 
 
 {-| Encode a pair to a JSON array .
 -}
 tuple2 : (a -> Value) -> (b -> Value) -> ( a, b ) -> Value
 tuple2 encodeKey encodeValue ( x, y ) =
-  list [ encodeKey x, encodeValue y ]
+    list [ encodeKey x, encodeValue y ]
 
 
 {-| Encode a `Dict` to a JSON array .
 -}
 dict : (comparable -> Value) -> (v -> Value) -> Dict comparable v -> Value
 dict encodeKey encodeValue =
-  list << List.map (tuple2 encodeKey encodeValue) << Dict.toList
+    list << List.map (tuple2 encodeKey encodeValue) << Dict.toList

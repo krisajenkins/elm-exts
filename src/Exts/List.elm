@@ -19,23 +19,23 @@ import Dict
 -}
 chunk : Int -> List a -> List (List a)
 chunk n xs =
-  if n < 1 then
-    singleton xs
-  else
-    evaluate (chunk' n xs Array.empty)
+    if n < 1 then
+        singleton xs
+    else
+        evaluate (chunk' n xs Array.empty)
 
 
 chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))
 chunk' n xs accum =
-  if List.isEmpty xs then
-    done (Array.toList accum)
-  else
-    jump
-      (\() ->
-        chunk' n
-          (drop n xs)
-          (Array.push (take n xs) accum)
-      )
+    if List.isEmpty xs then
+        done (Array.toList accum)
+    else
+        jump
+            (\() ->
+                chunk' n
+                    (drop n xs)
+                    (Array.push (take n xs) accum)
+            )
 
 
 {-| Merge two lists. The first argument is a function which returns
@@ -44,46 +44,46 @@ once, the last won wins.
 -}
 mergeBy : (a -> comparable) -> List a -> List a -> List a
 mergeBy f xs ys =
-  let
-    reducer v acc =
-      Dict.insert (f v) v acc
-  in
-    Dict.values (List.foldl reducer Dict.empty (xs ++ ys))
+    let
+        reducer v acc =
+            Dict.insert (f v) v acc
+    in
+        Dict.values (List.foldl reducer Dict.empty (xs ++ ys))
 
 
 {-| Wrap a single item into a `List`.
 -}
 singleton : a -> List a
 singleton x =
-  [ x ]
+    [ x ]
 
 
 {-| Wrap a maybe item into a `List`. If the item is `Nothing`, the `List` is empty.
 -}
 maybeSingleton : Maybe a -> List a
 maybeSingleton =
-  Maybe.map singleton
-    >> Maybe.withDefault []
+    Maybe.map singleton
+        >> Maybe.withDefault []
 
 
 {-| Find the first element in the `List` that matches the given predicate.
 -}
 firstMatch : (a -> Bool) -> List a -> Maybe a
 firstMatch predicate items =
-  case items of
-    [] ->
-      Nothing
+    case items of
+        [] ->
+            Nothing
 
-    x :: xs ->
-      if predicate x then
-        Just x
-      else
-        (firstMatch predicate xs)
+        x :: xs ->
+            if predicate x then
+                Just x
+            else
+                (firstMatch predicate xs)
 
 
 {-| Like List.tail, but if the list is empty it returns an empty list rather than `Nothing`.
 -}
 rest : List a -> List a
 rest =
-  List.tail
-    >> Maybe.withDefault []
+    List.tail
+        >> Maybe.withDefault []

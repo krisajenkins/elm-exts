@@ -20,7 +20,7 @@ import Dict exposing (Dict, insert)
 -}
 indexBy : (v -> comparable) -> List v -> Dict comparable v
 indexBy f =
-  List.foldl (\x -> insert (f x) x) Dict.empty
+    List.foldl (\x -> insert (f x) x) Dict.empty
 
 
 {-| Group a list of items by a key.
@@ -38,50 +38,50 @@ indexBy f =
 
 groupBy : (v -> comparable) -> List v -> Dict comparable (List v)
 groupBy f =
-  let
-    reducer g x d =
-      let
-        key =
-          g x
+    let
+        reducer g x d =
+            let
+                key =
+                    g x
 
-        newValue =
-          x :: Maybe.withDefault [] (Dict.get key d)
-      in
-        insert key newValue d
-  in
-    List.foldl (reducer f) Dict.empty
+                newValue =
+                    x :: Maybe.withDefault [] (Dict.get key d)
+            in
+                insert key newValue d
+    in
+        List.foldl (reducer f) Dict.empty
 
 
 {-| Create a frequency-map from the given list.
 -}
 frequency : List comparable -> Dict comparable Int
 frequency =
-  let
-    updater m =
-      case m of
-        Nothing ->
-          Just 1
+    let
+        updater m =
+            case m of
+                Nothing ->
+                    Just 1
 
-        Just n ->
-          Just (n + 1)
+                Just n ->
+                    Just (n + 1)
 
-    reducer x =
-      Dict.update x updater
-  in
-    List.foldl reducer Dict.empty
+        reducer x =
+            Dict.update x updater
+    in
+        List.foldl reducer Dict.empty
 
 
 {-| Attempt to find a key, if it's not there, return a default value.
 -}
 getWithDefault : a -> comparable -> Dict comparable a -> a
 getWithDefault def key =
-  Maybe.withDefault def << Dict.get key
+    Maybe.withDefault def << Dict.get key
 
 
 {-| Run a function over the dictionary entries, resulting in a list of the final results.
 -}
 foldToList : (comparable -> v -> b) -> Dict.Dict comparable v -> List b
 foldToList f dict =
-  Dict.foldr (\k v -> (::) (f k v))
-    []
-    dict
+    Dict.foldr (\k v -> (::) (f k v))
+        []
+        dict

@@ -14,7 +14,7 @@ module Exts.Int exposing (floorBy)
 -}
 floorBy : Int -> Int -> Maybe Int
 floorBy factor n =
-  if factor == 0 then
-    Nothing
-  else
-    Just (factor * ((n // factor)))
+    if factor == 0 then
+        Nothing
+    else
+        Just (factor * ((n // factor)))

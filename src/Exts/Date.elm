@@ -13,57 +13,57 @@ import String
 -}
 toISOString : Date -> String
 toISOString d =
-  (toString (year d) |> String.padLeft 2 '0')
-    ++ "-"
-    ++ (toString (monthNumber d) |> String.padLeft 2 '0')
-    ++ "-"
-    ++ (toString (day d) |> String.padLeft 2 '0')
-    ++ "T"
-    ++ (toString ((hour d) - 1) |> String.padLeft 2 '0')
-    ++ ":"
-    ++ (toString (minute d) |> String.padLeft 2 '0')
-    ++ ":"
-    ++ (toString (second d) |> String.padLeft 2 '0')
-    ++ "."
-    ++ (toString (millisecond d) |> String.padLeft 3 '0')
-    ++ "Z"
+    (toString (year d) |> String.padLeft 2 '0')
+        ++ "-"
+        ++ (toString (monthNumber d) |> String.padLeft 2 '0')
+        ++ "-"
+        ++ (toString (day d) |> String.padLeft 2 '0')
+        ++ "T"
+        ++ (toString ((hour d) - 1) |> String.padLeft 2 '0')
+        ++ ":"
+        ++ (toString (minute d) |> String.padLeft 2 '0')
+        ++ ":"
+        ++ (toString (second d) |> String.padLeft 2 '0')
+        ++ "."
+        ++ (toString (millisecond d) |> String.padLeft 3 '0')
+        ++ "Z"
 
 
 monthNumber : Date -> Int
 monthNumber date =
-  case month date of
-    Jan ->
-      1
+    case month date of
+        Jan ->
+            1
 
-    Feb ->
-      2
+        Feb ->
+            2
 
-    Mar ->
-      3
+        Mar ->
+            3
 
-    Apr ->
-      4
+        Apr ->
+            4
 
-    May ->
-      5
+        May ->
+            5
 
-    Jun ->
-      6
+        Jun ->
+            6
 
-    Jul ->
-      7
+        Jul ->
+            7
 
-    Aug ->
-      8
+        Aug ->
+            8
 
-    Sep ->
-      9
+        Sep ->
+            9
 
-    Oct ->
-      10
+        Oct ->
+            10
 
-    Nov ->
-      11
+        Nov ->
+            11
 
-    Dec ->
-      12
+        Dec ->
+            12

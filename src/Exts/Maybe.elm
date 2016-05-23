@@ -12,55 +12,55 @@ import Maybe exposing (withDefault)
 -}
 isJust : Maybe a -> Bool
 isJust x =
-  case x of
-    Just _ ->
-      True
+    case x of
+        Just _ ->
+            True
 
-    _ ->
-      False
+        _ ->
+            False
 
 
 {-| -}
 isNothing : Maybe a -> Bool
 isNothing =
-  not << isJust
+    not << isJust
 
 
 {-| Apply a function to a value, returning the default if the value is `Nothing`.
 -}
 maybe : b -> (a -> b) -> Maybe a -> b
 maybe default f =
-  withDefault default << Maybe.map f
+    withDefault default << Maybe.map f
 
 
 {-| Join two `Maybe`s together as though they were one.
 -}
 mappend : Maybe a -> Maybe b -> Maybe ( a, b )
 mappend a b =
-  case ( a, b ) of
-    ( Nothing, _ ) ->
-      Nothing
+    case ( a, b ) of
+        ( Nothing, _ ) ->
+            Nothing
 
-    ( _, Nothing ) ->
-      Nothing
+        ( _, Nothing ) ->
+            Nothing
 
-    ( Just x, Just y ) ->
-      Just ( x, y )
+        ( Just x, Just y ) ->
+            Just ( x, y )
 
 
 {-| Extract all the `Just` values from a List of Maybes.
 -}
 catMaybes : List (Maybe a) -> List a
 catMaybes xs =
-  case xs of
-    [] ->
-      []
+    case xs of
+        [] ->
+            []
 
-    Nothing :: xs' ->
-      catMaybes xs'
+        Nothing :: xs' ->
+            catMaybes xs'
 
-    (Just x) :: xs' ->
-      x :: catMaybes xs'
+        (Just x) :: xs' ->
+            x :: catMaybes xs'
 
 
 {-| Join together two `Maybe` values using the supplied function. If
@@ -68,21 +68,21 @@ either value is `Nothing`, the result is `Nothing`.
 -}
 join : (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
 join f left right =
-  case ( left, right ) of
-    ( Just x, Just y ) ->
-      Just (f x y)
+    case ( left, right ) of
+        ( Just x, Just y ) ->
+            Just (f x y)
 
-    _ ->
-      Nothing
+        _ ->
+            Nothing
 
 
 {-| If `x` is a `Just _` value, return it, otherwise return `Just default`.
 -}
 maybeDefault : a -> Maybe a -> Maybe a
 maybeDefault default x =
-  case x of
-    Just x ->
-      Just x
+    case x of
+        Just x ->
+            Just x
 
-    Nothing ->
-      Just default
+        Nothing ->
+            Just default

@@ -22,27 +22,27 @@ import Html.Attributes exposing (..)
 
 -}
 type alias CellDef a msg =
-  ( Html msg, a -> Html msg )
+    ( Html msg, a -> Html msg )
 
 
 {-| -}
 type alias TableDef a msg =
-  List (CellDef a msg)
+    List (CellDef a msg)
 
 
 {-| Given a table definition, render a list of elements as HTML.
 -}
 simpleTable : TableDef a msg -> List a -> Html msg
 simpleTable tableDef items =
-  table [ class "table table-bordered table-hover" ]
-    [ thead []
-        [ tr []
-            (List.map (\( title, _ ) -> (th [] [ title ]))
-              tableDef
-            )
+    table [ class "table table-bordered table-hover" ]
+        [ thead []
+            [ tr []
+                (List.map (\( title, _ ) -> (th [] [ title ]))
+                    tableDef
+                )
+            ]
+        , tbody [] (List.map (simpleTableRow tableDef) items)
         ]
-    , tbody [] (List.map (simpleTableRow tableDef) items)
-    ]
 
 
 {-| Given a table definition, render an element to a <tr> tag. This is
@@ -50,10 +50,10 @@ lower-level. Usually you will want `simpleTable` instead.
 -}
 simpleTableRow : TableDef a msg -> a -> Html msg
 simpleTableRow tableDef item =
-  tr []
-    (List.map (\( _, f ) -> (td [] [ f item ]))
-      tableDef
-    )
+    tr []
+        (List.map (\( _, f ) -> (td [] [ f item ]))
+            tableDef
+        )
 
 
 {-| titleGroup and valueGroup are used to create columns that stack multiple pairs. For example:
@@ -65,10 +65,10 @@ simpleTableRow tableDef item =
 -}
 titleGroup : List String -> Html msg
 titleGroup strings =
-  div [] (List.map (\s -> div [] [ text s ]) strings)
+    div [] (List.map (\s -> div [] [ text s ]) strings)
 
 
 {-| -}
 valueGroup : List (a -> Html msg) -> a -> Html msg
 valueGroup fs x =
-  div [] (List.map (\f -> div [] [ f x ]) fs)
+    div [] (List.map (\f -> div [] [ f x ]) fs)

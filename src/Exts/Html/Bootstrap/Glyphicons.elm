@@ -14,1073 +14,1073 @@ Elm's syntax we convert from kebab-case to CamelCase, so
 `"glyphicon-star-empty"` becomes the type constructor `StarEmpty`.
 -}
 type Glyphicon
-  = Asterisk
-  | Plus
-  | Euro
-  | Eur
-  | Minus
-  | Cloud
-  | Envelope
-  | Pencil
-  | Glass
-  | Music
-  | Search
-  | Heart
-  | Star
-  | StarEmpty
-  | User
-  | Film
-  | ThLarge
-  | Th
-  | ThList
-  | Ok
-  | Remove
-  | ZoomIn
-  | ZoomOut
-  | Off
-  | Signal
-  | Cog
-  | Trash
-  | Home
-  | File
-  | Time
-  | Road
-  | DownloadAlt
-  | Download
-  | Upload
-  | Inbox
-  | PlayCircle
-  | Repeat
-  | Refresh
-  | ListAlt
-  | Lock
-  | Flag
-  | Headphones
-  | VolumeOff
-  | VolumeDown
-  | VolumeUp
-  | Qrcode
-  | Barcode
-  | Tag
-  | Tags
-  | Book
-  | Bookmark
-  | Print
-  | Camera
-  | Font
-  | Bold
-  | Italic
-  | TextHeight
-  | TextWidth
-  | AlignLeft
-  | AlignCenter
-  | AlignRight
-  | AlignJustify
-  | List
-  | IndentLeft
-  | IndentRight
-  | FacetimeVideo
-  | Picture
-  | MapMarker
-  | Adjust
-  | Tint
-  | Edit
-  | Share
-  | Check
-  | Move
-  | StepBackward
-  | FastBackward
-  | Backward
-  | Play
-  | Pause
-  | Stop
-  | Forward
-  | FastForward
-  | StepForward
-  | Eject
-  | ChevronLeft
-  | ChevronRight
-  | PlusSign
-  | MinusSign
-  | RemoveSign
-  | OkSign
-  | QuestionSign
-  | InfoSign
-  | Screenshot
-  | RemoveCircle
-  | OkCircle
-  | BanCircle
-  | ArrowLeft
-  | ArrowRight
-  | ArrowUp
-  | ArrowDown
-  | ShareAlt
-  | ResizeFull
-  | ResizeSmall
-  | ExclamationSign
-  | Gift
-  | Leaf
-  | Fire
-  | EyeOpen
-  | EyeClose
-  | WarningSign
-  | Plane
-  | Calendar
-  | Random
-  | Comment
-  | Magnet
-  | ChevronUp
-  | ChevronDown
-  | Retweet
-  | ShoppingCart
-  | FolderClose
-  | FolderOpen
-  | ResizeVertical
-  | ResizeHorizontal
-  | Hdd
-  | Bullhorn
-  | Bell
-  | Certificate
-  | ThumbsUp
-  | ThumbsDown
-  | HandRight
-  | HandLeft
-  | HandUp
-  | HandDown
-  | CircleArrowRight
-  | CircleArrowLeft
-  | CircleArrowUp
-  | CircleArrowDown
-  | Globe
-  | Wrench
-  | Tasks
-  | Filter
-  | Briefcase
-  | Fullscreen
-  | Dashboard
-  | Paperclip
-  | HeartEmpty
-  | Link
-  | Phone
-  | Pushpin
-  | Usd
-  | Gbp
-  | Sort
-  | SortByAlphabet
-  | SortByAlphabetAlt
-  | SortByOrder
-  | SortByOrderAlt
-  | SortByAttributes
-  | SortByAttributesAlt
-  | Unchecked
-  | Expand
-  | CollapseDown
-  | CollapseUp
-  | LogIn
-  | Flash
-  | LogOut
-  | NewWindow
-  | Record
-  | Save
-  | Open
-  | Saved
-  | Import
-  | Export
-  | Send
-  | FloppyDisk
-  | FloppySaved
-  | FloppyRemove
-  | FloppySave
-  | FloppyOpen
-  | CreditCard
-  | Transfer
-  | Cutlery
-  | Header
-  | Compressed
-  | Earphone
-  | PhoneAlt
-  | Tower
-  | Stats
-  | SdVideo
-  | HdVideo
-  | Subtitles
-  | SoundStereo
-  | SoundDolby
-  | Sound51
-  | Sound61
-  | Sound71
-  | CopyrightMark
-  | RegistrationMark
-  | CloudDownload
-  | CloudUpload
-  | TreeConifer
-  | TreeDeciduous
-  | Cd
-  | SaveFile
-  | OpenFile
-  | LevelUp
-  | Copy
-  | Paste
-  | Alert
-  | Equalizer
-  | King
-  | Queen
-  | Pawn
-  | Bishop
-  | Knight
-  | BabyFormula
-  | Tent
-  | Blackboard
-  | Bed
-  | Apple
-  | Erase
-  | Hourglass
-  | Lamp
-  | Duplicate
-  | PiggyBank
-  | Scissors
-  | Bitcoin
-  | Btc
-  | Xbt
-  | Yen
-  | Jpy
-  | Ruble
-  | Rub
-  | Scale
-  | IceLolly
-  | IceLollyTasted
-  | Education
-  | OptionHorizontal
-  | OptionVertical
-  | MenuHamburger
-  | ModalWindow
-  | Oil
-  | Grain
-  | Sunglasses
-  | TextSize
-  | TextColor
-  | TextBackground
-  | ObjectAlignTop
-  | ObjectAlignBottom
-  | ObjectAlignHorizontal
-  | ObjectAlignLeft
-  | ObjectAlignVertical
-  | ObjectAlignRight
-  | TriangleRight
-  | TriangleLeft
-  | TriangleBottom
-  | TriangleTop
-  | Console
-  | Superscript
-  | Subscript
-  | MenuLeft
-  | MenuRight
-  | MenuDown
-  | MenuUp
+    = Asterisk
+    | Plus
+    | Euro
+    | Eur
+    | Minus
+    | Cloud
+    | Envelope
+    | Pencil
+    | Glass
+    | Music
+    | Search
+    | Heart
+    | Star
+    | StarEmpty
+    | User
+    | Film
+    | ThLarge
+    | Th
+    | ThList
+    | Ok
+    | Remove
+    | ZoomIn
+    | ZoomOut
+    | Off
+    | Signal
+    | Cog
+    | Trash
+    | Home
+    | File
+    | Time
+    | Road
+    | DownloadAlt
+    | Download
+    | Upload
+    | Inbox
+    | PlayCircle
+    | Repeat
+    | Refresh
+    | ListAlt
+    | Lock
+    | Flag
+    | Headphones
+    | VolumeOff
+    | VolumeDown
+    | VolumeUp
+    | Qrcode
+    | Barcode
+    | Tag
+    | Tags
+    | Book
+    | Bookmark
+    | Print
+    | Camera
+    | Font
+    | Bold
+    | Italic
+    | TextHeight
+    | TextWidth
+    | AlignLeft
+    | AlignCenter
+    | AlignRight
+    | AlignJustify
+    | List
+    | IndentLeft
+    | IndentRight
+    | FacetimeVideo
+    | Picture
+    | MapMarker
+    | Adjust
+    | Tint
+    | Edit
+    | Share
+    | Check
+    | Move
+    | StepBackward
+    | FastBackward
+    | Backward
+    | Play
+    | Pause
+    | Stop
+    | Forward
+    | FastForward
+    | StepForward
+    | Eject
+    | ChevronLeft
+    | ChevronRight
+    | PlusSign
+    | MinusSign
+    | RemoveSign
+    | OkSign
+    | QuestionSign
+    | InfoSign
+    | Screenshot
+    | RemoveCircle
+    | OkCircle
+    | BanCircle
+    | ArrowLeft
+    | ArrowRight
+    | ArrowUp
+    | ArrowDown
+    | ShareAlt
+    | ResizeFull
+    | ResizeSmall
+    | ExclamationSign
+    | Gift
+    | Leaf
+    | Fire
+    | EyeOpen
+    | EyeClose
+    | WarningSign
+    | Plane
+    | Calendar
+    | Random
+    | Comment
+    | Magnet
+    | ChevronUp
+    | ChevronDown
+    | Retweet
+    | ShoppingCart
+    | FolderClose
+    | FolderOpen
+    | ResizeVertical
+    | ResizeHorizontal
+    | Hdd
+    | Bullhorn
+    | Bell
+    | Certificate
+    | ThumbsUp
+    | ThumbsDown
+    | HandRight
+    | HandLeft
+    | HandUp
+    | HandDown
+    | CircleArrowRight
+    | CircleArrowLeft
+    | CircleArrowUp
+    | CircleArrowDown
+    | Globe
+    | Wrench
+    | Tasks
+    | Filter
+    | Briefcase
+    | Fullscreen
+    | Dashboard
+    | Paperclip
+    | HeartEmpty
+    | Link
+    | Phone
+    | Pushpin
+    | Usd
+    | Gbp
+    | Sort
+    | SortByAlphabet
+    | SortByAlphabetAlt
+    | SortByOrder
+    | SortByOrderAlt
+    | SortByAttributes
+    | SortByAttributesAlt
+    | Unchecked
+    | Expand
+    | CollapseDown
+    | CollapseUp
+    | LogIn
+    | Flash
+    | LogOut
+    | NewWindow
+    | Record
+    | Save
+    | Open
+    | Saved
+    | Import
+    | Export
+    | Send
+    | FloppyDisk
+    | FloppySaved
+    | FloppyRemove
+    | FloppySave
+    | FloppyOpen
+    | CreditCard
+    | Transfer
+    | Cutlery
+    | Header
+    | Compressed
+    | Earphone
+    | PhoneAlt
+    | Tower
+    | Stats
+    | SdVideo
+    | HdVideo
+    | Subtitles
+    | SoundStereo
+    | SoundDolby
+    | Sound51
+    | Sound61
+    | Sound71
+    | CopyrightMark
+    | RegistrationMark
+    | CloudDownload
+    | CloudUpload
+    | TreeConifer
+    | TreeDeciduous
+    | Cd
+    | SaveFile
+    | OpenFile
+    | LevelUp
+    | Copy
+    | Paste
+    | Alert
+    | Equalizer
+    | King
+    | Queen
+    | Pawn
+    | Bishop
+    | Knight
+    | BabyFormula
+    | Tent
+    | Blackboard
+    | Bed
+    | Apple
+    | Erase
+    | Hourglass
+    | Lamp
+    | Duplicate
+    | PiggyBank
+    | Scissors
+    | Bitcoin
+    | Btc
+    | Xbt
+    | Yen
+    | Jpy
+    | Ruble
+    | Rub
+    | Scale
+    | IceLolly
+    | IceLollyTasted
+    | Education
+    | OptionHorizontal
+    | OptionVertical
+    | MenuHamburger
+    | ModalWindow
+    | Oil
+    | Grain
+    | Sunglasses
+    | TextSize
+    | TextColor
+    | TextBackground
+    | ObjectAlignTop
+    | ObjectAlignBottom
+    | ObjectAlignHorizontal
+    | ObjectAlignLeft
+    | ObjectAlignVertical
+    | ObjectAlignRight
+    | TriangleRight
+    | TriangleLeft
+    | TriangleBottom
+    | TriangleTop
+    | Console
+    | Superscript
+    | Subscript
+    | MenuLeft
+    | MenuRight
+    | MenuDown
+    | MenuUp
 
 
 {-| Type-checked Glyphicons.
 -}
 glyphicon : Glyphicon -> Html msg
 glyphicon icon =
-  span
-    [ classList
-        [ ( "glyphicon", True )
-        , ( glyphiconClass icon, True )
+    span
+        [ classList
+            [ ( "glyphicon", True )
+            , ( glyphiconClass icon, True )
+            ]
         ]
-    ]
-    []
+        []
 
 
 glyphiconClass : Glyphicon -> String
 glyphiconClass icon =
-  "glyphicon-"
-    ++ case icon of
-        Asterisk ->
-          "asterisk"
+    "glyphicon-"
+        ++ case icon of
+            Asterisk ->
+                "asterisk"
 
-        Plus ->
-          "plus"
+            Plus ->
+                "plus"
 
-        Euro ->
-          "euro"
+            Euro ->
+                "euro"
 
-        Eur ->
-          "eur"
+            Eur ->
+                "eur"
 
-        Minus ->
-          "minus"
+            Minus ->
+                "minus"
 
-        Cloud ->
-          "cloud"
+            Cloud ->
+                "cloud"
 
-        Envelope ->
-          "envelope"
+            Envelope ->
+                "envelope"
 
-        Pencil ->
-          "pencil"
+            Pencil ->
+                "pencil"
 
-        Glass ->
-          "glass"
+            Glass ->
+                "glass"
 
-        Music ->
-          "music"
+            Music ->
+                "music"
 
-        Search ->
-          "search"
+            Search ->
+                "search"
 
-        Heart ->
-          "heart"
+            Heart ->
+                "heart"
 
-        Star ->
-          "star"
+            Star ->
+                "star"
 
-        StarEmpty ->
-          "star-empty"
+            StarEmpty ->
+                "star-empty"
 
-        User ->
-          "user"
+            User ->
+                "user"
 
-        Film ->
-          "film"
+            Film ->
+                "film"
 
-        ThLarge ->
-          "th-large"
+            ThLarge ->
+                "th-large"
 
-        Th ->
-          "th"
+            Th ->
+                "th"
 
-        ThList ->
-          "th-list"
+            ThList ->
+                "th-list"
 
-        Ok ->
-          "ok"
+            Ok ->
+                "ok"
 
-        Remove ->
-          "remove"
+            Remove ->
+                "remove"
 
-        ZoomIn ->
-          "zoom-in"
+            ZoomIn ->
+                "zoom-in"
 
-        ZoomOut ->
-          "zoom-out"
+            ZoomOut ->
+                "zoom-out"
 
-        Off ->
-          "off"
+            Off ->
+                "off"
 
-        Signal ->
-          "signal"
+            Signal ->
+                "signal"
 
-        Cog ->
-          "cog"
+            Cog ->
+                "cog"
 
-        Trash ->
-          "trash"
+            Trash ->
+                "trash"
 
-        Home ->
-          "home"
+            Home ->
+                "home"
 
-        File ->
-          "file"
+            File ->
+                "file"
 
-        Time ->
-          "time"
+            Time ->
+                "time"
 
-        Road ->
-          "road"
+            Road ->
+                "road"
 
-        DownloadAlt ->
-          "download-alt"
+            DownloadAlt ->
+                "download-alt"
 
-        Download ->
-          "download"
+            Download ->
+                "download"
 
-        Upload ->
-          "upload"
+            Upload ->
+                "upload"
 
-        Inbox ->
-          "inbox"
+            Inbox ->
+                "inbox"
 
-        PlayCircle ->
-          "play-circle"
+            PlayCircle ->
+                "play-circle"
 
-        Repeat ->
-          "repeat"
+            Repeat ->
+                "repeat"
 
-        Refresh ->
-          "refresh"
+            Refresh ->
+                "refresh"
 
-        ListAlt ->
-          "list-alt"
+            ListAlt ->
+                "list-alt"
 
-        Lock ->
-          "lock"
+            Lock ->
+                "lock"
 
-        Flag ->
-          "flag"
+            Flag ->
+                "flag"
 
-        Headphones ->
-          "headphones"
+            Headphones ->
+                "headphones"
 
-        VolumeOff ->
-          "volume-off"
+            VolumeOff ->
+                "volume-off"
 
-        VolumeDown ->
-          "volume-down"
+            VolumeDown ->
+                "volume-down"
 
-        VolumeUp ->
-          "volume-up"
+            VolumeUp ->
+                "volume-up"
 
-        Qrcode ->
-          "qrcode"
+            Qrcode ->
+                "qrcode"
 
-        Barcode ->
-          "barcode"
+            Barcode ->
+                "barcode"
 
-        Tag ->
-          "tag"
+            Tag ->
+                "tag"
 
-        Tags ->
-          "tags"
+            Tags ->
+                "tags"
 
-        Book ->
-          "book"
+            Book ->
+                "book"
 
-        Bookmark ->
-          "bookmark"
+            Bookmark ->
+                "bookmark"
 
-        Print ->
-          "print"
+            Print ->
+                "print"
 
-        Camera ->
-          "camera"
+            Camera ->
+                "camera"
 
-        Font ->
-          "font"
+            Font ->
+                "font"
 
-        Bold ->
-          "bold"
+            Bold ->
+                "bold"
 
-        Italic ->
-          "italic"
+            Italic ->
+                "italic"
 
-        TextHeight ->
-          "text-height"
+            TextHeight ->
+                "text-height"
 
-        TextWidth ->
-          "text-width"
+            TextWidth ->
+                "text-width"
 
-        AlignLeft ->
-          "align-left"
+            AlignLeft ->
+                "align-left"
 
-        AlignCenter ->
-          "align-center"
+            AlignCenter ->
+                "align-center"
 
-        AlignRight ->
-          "align-right"
+            AlignRight ->
+                "align-right"
 
-        AlignJustify ->
-          "align-justify"
+            AlignJustify ->
+                "align-justify"
 
-        List ->
-          "list"
+            List ->
+                "list"
 
-        IndentLeft ->
-          "indent-left"
+            IndentLeft ->
+                "indent-left"
 
-        IndentRight ->
-          "indent-right"
+            IndentRight ->
+                "indent-right"
 
-        FacetimeVideo ->
-          "facetime-video"
+            FacetimeVideo ->
+                "facetime-video"
 
-        Picture ->
-          "picture"
+            Picture ->
+                "picture"
 
-        MapMarker ->
-          "map-marker"
+            MapMarker ->
+                "map-marker"
 
-        Adjust ->
-          "adjust"
+            Adjust ->
+                "adjust"
 
-        Tint ->
-          "tint"
+            Tint ->
+                "tint"
 
-        Edit ->
-          "edit"
+            Edit ->
+                "edit"
 
-        Share ->
-          "share"
+            Share ->
+                "share"
 
-        Check ->
-          "check"
+            Check ->
+                "check"
 
-        Move ->
-          "move"
+            Move ->
+                "move"
 
-        StepBackward ->
-          "step-backward"
+            StepBackward ->
+                "step-backward"
 
-        FastBackward ->
-          "fast-backward"
+            FastBackward ->
+                "fast-backward"
 
-        Backward ->
-          "backward"
+            Backward ->
+                "backward"
 
-        Play ->
-          "play"
+            Play ->
+                "play"
 
-        Pause ->
-          "pause"
+            Pause ->
+                "pause"
 
-        Stop ->
-          "stop"
+            Stop ->
+                "stop"
 
-        Forward ->
-          "forward"
+            Forward ->
+                "forward"
 
-        FastForward ->
-          "fast-forward"
+            FastForward ->
+                "fast-forward"
 
-        StepForward ->
-          "step-forward"
+            StepForward ->
+                "step-forward"
 
-        Eject ->
-          "eject"
+            Eject ->
+                "eject"
 
-        ChevronLeft ->
-          "chevron-left"
+            ChevronLeft ->
+                "chevron-left"
 
-        ChevronRight ->
-          "chevron-right"
+            ChevronRight ->
+                "chevron-right"
 
-        PlusSign ->
-          "plus-sign"
+            PlusSign ->
+                "plus-sign"
 
-        MinusSign ->
-          "minus-sign"
+            MinusSign ->
+                "minus-sign"
 
-        RemoveSign ->
-          "remove-sign"
+            RemoveSign ->
+                "remove-sign"
 
-        OkSign ->
-          "ok-sign"
+            OkSign ->
+                "ok-sign"
 
-        QuestionSign ->
-          "question-sign"
+            QuestionSign ->
+                "question-sign"
 
-        InfoSign ->
-          "info-sign"
+            InfoSign ->
+                "info-sign"
 
-        Screenshot ->
-          "screenshot"
+            Screenshot ->
+                "screenshot"
 
-        RemoveCircle ->
-          "remove-circle"
+            RemoveCircle ->
+                "remove-circle"
 
-        OkCircle ->
-          "ok-circle"
+            OkCircle ->
+                "ok-circle"
 
-        BanCircle ->
-          "ban-circle"
+            BanCircle ->
+                "ban-circle"
 
-        ArrowLeft ->
-          "arrow-left"
+            ArrowLeft ->
+                "arrow-left"
 
-        ArrowRight ->
-          "arrow-right"
+            ArrowRight ->
+                "arrow-right"
 
-        ArrowUp ->
-          "arrow-up"
+            ArrowUp ->
+                "arrow-up"
 
-        ArrowDown ->
-          "arrow-down"
+            ArrowDown ->
+                "arrow-down"
 
-        ShareAlt ->
-          "share-alt"
+            ShareAlt ->
+                "share-alt"
 
-        ResizeFull ->
-          "resize-full"
+            ResizeFull ->
+                "resize-full"
 
-        ResizeSmall ->
-          "resize-small"
+            ResizeSmall ->
+                "resize-small"
 
-        ExclamationSign ->
-          "exclamation-sign"
+            ExclamationSign ->
+                "exclamation-sign"
 
-        Gift ->
-          "gift"
+            Gift ->
+                "gift"
 
-        Leaf ->
-          "leaf"
+            Leaf ->
+                "leaf"
 
-        Fire ->
-          "fire"
+            Fire ->
+                "fire"
 
-        EyeOpen ->
-          "eye-open"
+            EyeOpen ->
+                "eye-open"
 
-        EyeClose ->
-          "eye-close"
+            EyeClose ->
+                "eye-close"
 
-        WarningSign ->
-          "warning-sign"
+            WarningSign ->
+                "warning-sign"
 
-        Plane ->
-          "plane"
+            Plane ->
+                "plane"
 
-        Calendar ->
-          "calendar"
+            Calendar ->
+                "calendar"
 
-        Random ->
-          "random"
+            Random ->
+                "random"
 
-        Comment ->
-          "comment"
+            Comment ->
+                "comment"
 
-        Magnet ->
-          "magnet"
+            Magnet ->
+                "magnet"
 
-        ChevronUp ->
-          "chevron-up"
+            ChevronUp ->
+                "chevron-up"
 
-        ChevronDown ->
-          "chevron-down"
+            ChevronDown ->
+                "chevron-down"
 
-        Retweet ->
-          "retweet"
+            Retweet ->
+                "retweet"
 
-        ShoppingCart ->
-          "shopping-cart"
+            ShoppingCart ->
+                "shopping-cart"
 
-        FolderClose ->
-          "folder-close"
+            FolderClose ->
+                "folder-close"
 
-        FolderOpen ->
-          "folder-open"
+            FolderOpen ->
+                "folder-open"
 
-        ResizeVertical ->
-          "resize-vertical"
+            ResizeVertical ->
+                "resize-vertical"
 
-        ResizeHorizontal ->
-          "resize-horizontal"
+            ResizeHorizontal ->
+                "resize-horizontal"
 
-        Hdd ->
-          "hdd"
+            Hdd ->
+                "hdd"
 
-        Bullhorn ->
-          "bullhorn"
+            Bullhorn ->
+                "bullhorn"
 
-        Bell ->
-          "bell"
+            Bell ->
+                "bell"
 
-        Certificate ->
-          "certificate"
+            Certificate ->
+                "certificate"
 
-        ThumbsUp ->
-          "thumbs-up"
+            ThumbsUp ->
+                "thumbs-up"
 
-        ThumbsDown ->
-          "thumbs-down"
+            ThumbsDown ->
+                "thumbs-down"
 
-        HandRight ->
-          "hand-right"
+            HandRight ->
+                "hand-right"
 
-        HandLeft ->
-          "hand-left"
+            HandLeft ->
+                "hand-left"
 
-        HandUp ->
-          "hand-up"
+            HandUp ->
+                "hand-up"
 
-        HandDown ->
-          "hand-down"
+            HandDown ->
+                "hand-down"
 
-        CircleArrowRight ->
-          "circle-arrow-right"
+            CircleArrowRight ->
+                "circle-arrow-right"
 
-        CircleArrowLeft ->
-          "circle-arrow-left"
+            CircleArrowLeft ->
+                "circle-arrow-left"
 
-        CircleArrowUp ->
-          "circle-arrow-up"
+            CircleArrowUp ->
+                "circle-arrow-up"
 
-        CircleArrowDown ->
-          "circle-arrow-down"
+            CircleArrowDown ->
+                "circle-arrow-down"
 
-        Globe ->
-          "globe"
+            Globe ->
+                "globe"
 
-        Wrench ->
-          "wrench"
+            Wrench ->
+                "wrench"
 
-        Tasks ->
-          "tasks"
+            Tasks ->
+                "tasks"
 
-        Filter ->
-          "filter"
+            Filter ->
+                "filter"
 
-        Briefcase ->
-          "briefcase"
+            Briefcase ->
+                "briefcase"
 
-        Fullscreen ->
-          "fullscreen"
+            Fullscreen ->
+                "fullscreen"
 
-        Dashboard ->
-          "dashboard"
+            Dashboard ->
+                "dashboard"
 
-        Paperclip ->
-          "paperclip"
+            Paperclip ->
+                "paperclip"
 
-        HeartEmpty ->
-          "heart-empty"
+            HeartEmpty ->
+                "heart-empty"
 
-        Link ->
-          "link"
+            Link ->
+                "link"
 
-        Phone ->
-          "phone"
+            Phone ->
+                "phone"
 
-        Pushpin ->
-          "pushpin"
+            Pushpin ->
+                "pushpin"
 
-        Usd ->
-          "usd"
+            Usd ->
+                "usd"
 
-        Gbp ->
-          "gbp"
+            Gbp ->
+                "gbp"
 
-        Sort ->
-          "sort"
+            Sort ->
+                "sort"
 
-        SortByAlphabet ->
-          "sort-by-alphabet"
+            SortByAlphabet ->
+                "sort-by-alphabet"
 
-        SortByAlphabetAlt ->
-          "sort-by-alphabet-alt"
+            SortByAlphabetAlt ->
+                "sort-by-alphabet-alt"
 
-        SortByOrder ->
-          "sort-by-order"
+            SortByOrder ->
+                "sort-by-order"
 
-        SortByOrderAlt ->
-          "sort-by-order-alt"
+            SortByOrderAlt ->
+                "sort-by-order-alt"
 
-        SortByAttributes ->
-          "sort-by-attributes"
+            SortByAttributes ->
+                "sort-by-attributes"
 
-        SortByAttributesAlt ->
-          "sort-by-attributes-alt"
+            SortByAttributesAlt ->
+                "sort-by-attributes-alt"
 
-        Unchecked ->
-          "unchecked"
+            Unchecked ->
+                "unchecked"
 
-        Expand ->
-          "expand"
+            Expand ->
+                "expand"
 
-        CollapseDown ->
-          "collapse-down"
+            CollapseDown ->
+                "collapse-down"
 
-        CollapseUp ->
-          "collapse-up"
+            CollapseUp ->
+                "collapse-up"
 
-        LogIn ->
-          "log-in"
+            LogIn ->
+                "log-in"
 
-        Flash ->
-          "flash"
+            Flash ->
+                "flash"
 
-        LogOut ->
-          "log-out"
+            LogOut ->
+                "log-out"
 
-        NewWindow ->
-          "new-window"
+            NewWindow ->
+                "new-window"
 
-        Record ->
-          "record"
+            Record ->
+                "record"
 
-        Save ->
-          "save"
+            Save ->
+                "save"
 
-        Open ->
-          "open"
+            Open ->
+                "open"
 
-        Saved ->
-          "saved"
+            Saved ->
+                "saved"
 
-        Import ->
-          "import"
+            Import ->
+                "import"
 
-        Export ->
-          "export"
+            Export ->
+                "export"
 
-        Send ->
-          "send"
+            Send ->
+                "send"
 
-        FloppyDisk ->
-          "floppy-disk"
+            FloppyDisk ->
+                "floppy-disk"
 
-        FloppySaved ->
-          "floppy-saved"
+            FloppySaved ->
+                "floppy-saved"
 
-        FloppyRemove ->
-          "floppy-remove"
+            FloppyRemove ->
+                "floppy-remove"
 
-        FloppySave ->
-          "floppy-save"
+            FloppySave ->
+                "floppy-save"
 
-        FloppyOpen ->
-          "floppy-open"
+            FloppyOpen ->
+                "floppy-open"
 
-        CreditCard ->
-          "credit-card"
+            CreditCard ->
+                "credit-card"
 
-        Transfer ->
-          "transfer"
+            Transfer ->
+                "transfer"
 
-        Cutlery ->
-          "cutlery"
+            Cutlery ->
+                "cutlery"
 
-        Header ->
-          "header"
+            Header ->
+                "header"
 
-        Compressed ->
-          "compressed"
+            Compressed ->
+                "compressed"
 
-        Earphone ->
-          "earphone"
+            Earphone ->
+                "earphone"
 
-        PhoneAlt ->
-          "phone-alt"
+            PhoneAlt ->
+                "phone-alt"
 
-        Tower ->
-          "tower"
+            Tower ->
+                "tower"
 
-        Stats ->
-          "stats"
+            Stats ->
+                "stats"
 
-        SdVideo ->
-          "sd-video"
+            SdVideo ->
+                "sd-video"
 
-        HdVideo ->
-          "hd-video"
+            HdVideo ->
+                "hd-video"
 
-        Subtitles ->
-          "subtitles"
+            Subtitles ->
+                "subtitles"
 
-        SoundStereo ->
-          "sound-stereo"
+            SoundStereo ->
+                "sound-stereo"
 
-        SoundDolby ->
-          "sound-dolby"
+            SoundDolby ->
+                "sound-dolby"
 
-        Sound51 ->
-          "sound-5-1"
+            Sound51 ->
+                "sound-5-1"
 
-        Sound61 ->
-          "sound-6-1"
+            Sound61 ->
+                "sound-6-1"
 
-        Sound71 ->
-          "sound-7-1"
+            Sound71 ->
+                "sound-7-1"
 
-        CopyrightMark ->
-          "copyright-mark"
+            CopyrightMark ->
+                "copyright-mark"
 
-        RegistrationMark ->
-          "registration-mark"
+            RegistrationMark ->
+                "registration-mark"
 
-        CloudDownload ->
-          "cloud-download"
+            CloudDownload ->
+                "cloud-download"
 
-        CloudUpload ->
-          "cloud-upload"
+            CloudUpload ->
+                "cloud-upload"
 
-        TreeConifer ->
-          "tree-conifer"
+            TreeConifer ->
+                "tree-conifer"
 
-        TreeDeciduous ->
-          "tree-deciduous"
+            TreeDeciduous ->
+                "tree-deciduous"
 
-        Cd ->
-          "cd"
+            Cd ->
+                "cd"
 
-        SaveFile ->
-          "save-file"
+            SaveFile ->
+                "save-file"
 
-        OpenFile ->
-          "open-file"
+            OpenFile ->
+                "open-file"
 
-        LevelUp ->
-          "level-up"
+            LevelUp ->
+                "level-up"
 
-        Copy ->
-          "copy"
+            Copy ->
+                "copy"
 
-        Paste ->
-          "paste"
+            Paste ->
+                "paste"
 
-        Alert ->
-          "alert"
+            Alert ->
+                "alert"
 
-        Equalizer ->
-          "equalizer"
+            Equalizer ->
+                "equalizer"
 
-        King ->
-          "king"
+            King ->
+                "king"
 
-        Queen ->
-          "queen"
+            Queen ->
+                "queen"
 
-        Pawn ->
-          "pawn"
+            Pawn ->
+                "pawn"
 
-        Bishop ->
-          "bishop"
+            Bishop ->
+                "bishop"
 
-        Knight ->
-          "knight"
+            Knight ->
+                "knight"
 
-        BabyFormula ->
-          "baby-formula"
+            BabyFormula ->
+                "baby-formula"
 
-        Tent ->
-          "tent"
+            Tent ->
+                "tent"
 
-        Blackboard ->
-          "blackboard"
+            Blackboard ->
+                "blackboard"
 
-        Bed ->
-          "bed"
+            Bed ->
+                "bed"
 
-        Apple ->
-          "apple"
+            Apple ->
+                "apple"
 
-        Erase ->
-          "erase"
+            Erase ->
+                "erase"
 
-        Hourglass ->
-          "hourglass"
+            Hourglass ->
+                "hourglass"
 
-        Lamp ->
-          "lamp"
+            Lamp ->
+                "lamp"
 
-        Duplicate ->
-          "duplicate"
+            Duplicate ->
+                "duplicate"
 
-        PiggyBank ->
-          "piggy-bank"
+            PiggyBank ->
+                "piggy-bank"
 
-        Scissors ->
-          "scissors"
+            Scissors ->
+                "scissors"
 
-        Bitcoin ->
-          "bitcoin"
+            Bitcoin ->
+                "bitcoin"
 
-        Btc ->
-          "btc"
+            Btc ->
+                "btc"
 
-        Xbt ->
-          "xbt"
+            Xbt ->
+                "xbt"
 
-        Yen ->
-          "yen"
+            Yen ->
+                "yen"
 
-        Jpy ->
-          "jpy"
+            Jpy ->
+                "jpy"
 
-        Ruble ->
-          "ruble"
+            Ruble ->
+                "ruble"
 
-        Rub ->
-          "rub"
+            Rub ->
+                "rub"
 
-        Scale ->
-          "scale"
+            Scale ->
+                "scale"
 
-        IceLolly ->
-          "ice-lolly"
+            IceLolly ->
+                "ice-lolly"
 
-        IceLollyTasted ->
-          "ice-lolly-tasted"
+            IceLollyTasted ->
+                "ice-lolly-tasted"
 
-        Education ->
-          "education"
+            Education ->
+                "education"
 
-        OptionHorizontal ->
-          "option-horizontal"
+            OptionHorizontal ->
+                "option-horizontal"
 
-        OptionVertical ->
-          "option-vertical"
+            OptionVertical ->
+                "option-vertical"
 
-        MenuHamburger ->
-          "menu-hamburger"
+            MenuHamburger ->
+                "menu-hamburger"
 
-        ModalWindow ->
-          "modal-window"
+            ModalWindow ->
+                "modal-window"
 
-        Oil ->
-          "oil"
+            Oil ->
+                "oil"
 
-        Grain ->
-          "grain"
+            Grain ->
+                "grain"
 
-        Sunglasses ->
-          "sunglasses"
+            Sunglasses ->
+                "sunglasses"
 
-        TextSize ->
-          "text-size"
+            TextSize ->
+                "text-size"
 
-        TextColor ->
-          "text-color"
+            TextColor ->
+                "text-color"
 
-        TextBackground ->
-          "text-background"
+            TextBackground ->
+                "text-background"
 
-        ObjectAlignTop ->
-          "object-align-top"
+            ObjectAlignTop ->
+                "object-align-top"
 
-        ObjectAlignBottom ->
-          "object-align-bottom"
+            ObjectAlignBottom ->
+                "object-align-bottom"
 
-        ObjectAlignHorizontal ->
-          "object-align-horizontal"
+            ObjectAlignHorizontal ->
+                "object-align-horizontal"
 
-        ObjectAlignLeft ->
-          "object-align-left"
+            ObjectAlignLeft ->
+                "object-align-left"
 
-        ObjectAlignVertical ->
-          "object-align-vertical"
+            ObjectAlignVertical ->
+                "object-align-vertical"
 
-        ObjectAlignRight ->
-          "object-align-right"
+            ObjectAlignRight ->
+                "object-align-right"
 
-        TriangleRight ->
-          "triangle-right"
+            TriangleRight ->
+                "triangle-right"
 
-        TriangleLeft ->
-          "triangle-left"
+            TriangleLeft ->
+                "triangle-left"
 
-        TriangleBottom ->
-          "triangle-bottom"
+            TriangleBottom ->
+                "triangle-bottom"
 
-        TriangleTop ->
-          "triangle-top"
+            TriangleTop ->
+                "triangle-top"
 
-        Console ->
-          "console"
+            Console ->
+                "console"
 
-        Superscript ->
-          "superscript"
+            Superscript ->
+                "superscript"
 
-        Subscript ->
-          "subscript"
+            Subscript ->
+                "subscript"
 
-        MenuLeft ->
-          "menu-left"
+            MenuLeft ->
+                "menu-left"
 
-        MenuRight ->
-          "menu-right"
+            MenuRight ->
+                "menu-right"
 
-        MenuDown ->
-          "menu-down"
+            MenuDown ->
+                "menu-down"
 
-        MenuUp ->
-          "menu-up"
+            MenuUp ->
+                "menu-up"

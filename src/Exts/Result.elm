@@ -10,65 +10,65 @@ module Exts.Result exposing (..)
 -}
 mapBoth : (e -> f) -> (a -> b) -> Result e a -> Result f b
 mapBoth f g r =
-  case r of
-    Ok x ->
-      Ok (g x)
+    case r of
+        Ok x ->
+            Ok (g x)
 
-    Err x ->
-      Err (f x)
+        Err x ->
+            Err (f x)
 
 
 {-| Boolean checks for success/failure.
 -}
 isOk : Result e a -> Bool
 isOk x =
-  case x of
-    Ok _ ->
-      True
+    case x of
+        Ok _ ->
+            True
 
-    Err _ ->
-      False
+        Err _ ->
+            False
 
 
 {-| -}
 isErr : Result e a -> Bool
 isErr =
-  not << isOk
+    not << isOk
 
 
 {-| Convert a `Result` to a `Maybe`.
 -}
 fromOk : Result e a -> Maybe a
 fromOk x =
-  case x of
-    Ok x ->
-      Just x
+    case x of
+        Ok x ->
+            Just x
 
-    Err _ ->
-      Nothing
+        Err _ ->
+            Nothing
 
 
 {-| -}
 fromErr : Result e a -> Maybe e
 fromErr x =
-  case x of
-    Err x ->
-      Just x
+    case x of
+        Err x ->
+            Just x
 
-    Ok _ ->
-      Nothing
+        Ok _ ->
+            Nothing
 
 
 {-| Monoidal append - join two Results together as though they were one.
 -}
 mappend : Result e a -> Result e b -> Result e ( a, b )
 mappend a b =
-  case ( a, b ) of
-    ( Err x, _ ) ->
-      Err x
+    case ( a, b ) of
+        ( Err x, _ ) ->
+            Err x
 
-    ( _, Err y ) ->
-      Err y
+        ( _, Err y ) ->
+            Err y
 
-    ( Ok x, Ok y ) ->
-      Ok ( x, y )
+        ( Ok x, Ok y ) ->
+            Ok ( x, y )

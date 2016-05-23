@@ -12,4 +12,4 @@ module Exts.Basics exposing (..)
 -}
 compareBy : (a -> comparable) -> a -> a -> Order
 compareBy f a b =
-  compare (f a) (f b)
+    compare (f a) (f b)

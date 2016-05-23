@@ -14,19 +14,19 @@ import Tests.Exts.Validation
 
 tests : Test
 tests =
-  suite "All"
-    [ Tests.Exts.Array.tests
-    , Tests.Exts.Delta.tests
-    , Tests.Exts.Dict.tests
-    , Tests.Exts.List.tests
-    , Tests.Exts.Maybe.tests
-    , Tests.Exts.Result.tests
-    , Tests.Exts.String.tests
-    , Tests.Exts.Date.tests
-    , Tests.Exts.Validation.tests
-    ]
+    suite "All"
+        [ Tests.Exts.Array.tests
+        , Tests.Exts.Delta.tests
+        , Tests.Exts.Dict.tests
+        , Tests.Exts.List.tests
+        , Tests.Exts.Maybe.tests
+        , Tests.Exts.Result.tests
+        , Tests.Exts.String.tests
+        , Tests.Exts.Date.tests
+        , Tests.Exts.Validation.tests
+        ]
 
 
 main : Program Never
 main =
-  runSuite tests
+    runSuite tests

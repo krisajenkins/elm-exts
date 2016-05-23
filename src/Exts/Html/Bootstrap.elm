@@ -13,77 +13,77 @@ import Html.Attributes exposing (..)
 -}
 container : List (Html msg) -> Html msg
 container =
-  div [ class "container" ]
+    div [ class "container" ]
 
 
 {-| Bootstrap grid fluid container.
 -}
 containerFluid : List (Html msg) -> Html msg
 containerFluid =
-  div [ class "container-fluid" ]
+    div [ class "container-fluid" ]
 
 
 {-| Bootstrap grid row.
 -}
 row : List (Html msg) -> Html msg
 row =
-  div [ class "row" ]
+    div [ class "row" ]
 
 
 {-| Bootstrap form group.
 -}
 formGroup : List (Html msg) -> Html msg
 formGroup =
-  div [ class "form-group" ]
+    div [ class "form-group" ]
 
 
 {-| The minimum markup - an empty span.
 -}
 empty : Html msg
 empty =
-  span [] []
+    span [] []
 
 
 {-| Two evenly-sized columns. Must be used within a row.
 -}
 twoColumns : List (Html msg) -> List (Html msg) -> Html msg
 twoColumns left right =
-  row
-    [ div [ class "col-xs-6" ] left
-    , div [ class "col-xs-6" ] right
-    ]
+    row
+        [ div [ class "col-xs-6" ] left
+        , div [ class "col-xs-6" ] right
+        ]
 
 
 {-| Aspect ratios for responsive video embedding.
 -}
 type Ratio
-  = SixteenByNine
-  | FourByThree
+    = SixteenByNine
+    | FourByThree
 
 
 {-| Embed a responsive video.
 -}
 video : Ratio -> String -> Html msg
 video ratio url =
-  let
-    ratioClass =
-      case ratio of
-        SixteenByNine ->
-          "embed-responsive-16by9"
+    let
+        ratioClass =
+            case ratio of
+                SixteenByNine ->
+                    "embed-responsive-16by9"
 
-        FourByThree ->
-          "embed-responsive-4by3"
-  in
-    div []
-      [ h1 [] [ text "About" ]
-      , div [ class "embed-responsive" ]
-          [ iframe
-              [ class "embed-responsive-item"
-              , src url
-              ]
-              []
-          ]
-      ]
+                FourByThree ->
+                    "embed-responsive-4by3"
+    in
+        div []
+            [ h1 [] [ text "About" ]
+            , div [ class "embed-responsive" ]
+                [ iframe
+                    [ class "embed-responsive-item"
+                    , src url
+                    ]
+                    []
+                ]
+            ]
 
 
 
@@ -94,39 +94,39 @@ video ratio url =
 
 {-| -}
 type PopoverDirection
-  = Top
-  | Right
-  | Bottom
-  | Left
+    = Top
+    | Right
+    | Bottom
+    | Left
 
 
 {-| Interface to the bootstrap popover that does not require bootstrap.js.
 -}
 popover : PopoverDirection -> Bool -> List ( String, String ) -> Maybe String -> List (Html msg) -> Html msg
 popover direction isShown styles title body =
-  div
-    [ classList
-        [ ( "popover fade", True )
-        , ( "in", isShown )
-        , ( "top", (direction == Top) )
-        , ( "right", (direction == Right) )
-        , ( "bottom", (direction == Bottom) )
-        , ( "left", (direction == Left) )
+    div
+        [ classList
+            [ ( "popover fade", True )
+            , ( "in", isShown )
+            , ( "top", (direction == Top) )
+            , ( "right", (direction == Right) )
+            , ( "bottom", (direction == Bottom) )
+            , ( "left", (direction == Left) )
+            ]
+        , style
+            (styles
+                ++ [ ( "display", "block" ) ]
+            )
         ]
-    , style
-        (styles
-          ++ [ ( "display", "block" ) ]
-        )
-    ]
-    [ div [ class "arrow" ]
-        []
-    , case title of
-        Just s ->
-          h3 [ class "popover-title" ]
-            [ text s ]
+        [ div [ class "arrow" ]
+            []
+        , case title of
+            Just s ->
+                h3 [ class "popover-title" ]
+                    [ text s ]
 
-        Nothing ->
-          empty
-    , div [ class "popover-content" ]
-        body
-    ]
+            Nothing ->
+                empty
+        , div [ class "popover-content" ]
+            body
+        ]
