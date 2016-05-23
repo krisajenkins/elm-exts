@@ -1,12 +1,13 @@
-module Exts.Http exposing (put, postContent, postForm, postJson, handleError)
+module Exts.Http exposing (put, postContent, postForm, postJson, handleError, cgiParameters)
 
 {-| Extensions to the `Http` library.
 
-@docs handleError, put, postContent, postForm, postJson
+@docs handleError, put, postContent, postForm, postJson, cgiParameters
 -}
 
 import Http exposing (..)
 import Json.Decode exposing (Decoder)
+import String
 import Task exposing (Task, andThen, mapError, succeed, fail)
 
 
@@ -78,3 +79,18 @@ postForm =
 postJson : Decoder value -> String -> Body -> Task Error value
 postJson =
     postContent "application/json"
+
+
+{-| Encode a CGI parameter pair.
+-}
+cgiParameter : ( String, String ) -> String
+cgiParameter ( key, value ) =
+    uriEncode key ++ "=" ++ uriEncode value
+
+
+{-| Encode a CGI parameter list.
+-}
+cgiParameters : List ( String, String ) -> String
+cgiParameters =
+    List.map cgiParameter
+        >> String.join "&"
