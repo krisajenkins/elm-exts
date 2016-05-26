@@ -7,7 +7,10 @@ import Exts.Maybe exposing (..)
 tests : Test
 tests =
     ElmTest.suite "Exts.Maybe"
-        [ joinTests ]
+        [ joinTests
+        , validateTests
+        , matchesTests
+        ]
 
 
 joinTests : Test
@@ -27,3 +30,27 @@ joinTests =
     ]
         |> List.map defaultTest
         |> ElmTest.suite "join"
+
+
+isEven : Int -> Bool
+isEven n =
+    (n % 2) == 0
+
+
+validateTests : Test
+validateTests =
+    [ assertEqual (Just 2) (validate isEven 2)
+    , assertEqual Nothing (validate isEven 3)
+    ]
+        |> List.map defaultTest
+        |> ElmTest.suite "validate"
+
+
+matchesTests : Test
+matchesTests =
+    [ assertEqual (Just 2) (matches isEven (Just 2))
+    , assertEqual Nothing (matches isEven (Just 3))
+    , assertEqual Nothing (matches isEven Nothing)
+    ]
+        |> List.map defaultTest
+        |> ElmTest.suite "matches"
