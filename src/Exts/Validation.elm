@@ -6,7 +6,7 @@ module Exts.Validation exposing (..)
 -}
 
 import Regex exposing (Regex, caseInsensitive, regex, contains)
-import Result exposing (andThen, map)
+import Result exposing (andThen)
 
 
 {-| A validator is a function that takes a possibly-invalid form, and
@@ -42,7 +42,7 @@ type alias Validator e a b =
 -}
 apply : Result e (a -> b) -> Result e a -> Result e b
 apply f aResult =
-    f `andThen` (\f' -> f' `map` aResult)
+    f `andThen` (\f' -> Result.map f' aResult)
 
 
 {-| Convenient synonym for `apply`.
