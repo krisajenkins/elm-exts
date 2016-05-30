@@ -54,6 +54,16 @@ twoColumns left right =
         ]
 
 
+clearfix : Html msg
+clearfix =
+    div [ class "clearfix" ] []
+
+
+well : Html msg
+well =
+    div [ class "well" ] []
+
+
 {-| Aspect ratios for responsive video embedding.
 -}
 type Ratio
