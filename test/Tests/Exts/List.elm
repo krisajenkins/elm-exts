@@ -22,24 +22,17 @@ tests =
 
 chunkTests : Test
 chunkTests =
-    ElmTest.suite "chunk"
-        [ defaultTest
-            (assertEqual [ [] ]
-                (chunk 0 [])
-            )
-        , defaultTest
-            (assertEqual []
-                (chunk 3 [])
-            )
-        , defaultTest
-            (assertEqual ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
-                (chunk 3 [1..10])
-            )
-        , defaultTest
-            (assertEqual ([ [1..4], [5..8], [9..12] ])
-                (chunk 4 [1..12])
-            )
-        ]
+    [ assertEqual [ [] ]
+        (chunk 0 [])
+    , assertEqual []
+        (chunk 3 [])
+    , assertEqual ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
+        (chunk 3 [1..10])
+    , assertEqual ([ [1..4], [5..8], [9..12] ])
+        (chunk 4 [1..12])
+    ]
+        |> List.map defaultTest
+        |> ElmTest.suite "chunk"
 
 
 chunkClaims : Claim
@@ -76,47 +69,36 @@ mergeByTests =
         t2b =
             { id = 2, name = "Three!" }
     in
-        ElmTest.suite "mergeBy"
-            [ defaultTest
-                (assertEqual []
-                    (mergeBy .id [] [])
-                )
-            , defaultTest
-                (assertEqual [ t1, t2a ]
-                    (mergeBy .id
-                        [ t1, t2a ]
-                        []
-                    )
-                )
-            , defaultTest
-                (assertEqual [ t1, t2a ]
-                    (mergeBy .id
-                        []
-                        [ t1, t2a ]
-                    )
-                )
-            , defaultTest
-                (assertEqual [ t1, t2b ]
-                    (mergeBy .id
-                        [ t1, t2a, t2b ]
-                        []
-                    )
-                )
-            , defaultTest
-                (assertEqual [ t1, t2b ]
-                    (mergeBy .id
-                        [ t1, t2a ]
-                        [ t2b ]
-                    )
-                )
-            , defaultTest
-                (assertEqual [ t1, t2a ]
-                    (mergeBy .id
-                        [ t2b ]
-                        [ t1, t2a ]
-                    )
-                )
-            ]
+        [ assertEqual []
+            (mergeBy .id [] [])
+        , assertEqual [ t1, t2a ]
+            (mergeBy .id
+                [ t1, t2a ]
+                []
+            )
+        , assertEqual [ t1, t2a ]
+            (mergeBy .id
+                []
+                [ t1, t2a ]
+            )
+        , assertEqual [ t1, t2b ]
+            (mergeBy .id
+                [ t1, t2a, t2b ]
+                []
+            )
+        , assertEqual [ t1, t2b ]
+            (mergeBy .id
+                [ t1, t2a ]
+                [ t2b ]
+            )
+        , assertEqual [ t1, t2a ]
+            (mergeBy .id
+                [ t2b ]
+                [ t1, t2a ]
+            )
+        ]
+            |> List.map defaultTest
+            |> ElmTest.suite "mergeBy"
 
 
 firstMatchTests : Test
