@@ -102,7 +102,7 @@ type PopoverDirection
 
 {-| Interface to the bootstrap popover that does not require bootstrap.js.
 -}
-popover : PopoverDirection -> Bool -> List ( String, String ) -> Maybe String -> List (Html msg) -> Html msg
+popover : PopoverDirection -> Bool -> List ( String, String ) -> Maybe String -> Html msg -> Html msg
 popover direction isShown styles title body =
     div
         [ classList
@@ -128,5 +128,5 @@ popover direction isShown styles title body =
             Nothing ->
                 empty
         , div [ class "popover-content" ]
-            body
+            [ body ]
         ]
