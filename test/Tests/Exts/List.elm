@@ -16,6 +16,7 @@ tests =
         , mergeByTests
         , firstMatchTests
         , evidenceToTest (quickCheck firstMatchClaims)
+        , uniqueTests
         ]
 
 
@@ -146,3 +147,12 @@ firstMatchClaims =
             `is` (List.head << List.filter isEven)
             `for` list int
         ]
+
+
+uniqueTests : Test
+uniqueTests =
+    [ assertEqual [] (unique [])
+    , assertEqual [ 1, 3, 2, 4 ] (unique [ 1, 3, 2, 4, 1, 2, 3, 4 ])
+    ]
+        |> List.map defaultTest
+        |> ElmTest.suite "unique"

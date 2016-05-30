@@ -1,14 +1,15 @@
-module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest)
+module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest, unique)
 
 {-| Extensions to the core `List` library.
 
-@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest
+@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest, unique
 -}
 
 import Array exposing (Array)
-import Trampoline exposing (..)
-import List exposing (take, drop, length)
 import Dict
+import List exposing (take, drop, length)
+import Set
+import Trampoline exposing (..)
 
 
 {-| Split a list into chunks of length `n`.
@@ -87,3 +88,19 @@ rest : List a -> List a
 rest =
     List.tail
         >> Maybe.withDefault []
+
+
+{-| Return a new list with duplicates removed. Order is preserved.
+-}
+unique : List comparable -> List comparable
+unique =
+    let
+        f x ( seen, result ) =
+            if Set.member x seen then
+                ( seen, result )
+            else
+                ( Set.insert x seen, x :: result )
+    in
+        List.foldl f ( Set.empty, [] )
+            >> snd
+            >> List.reverse
