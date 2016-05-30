@@ -1,8 +1,23 @@
-module Exts.Html.Bootstrap exposing (container, containerFluid, row, formGroup, empty, twoColumns, Ratio(..), video, popover, PopoverDirection(..))
+module Exts.Html.Bootstrap
+    exposing
+        ( container
+        , containerFluid
+        , row
+        , formGroup
+        , empty
+        , twoColumns
+        , Ratio(..)
+        , video
+        , popover
+        , PopoverDirection(..)
+        , clearfix
+        , well
+        , jumbotron
+        )
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection
+@docs container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron
 -}
 
 import Html exposing (..)
@@ -54,14 +69,25 @@ twoColumns left right =
         ]
 
 
+{-| Bootstrap clearfix.
+-}
 clearfix : Html msg
 clearfix =
     div [ class "clearfix" ] []
 
 
-well : Html msg
-well =
-    div [ class "well" ] []
+{-| Bootstrap jumbotron component.
+-}
+jumbotron : Html msg -> Html msg
+jumbotron body =
+    div [ class "jumbotron" ] [ body ]
+
+
+{-| Bootstrap well component.
+-}
+well : Html msg -> Html msg
+well body =
+    div [ class "well" ] [ body ]
 
 
 {-| Aspect ratios for responsive video embedding.
