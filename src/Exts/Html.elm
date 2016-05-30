@@ -1,8 +1,8 @@
-module Exts.Html exposing (matchText)
+module Exts.Html exposing (matchText, nbsp)
 
 {-| Extensions to the `Html` library.
 
-@docs matchText
+@docs matchText, nbsp
 
 -}
 
@@ -73,3 +73,11 @@ matchText attributes search string =
         List.map2 sliceSegments
             allSegmentBoundaries
             (rest allSegmentBoundaries)
+
+
+{-| A non-breaking space. elm-html doesn't support escape sequences
+like `text "&nbsp"`, so use this string instead.
+-}
+nbsp : String
+nbsp =
+    " "
