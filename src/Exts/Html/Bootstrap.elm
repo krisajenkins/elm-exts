@@ -1,6 +1,7 @@
 module Exts.Html.Bootstrap
     exposing
-        ( container
+        ( stylesheet
+        , container
         , containerFluid
         , row
         , formGroup
@@ -17,11 +18,26 @@ module Exts.Html.Bootstrap
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron
+@docs stylesheet, container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron
 -}
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+
+
+{-| A tag that loads Bootstrap from a CDN.
+
+You'll probably only want to use this to get you started. By the time you go
+into production, you should probably be loading this file in the `<head>` tag
+of your page.
+-}
+stylesheet : Html msg
+stylesheet =
+    node "link"
+        [ rel "stylesheet"
+        , href "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        ]
+        []
 
 
 {-| Bootstrap grid container.
