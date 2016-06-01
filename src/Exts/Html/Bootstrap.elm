@@ -94,16 +94,16 @@ clearfix =
 
 {-| Bootstrap jumbotron component.
 -}
-jumbotron : Html msg -> Html msg
-jumbotron body =
-    div [ class "jumbotron" ] [ body ]
+jumbotron : List (Html msg) -> Html msg
+jumbotron =
+    div [ class "jumbotron" ]
 
 
 {-| Bootstrap well component.
 -}
-well : Html msg -> Html msg
-well body =
-    div [ class "well" ] [ body ]
+well : List (Html msg) -> Html msg
+well =
+    div [ class "well" ]
 
 
 {-| Aspect ratios for responsive video embedding.
