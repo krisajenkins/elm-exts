@@ -14,11 +14,12 @@ module Exts.Html.Bootstrap
         , clearfix
         , well
         , jumbotron
+        , badge
         )
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs stylesheet, container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron
+@docs stylesheet, container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron, badge
 -}
 
 import Html exposing (..)
@@ -104,6 +105,13 @@ jumbotron =
 well : List (Html msg) -> Html msg
 well =
     div [ class "well" ]
+
+
+{-| Bootstrap badge component.
+-}
+badge : List (Html msg) -> Html msg
+badge =
+    span [ class "badge" ]
 
 
 {-| Aspect ratios for responsive video embedding.
