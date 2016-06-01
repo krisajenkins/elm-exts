@@ -10,7 +10,7 @@ From your top-level directory - the one with `elm-package.json` in - call:
 
 ```
 
-$ elm package install krisajenkins/elm-dialog
+$ elm package install krisajenkins/elm-exts
 ```
 
 ## Documentation
