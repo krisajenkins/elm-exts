@@ -2,7 +2,7 @@ module Exts.Maybe exposing (..)
 
 {-| Extensions to the core `Maybe` library.
 
-@docs isJust, isNothing, maybe, mappend, catMaybes, join, maybeDefault, matches, validate
+@docs isJust, isNothing, maybe, mappend, catMaybes, join, maybeDefault, matches, validate, when
 -}
 
 import Maybe exposing (withDefault)
@@ -111,3 +111,13 @@ matches : (a -> Bool) -> Maybe a -> Maybe a
 matches predicate maybe =
     maybe
         `Maybe.andThen` (validate predicate)
+
+
+{-| When `test` returns true, return `Just value`, otherwise return `Nothing`.
+-}
+when : Bool -> a -> Maybe a
+when test value =
+    if test then
+        Just value
+    else
+        Nothing
