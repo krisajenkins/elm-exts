@@ -28,10 +28,10 @@ type RemoteData e a
     | Success a
 
 
-{-| While `RemoteData` can accept any type of error, the most common
-one you'll actually use is when you fetch data from a REST interface,
-and get back `RemoteData Http.Error a`. Because that case is so
-common, `WebData` is provided as a useful alias.
+{-| While `RemoteData` can model any type of error, the most common
+one you'll actually encounter is when you fetch data from a REST
+interface, and get back `RemoteData Http.Error a`. Because that case
+is so common, `WebData` is provided as a useful alias.
 -}
 type alias WebData a =
     RemoteData Http.Error a
@@ -123,7 +123,11 @@ fromResult result =
 
 
 {-| Monoidal append - join two `RemoteData` values together as though
-they were one. If both values are Failure, the left one wins.
+they were one.
+
+If their value is `NotAsked`, the result is `NotAsked`.
+If their value is `Loading`, the result is `Loading`.
+If both values are `Failure`, the left one wins.
 -}
 mappend : RemoteData e a -> RemoteData e b -> RemoteData e ( a, b )
 mappend a b =
