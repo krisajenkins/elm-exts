@@ -1,4 +1,4 @@
-module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, mappend, map, isSuccess, mapFailure, mapBoth)
+module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, append, mappend, map, isSuccess, mapFailure, mapBoth)
 
 {-| A datatype representing fetched data.
 
@@ -8,7 +8,7 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, mappend, isSuccess
+@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, append, mappend, isSuccess
 -}
 
 import Http
@@ -122,15 +122,15 @@ fromResult result =
             Success x
 
 
-{-| Monoidal append - join two `RemoteData` values together as though
+{-| Append - join two `RemoteData` values together as though
 they were one.
 
 If their value is `NotAsked`, the result is `NotAsked`.
 If their value is `Loading`, the result is `Loading`.
 If both values are `Failure`, the left one wins.
 -}
-mappend : RemoteData e a -> RemoteData e b -> RemoteData e ( a, b )
-mappend a b =
+append : RemoteData e a -> RemoteData e b -> RemoteData e ( a, b )
+append a b =
     case ( a, b ) of
         ( Success x, Success y ) ->
             Success ( x, y )
@@ -152,6 +152,13 @@ mappend a b =
 
         ( _, Loading ) ->
             Loading
+
+
+{-| DEPRECATED: Old, incorrect name for `append`.
+-}
+mappend : RemoteData e a -> RemoteData e b -> RemoteData e ( a, b )
+mappend =
+    append
 
 
 {-| State-checking predicate. Returns true if we've successfully loaded some data.
