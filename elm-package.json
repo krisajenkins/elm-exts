@@ -21,6 +21,7 @@
         "Exts.Html.Events",
         "Exts.Html.Table",
         "Exts.Http",
+        "Exts.Json.Decode",
         "Exts.Json.Encode",
         "Exts.LatLng",
         "Exts.List",
