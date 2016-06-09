@@ -1,4 +1,4 @@
-module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, append, mappend, map, isSuccess, mapFailure, mapBoth)
+module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, append, mappend, map, isSuccess, mapFailure, mapBoth, update)
 
 {-| A datatype representing fetched data.
 
@@ -8,7 +8,7 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, append, mappend, isSuccess
+@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, append, mappend, isSuccess, update
 -}
 
 import Http
@@ -171,3 +171,31 @@ isSuccess data =
 
         _ ->
             False
+
+
+{-| Apply an Elm update function - `Model -> (Model, Cmd Msg)` - to any `Successful`-ly loaded data.
+
+It's quite common in Elm to want to run a model-update function, over
+some remote data, but only once it's actually been loaded.
+
+For example, we might want to handle UI messages changing the users
+settings, but that only makes sense once those settings have been
+returned from the server.
+
+This function makes it more convenient to reach inside a
+`RemoteData.Success` value and apply an update. If the data in not
+`Success a`, it is return unchanged with a `Cmd.none`.
+
+-}
+update : (a -> ( a, Cmd b )) -> RemoteData e a -> ( RemoteData e a, Cmd b )
+update f remoteData =
+    case remoteData of
+        Success data ->
+            let
+                ( first, second ) =
+                    f data
+            in
+                ( Success first, second )
+
+        _ ->
+            ( remoteData, Cmd.none )
