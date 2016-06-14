@@ -36,7 +36,7 @@ type alias Validator e a b =
     Maybe a -> Result e b
 
 
-{-| Chain valiadators together.
+{-| Chain validators together.
 
 (Hat tip to CircuitHub, who inspired the syntax and guided the code with their [elm-json-extra](http://package.elm-lang.org/packages/circuithub/elm-json-extra/latest) library.)
 -}
