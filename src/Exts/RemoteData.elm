@@ -33,7 +33,8 @@ To use the datatype, let's look at an example that loads `News` from a feed.
 First you add to your model, wrapping the data you want in `WebData`:
 
 
-    type alias Model = { news : WebData News }
+    type alias Model =
+        { news : WebData News }
 
 
 Then add in a message that will deliver the response:
@@ -53,7 +54,17 @@ Now we can create an HTTP get:
             |> Cmd.map NewsResponse
 
 
-We handle it in our update function:
+We trigger it in our `init` function:
+
+
+    init : ( Model, Cmd Msg)
+    init =
+        ( { news = Loading }
+        , getNews
+        )
+
+
+We handle it in our `update` function:
 
 
     update msg model =
