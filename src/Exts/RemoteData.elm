@@ -24,6 +24,56 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
+
+To use the datatype, let's look at an example that load `News` from a feed.
+
+First you add to your model, wrapping the data you want in `WebData`:
+
+    type alias Model = { news : WebData News}
+
+
+...then add in a message that will hold the response:
+
+
+    type alias Msg
+        = NewsResponse (WebData News)
+
+Now we can create an HTTP get:
+
+    getNews : Cmd Msg
+    getNews =
+        Http.get decodeNews "/news"
+            |> RemoteData.asCmd
+            |> Cmd.map NewsResponse
+
+We handle it in our update function:
+
+    update msg model =
+        case msg of
+            NewsResponse response ->
+                ( { model | news = response }
+                , Cmd.none
+                )
+
+And last, we'll view it:
+
+    view : Model -> Html msg
+    view model =
+      case model.news of
+        NotAsked -> text "Initialising."
+
+        Loading -> text "Loading."
+
+        Failure err -> text ("Error: " ++ toString err)
+
+        Success news -> viewNews news
+
+    viewNews : News -> Html msg
+    viewNews news =
+        div []
+            [h1 [] [text "Here is the news."]
+            , ...]
+
 @docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
 -}
 
