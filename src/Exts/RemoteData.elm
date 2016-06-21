@@ -1,4 +1,18 @@
-module Exts.RemoteData exposing (RemoteData(..), WebData, fromResult, withDefault, asCmd, append, mappend, map, isSuccess, mapFailure, mapBoth, update)
+module Exts.RemoteData
+    exposing
+        ( RemoteData(..)
+        , WebData
+        , fromResult
+        , withDefault
+        , asCmd
+        , append
+        , mappend
+        , map
+        , isSuccess
+        , mapFailure
+        , mapBoth
+        , update
+        )
 
 {-| A datatype representing fetched data.
 
