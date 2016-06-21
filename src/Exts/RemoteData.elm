@@ -3,6 +3,7 @@ module Exts.RemoteData
         ( RemoteData(..)
         , WebData
         , fromResult
+        , andThen
         , withDefault
         , asCmd
         , append
@@ -22,7 +23,7 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, WebData, map, mapFailure, mapBoth, withDefault, fromResult, asCmd, append, mappend, isSuccess, update
+@docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, append, mappend, isSuccess, update
 -}
 
 import Http
@@ -103,6 +104,24 @@ mapBoth successFn errorFn data =
 
         NotAsked ->
             NotAsked
+
+
+{-| Chain together RemoteData function calls.
+-}
+andThen : RemoteData e a -> (a -> RemoteData e b) -> RemoteData e b
+andThen data f =
+    case data of
+        Success a ->
+            f a
+
+        Failure e ->
+            Failure e
+
+        NotAsked ->
+            NotAsked
+
+        Loading ->
+            Loading
 
 
 {-| Return the `Success` value, or the default.
