@@ -25,20 +25,26 @@ easier to represent the real state of a remote data fetch and handle
 it properly.
 
 
-To use the datatype, let's look at an example that load `News` from a feed.
+For more on the motivation, take a look at the blog post [How Elm Slays A UI Antipattern][elm-slays].
+
+
+To use the datatype, let's look at an example that loads `News` from a feed.
 
 First you add to your model, wrapping the data you want in `WebData`:
 
-    type alias Model = { news : WebData News}
+
+    type alias Model = { news : WebData News }
 
 
-...then add in a message that will hold the response:
+Then add in a message that will deliver the response:
 
 
     type alias Msg
         = NewsResponse (WebData News)
 
+
 Now we can create an HTTP get:
+
 
     getNews : Cmd Msg
     getNews =
@@ -46,7 +52,9 @@ Now we can create an HTTP get:
             |> RemoteData.asCmd
             |> Cmd.map NewsResponse
 
+
 We handle it in our update function:
+
 
     update msg model =
         case msg of
@@ -55,7 +63,10 @@ We handle it in our update function:
                 , Cmd.none
                 )
 
-And last, we'll view it:
+
+And last, we'll render it, correctly handling the various states a web
+request can be in:
+
 
     view : Model -> Html msg
     view model =
@@ -68,13 +79,17 @@ And last, we'll view it:
 
         Success news -> viewNews news
 
+
     viewNews : News -> Html msg
     viewNews news =
         div []
             [h1 [] [text "Here is the news."]
             , ...]
 
+
 @docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
+
+[elm-slays]: http://blog.jenkster.com/2016/06/how-elm-slays-a-ui-antipattern.html
 -}
 
 import Http
