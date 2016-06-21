@@ -6,6 +6,7 @@ module Exts.RemoteData
         , andThen
         , withDefault
         , asCmd
+        , fromTask
         , append
         , mappend
         , map
@@ -23,7 +24,7 @@ where they can be quietly ignored, consider using this. It makes it
 easier to represent the real state of a remote data fetch and handle
 it properly.
 
-@docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, append, mappend, isSuccess, update
+@docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
 -}
 
 import Http
@@ -141,6 +142,15 @@ withDefault default data =
 asCmd : Task e a -> Cmd (RemoteData e a)
 asCmd task =
     Task.perform Failure Success task
+
+
+{-| Convert from a `Task` that may succeed or fail, to one that always
+succeeds with the `RemoteData` that captures any errors.
+-}
+fromTask : Task e a -> Task Never (RemoteData e a)
+fromTask =
+    Task.toResult
+        >> Task.map fromResult
 
 
 {-| Convert a `Result Error`, probably produced from elm-http, to a RemoteData value.
