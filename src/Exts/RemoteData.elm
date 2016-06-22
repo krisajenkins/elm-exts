@@ -25,7 +25,7 @@ easier to represent the real state of a remote data fetch and handle
 it properly.
 
 
-For more on the motivation, take a look at the blog post [How Elm Slays A UI Antipattern][elm-slays].
+For more on the motivation, take a look at the blog post [How Elm Slays A UI Antipattern](http://blog.jenkster.com/2016/06/how-elm-slays-a-ui-antipattern.html).
 
 
 To use the datatype, let's look at an example that loads `News` from a feed.
@@ -97,10 +97,12 @@ request can be in:
             [h1 [] [text "Here is the news."]
             , ...]
 
+Most of this you'd already have in your app, and the changes are just
+wrapping the datatype in `Webdata`, and updating the `Http.get` call
+to add in `RemoteData.asCmd`.
 
 @docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
 
-[elm-slays]: http://blog.jenkster.com/2016/06/how-elm-slays-a-ui-antipattern.html
 -}
 
 import Http
