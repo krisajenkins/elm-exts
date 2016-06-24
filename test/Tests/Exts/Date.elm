@@ -7,7 +7,7 @@ import Date exposing (..)
 
 tests : Test
 tests =
-    suite "Exts.Date" [ toISOStringTests ]
+    suite "Exts.Date" [ toISOStringTests, toRFC3339Tests ]
 
 
 toISOStringTests : Test
@@ -20,5 +20,15 @@ toISOStringTests =
         , defaultTest
             (assertEqual (Ok "2015-10-21T00:00:00.000Z")
                 (Result.map toISOString (Date.fromString "Wed Oct 21 2015 01:00:00"))
+            )
+        ]
+
+
+toRFC3339Tests : Test
+toRFC3339Tests =
+    ElmTest.suite "toRFC3339"
+        [ defaultTest
+            (assertEqual (Ok "2015-10-20")
+                (Result.map toRFC3339 (Date.fromString "Tue Oct 20 2015 17:01:01"))
             )
         ]
