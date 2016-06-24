@@ -75,8 +75,13 @@ We handle it in our `update` function:
                 )
 
 
-And last, we'll render it, correctly handling the various states a web
-request can be in:
+
+Most of this you'd already have in your app, and the changes are just
+wrapping the datatype in `Webdata`, and updating the `Http.get` call
+to add in `RemoteData.asCmd`.
+
+Now we get to where we really want to be, rendering the data and
+handling the different states in the UI gracefully:
 
 
     view : Model -> Html msg
@@ -96,10 +101,6 @@ request can be in:
         div []
             [h1 [] [text "Here is the news."]
             , ...]
-
-Most of this you'd already have in your app, and the changes are just
-wrapping the datatype in `Webdata`, and updating the `Http.get` call
-to add in `RemoteData.asCmd`.
 
 @docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
 
