@@ -1,15 +1,17 @@
-module Exts.Date exposing (toISOString)
+module Exts.Date exposing (toISOString, monthNumber, toRFC3339)
 
 {-| Extensions to the core `Date` library.
 
 @docs toISOString
+@docs toRFC3339
+@docs monthNumber
 -}
 
 import Date exposing (..)
 import String
 
 
-{-| Format a Date as an ISO-standard string.
+{-| Format a `Date` as an ISO-standard string.
 -}
 toISOString : Date -> String
 toISOString d =
@@ -29,6 +31,21 @@ toISOString d =
         ++ "Z"
 
 
+{-| Format a `Date` as an RFC-3339 standard string
+
+  This is useful for passing a `Date` as a value to an HTML input. (See [the W3 spec](https://www.w3.org/TR/html-markup/input.date.html#input.date.attrs.value) for details.)
+-}
+toRFC3339 : Date -> String
+toRFC3339 date =
+    (toString <| Date.year date)
+        ++ "-"
+        ++ (String.padLeft 2 '0' <| toString <| monthNumber date)
+        ++ "-"
+        ++ (String.padLeft 2 '0' <| toString <| Date.day date)
+
+
+{-| Extract the month of a given date as an `Int`. January is 1.
+-}
 monthNumber : Date -> Int
 monthNumber date =
     case month date of

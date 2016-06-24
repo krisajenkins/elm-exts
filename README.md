@@ -25,6 +25,14 @@ make
 
 ...will run the whole build and test suite.
 
+## Contributors
+
+With thanks to:
+
+[Namlook][namlook] - `Exts.Date` additions.
+
+[namlook]: https://github.com/namlook
+
 ## License
 
 Copyright © 2015-2016 Kris Jenkins
