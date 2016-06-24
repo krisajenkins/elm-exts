@@ -14,16 +14,11 @@ tests =
 floorByTests : Test
 floorByTests =
     ElmTest.suite "floorBy"
-        [ defaultTest
-            (assertEqual Nothing
+        <| List.map defaultTest
+            [ assertEqual Nothing
                 (floorBy 0 143)
-            )
-        , defaultTest
-            (assertEqual (Just 142)
+            , assertEqual (Just 142)
                 (floorBy 2 143)
-            )
-        , defaultTest
-            (assertEqual (Just 100)
+            , assertEqual (Just 100)
                 (floorBy 50 143)
-            )
-        ]
+            ]

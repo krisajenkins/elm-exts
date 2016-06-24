@@ -12,12 +12,10 @@ tests =
 generationTests : Test
 generationTests =
     suite "generation"
-        [ defaultTest
-            (assertEqual { empty | entering = [ 1, 2 ] }
+        <| List.map defaultTest
+            [ assertEqual { empty | entering = [ 1, 2 ] }
                 (generation [ 1, 2 ] empty)
-            )
-        , defaultTest
-            (assertEqual
+            , assertEqual
                 { empty
                     | entering = [ 3, 4 ]
                     , continuing = [ 2 ]
@@ -26,9 +24,7 @@ generationTests =
                 (generation [ 2, 3, 4 ]
                     { empty | entering = [ 1, 2 ] }
                 )
-            )
-        , defaultTest
-            (assertEqual
+            , assertEqual
                 { empty
                     | entering = [ 6, 7, 8, 9, 10 ]
                     , continuing = [ 1, 2, 3, 4, 5 ]
@@ -41,9 +37,7 @@ generationTests =
                         , leaving = [ 6, 7 ]
                     }
                 )
-            )
-        , defaultTest
-            (assertEqual
+            , assertEqual
                 { empty
                     | entering = [ 6.0, 7.0, 8.0, 9.0, 10.0 ]
                     , continuing = [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
@@ -56,9 +50,7 @@ generationTests =
                         , leaving = [ 6.0, 7.0 ]
                     }
                 )
-            )
-        , defaultTest
-            (assertEqual
+            , assertEqual
                 { empty
                     | entering = [ { a = 1 } ]
                     , continuing = [ { a = 2 } ]
@@ -71,5 +63,4 @@ generationTests =
                         , leaving = []
                     }
                 )
-            )
-        ]
+            ]

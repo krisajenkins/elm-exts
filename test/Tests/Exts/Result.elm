@@ -15,14 +15,16 @@ tests =
 fromOkTests : Test
 fromOkTests =
     ElmTest.suite "fromOk"
-        [ defaultTest (assertEqual (Just 5) (fromOk (Ok 5)))
-        , defaultTest (assertEqual Nothing (fromOk (Err 5)))
-        ]
+        <| List.map defaultTest
+            [ assertEqual (Just 5) (fromOk (Ok 5))
+            , assertEqual Nothing (fromOk (Err 5))
+            ]
 
 
 fromErrTests : Test
 fromErrTests =
     ElmTest.suite "fromErr"
-        [ defaultTest (assertEqual (Just 5) (fromErr (Err 5)))
-        , defaultTest (assertEqual Nothing (fromErr (Ok 5)))
-        ]
+        <| List.map defaultTest
+            [ assertEqual (Just 5) (fromErr (Err 5))
+            , assertEqual Nothing (fromErr (Ok 5))
+            ]

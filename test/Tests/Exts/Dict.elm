@@ -1,11 +1,11 @@
 module Tests.Exts.Dict exposing (tests)
 
-import ElmTest exposing (..)
-import Exts.Dict exposing (..)
-import Dict
 import Check exposing (..)
 import Check.Producer as Producer exposing (..)
 import Check.Test exposing (evidenceToTest)
+import Dict
+import ElmTest exposing (..)
+import Exts.Dict exposing (..)
 import String
 
 
@@ -25,9 +25,10 @@ animals =
 getWithDefaultTests : Test
 getWithDefaultTests =
     ElmTest.suite "getWithDefault"
-        [ defaultTest <| assertEqual (getWithDefault "def" "Tom" animals) "cat"
-        , defaultTest <| assertEqual (getWithDefault "def" "Mickey" animals) "def"
-        ]
+        <| List.map defaultTest
+            [ assertEqual "cat" (getWithDefault "def" "Tom" animals)
+            , assertEqual "def" (getWithDefault "def" "Mickey" animals)
+            ]
 
 
 foldToListClaims : Claim
