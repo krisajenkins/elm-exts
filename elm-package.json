@@ -2,7 +2,7 @@
     "version": "25.7.0",
     "summary": "A collection of functions missing from the core.",
     "repository": "https://github.com/krisajenkins/elm-exts.git",
-    "license": "BSD3",
+    "license": "MIT",
     "source-directories": [
         "src",
         "test"
