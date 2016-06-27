@@ -67,14 +67,14 @@ postContent contentType decoder url body =
         fromJson decoder (Http.send Http.defaultSettings request)
 
 
-{-| Send a `POST` request with appropriate headers form-encoding.
+{-| Send a `POST` request with appropriate headers for form payloads.
 -}
 postForm : Decoder value -> String -> Body -> Task Error value
 postForm =
     postContent "application/x-www-form-urlencoded"
 
 
-{-| Send a `POST` request with appropriate headers form-encoding.
+{-| Send a `POST` request with appropriate headers JSON payloads.
 -}
 postJson : Decoder value -> String -> Body -> Task Error value
 postJson =
