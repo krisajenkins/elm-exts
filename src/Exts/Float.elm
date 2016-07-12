@@ -9,9 +9,14 @@ module Exts.Float exposing (..)
 {-| Round a `Float` to a given number of decimal places.
 -}
 roundTo : Int -> Float -> Float
-roundTo places =
+roundTo places value =
     let
         factor =
             10 ^ places
     in
-        (*) factor >> round >> toFloat >> (\n -> n / factor)
+        (value
+            * factor
+            |> round
+            |> toFloat
+        )
+            / factor
