@@ -16,7 +16,13 @@ module Exts.RemoteData
         , update
         )
 
-{-| A datatype representing fetched data.
+{-| **NOTE:** This file has been promoted to its own project. Please see
+the [RemoteData for Elm package](http://package.elm-lang.org/packages/krisajenkins/remotedata/latest).
+This file will be remove from elm-exts in a future release.
+
+
+
+A datatype representing fetched data.
 
 If you find yourself continually using `Maybe (Result Error a)` to
 represent loaded data, or you have a habit of shuffling errors away to
