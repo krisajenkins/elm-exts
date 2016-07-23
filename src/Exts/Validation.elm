@@ -1,6 +1,6 @@
 module Exts.Validation exposing (..)
 
-{-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest)
+{-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest).
 
 @docs Validator, apply, (|:), required, notBlank, matches, email, emailRegex
 -}
@@ -13,12 +13,16 @@ import Result exposing (andThen)
 either returns an error message, or a form that is definitely valid. For example:
 
     type alias Form =
-      { email : Maybe String
+      { message : Maybe String
+      , email : Maybe String
+      , firstName : Maybe String
       , age : Maybe Int
       }
 
     type alias ValidForm =
-      { email : String
+      { message : String
+      , email : String
+      , firstName : String
       , age : Int
       }
 
@@ -27,7 +31,7 @@ either returns an error message, or a form that is definitely valid. For example
       Ok ValidForm
         |: notBlank "Message is required and may not be blank." form.message
         |: email "Email is required and may not be blank." form.email
-        |: matches (caseInsensitive (regex "^\\[a-z]+$")) "First name may only contain letters." form.firstName
+        |: matches (caseInsensitive (regex "^[a-z]+$")) "First name may only contain letters." form.firstName
         |: required "Age is required" form.age
 
 An error message is typically a `String`, but may be any type you choose.
