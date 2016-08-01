@@ -7,6 +7,7 @@ module Exts.Dict exposing (..)
 @docs frequency
 @docs getWithDefault
 @docs foldToList
+@docs updateDict
 
 -}
 
@@ -89,3 +90,33 @@ foldToList f dict =
     Dict.foldr (\k v -> (::) (f k v))
         []
         dict
+
+
+{-| Apply an Elm update function - `Model -> (Model, Cmd Msg)` - to a `Dict` entry, if present.
+
+It's quite common in Elm to want to run a model-update function, over
+some dictionary of models, but only if that model is available.
+
+This function makes it more convenient to reach inside a `Dict` and
+apply an update. If the data is not there, the `Dict` is returned
+unchanged with a `Cmd.none`.
+
+-}
+updateDict :
+    (a -> ( a, Cmd cmd ))
+    -> comparable
+    -> Dict comparable a
+    -> ( Dict comparable a, Cmd cmd )
+updateDict f key dict =
+    case Dict.get key dict of
+        Nothing ->
+            ( dict, Cmd.none )
+
+        Just submodel ->
+            let
+                ( newSubmodel, subcmd ) =
+                    f submodel
+            in
+                ( Dict.insert key newSubmodel dict
+                , subcmd
+                )
