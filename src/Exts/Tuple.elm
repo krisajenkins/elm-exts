@@ -1,8 +1,21 @@
-module Exts.Tuple exposing (indexedPair, first, second, both, pair, fork)
+module Exts.Tuple
+    exposing
+        ( indexedPair
+        , first
+        , second
+        , both
+        , pair
+        , fork
+        )
 
 {-| Extensions for tuples.
 
-@docs indexedPair, first, second, both, pair, fork
+@docs indexedPair
+@docs first
+@docs second
+@docs both
+@docs pair
+@docs fork
 
 -}
 

@@ -2,7 +2,11 @@ module Exts.Dict exposing (..)
 
 {-| Extensions to the core `Dict` library.
 
-@docs indexBy, groupBy, frequency, getWithDefault, foldToList
+@docs indexBy
+@docs groupBy
+@docs frequency
+@docs getWithDefault
+@docs foldToList
 
 -}
 
