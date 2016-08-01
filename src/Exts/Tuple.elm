@@ -6,6 +6,8 @@ module Exts.Tuple
         , both
         , pair
         , fork
+        , onFirst
+        , onSecond
         )
 
 {-| Extensions for tuples.
@@ -16,6 +18,8 @@ module Exts.Tuple
 @docs both
 @docs pair
 @docs fork
+@docs onFirst
+@docs onSecond
 
 -}
 
@@ -62,3 +66,17 @@ pair fX fY ( x, y ) =
 fork : (a -> b) -> (a -> c) -> a -> ( b, c )
 fork fX fY v =
     ( fX v, fY v )
+
+
+{-| Apply a function that considers both elements of a pair and changes the first.
+-}
+onFirst : (a -> b -> c) -> ( a, b ) -> ( c, b )
+onFirst f ( a, b ) =
+    ( f a b, b )
+
+
+{-| Apply a function that considers both elements of a pair and changes the second.
+-}
+onSecond : (a -> b -> c) -> ( a, b ) -> ( a, c )
+onSecond f ( a, b ) =
+    ( a, f a b )
