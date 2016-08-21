@@ -80,4 +80,4 @@ like `text "&nbsp"`, so use this string instead.
 -}
 nbsp : String
 nbsp =
-    " "
+    "\x00A0"
