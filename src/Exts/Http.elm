@@ -2,7 +2,12 @@ module Exts.Http exposing (put, postContent, postForm, postJson, handleError, cg
 
 {-| Extensions to the `Http` library.
 
-@docs handleError, put, postContent, postForm, postJson, cgiParameters
+@docs handleError
+@docs put
+@docs postContent
+@docs postForm
+@docs postJson
+@docs cgiParameters
 -}
 
 import Http exposing (..)

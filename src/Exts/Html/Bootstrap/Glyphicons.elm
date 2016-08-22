@@ -2,7 +2,8 @@ module Exts.Html.Bootstrap.Glyphicons exposing (glyphicon, Glyphicon(..))
 
 {-| Type-safe glyphicons for Twitter Bootstrap 3 users.
 
-@docs glyphicon, Glyphicon
+@docs glyphicon
+@docs Glyphicon
 -}
 
 import Html exposing (..)

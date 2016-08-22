@@ -2,7 +2,16 @@ module Exts.Maybe exposing (..)
 
 {-| Extensions to the core `Maybe` library.
 
-@docs isJust, isNothing, maybe, mappend, catMaybes, join, maybeDefault, matches, validate, when
+@docs isJust
+@docs isNothing
+@docs maybe
+@docs mappend
+@docs catMaybes
+@docs join
+@docs maybeDefault
+@docs matches
+@docs validate
+@docs when
 -}
 
 import Maybe exposing (withDefault)

@@ -2,7 +2,14 @@ module Exts.Validation exposing (..)
 
 {-| Simple tools for validation. See also [Richard Feldman's elm-validate](http://package.elm-lang.org/packages/rtfeldman/elm-validate/latest).
 
-@docs Validator, apply, (|:), required, notBlank, matches, email, emailRegex
+@docs Validator
+@docs apply
+@docs (|:)
+@docs required
+@docs notBlank
+@docs matches
+@docs email
+@docs emailRegex
 -}
 
 import Regex exposing (Regex, caseInsensitive, regex, contains)

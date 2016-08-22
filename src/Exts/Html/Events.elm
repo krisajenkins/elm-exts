@@ -2,7 +2,8 @@ module Exts.Html.Events exposing (onEnter, onSelect)
 
 {-| Extensions to the `Html.Events` library.
 
-@docs onEnter, onSelect
+@docs onEnter
+@docs onSelect
 -}
 
 import Html exposing (Attribute)

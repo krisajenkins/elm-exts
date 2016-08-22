@@ -8,7 +8,12 @@ column-value-accessor)` pairs.
   as soon as you need much customisation. Use it to get you started
   quickly, but be ready to rewrite when this 80% case no longer suits.
 
-@docs CellDef, TableDef, simpleTable, simpleTableRow, titleGroup, valueGroup
+@docs CellDef
+@docs TableDef
+@docs simpleTable
+@docs simpleTableRow
+@docs titleGroup
+@docs valueGroup
 -}
 
 import Html exposing (..)

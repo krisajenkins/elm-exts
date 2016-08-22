@@ -2,7 +2,11 @@ module Exts.Html.Attributes exposing (defaultValue, defaultString, defaultInt, d
 
 {-| Extensions to the `Html.Attributes` library.
 
-@docs defaultValue, defaultString, defaultInt, defaultFloat, styleList
+@docs defaultValue
+@docs defaultString
+@docs defaultInt
+@docs defaultFloat
+@docs styleList
 -}
 
 import Html exposing (Attribute)

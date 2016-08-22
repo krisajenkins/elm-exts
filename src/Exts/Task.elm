@@ -2,7 +2,8 @@ module Exts.Task exposing (delay, asCmd)
 
 {-| Extensions to the core `Process` library.
 
-@docs delay, asCmd
+@docs delay
+@docs asCmd
 -}
 
 import Process exposing (..)

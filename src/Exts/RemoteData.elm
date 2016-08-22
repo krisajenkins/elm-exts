@@ -108,7 +108,20 @@ handling the different states in the UI gracefully:
             [h1 [] [text "Here is the news."]
             , ...]
 
-@docs RemoteData, WebData, map, mapFailure, mapBoth, andThen, withDefault, fromResult, asCmd, fromTask, append, mappend, isSuccess, update
+@docs RemoteData
+@docs WebData
+@docs map
+@docs mapFailure
+@docs mapBoth
+@docs andThen
+@docs withDefault
+@docs fromResult
+@docs asCmd
+@docs fromTask
+@docs append
+@docs mappend
+@docs isSuccess
+@docs update
 
 -}
 

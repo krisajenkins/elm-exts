@@ -2,7 +2,12 @@ module Exts.Result exposing (..)
 
 {-| Extensions to the core `Result` library.
 
-@docs mapBoth, isOk, isErr, fromOk, fromErr, mappend
+@docs mapBoth
+@docs isOk
+@docs isErr
+@docs fromOk
+@docs fromErr
+@docs mappend
 -}
 
 

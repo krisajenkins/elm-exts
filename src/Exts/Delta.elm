@@ -6,7 +6,9 @@ Implementation detail: This code is hampered by the lack of Elm's type classes. 
 1. Performance may degrade badly as the number of elements increases.
 2. It is up to you to ensure (a) implments Eq correctly.
 
-@docs Delta, empty, generation
+@docs Delta
+@docs empty
+@docs generation
 -}
 
 import List exposing (append, partition, (::))

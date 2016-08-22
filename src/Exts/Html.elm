@@ -2,7 +2,8 @@ module Exts.Html exposing (matchText, nbsp)
 
 {-| Extensions to the `Html` library.
 
-@docs matchText, nbsp
+@docs matchText
+@docs nbsp
 
 -}
 

@@ -2,7 +2,9 @@ module Exts.Json.Encode exposing (..)
 
 {-| Extensions to the core `Json.Encode` library.
 
-@docs set, dict, tuple2
+@docs set
+@docs dict
+@docs tuple2
 -}
 
 import Json.Encode exposing (..)

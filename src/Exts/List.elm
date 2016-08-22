@@ -2,7 +2,13 @@ module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch
 
 {-| Extensions to the core `List` library.
 
-@docs chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest, unique
+@docs chunk
+@docs mergeBy
+@docs singleton
+@docs maybeSingleton
+@docs firstMatch
+@docs rest
+@docs unique
 -}
 
 import Array exposing (Array)

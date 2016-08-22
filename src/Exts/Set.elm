@@ -2,7 +2,9 @@ module Exts.Set exposing (..)
 
 {-| Extensions to the core `Set` library.
 
-@docs select, uniqueItems, toggle
+@docs select
+@docs uniqueItems
+@docs toggle
 
 -}
 

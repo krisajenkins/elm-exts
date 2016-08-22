@@ -19,7 +19,21 @@ module Exts.Html.Bootstrap
 
 {-| Base classes for Twitter Bootstrap 3 users.
 
-@docs stylesheet, container, containerFluid, row, formGroup, empty, twoColumns, Ratio, video, popover, PopoverDirection, clearfix, well, jumbotron, badge
+@docs stylesheet
+@docs container
+@docs containerFluid
+@docs row
+@docs formGroup
+@docs empty
+@docs twoColumns
+@docs Ratio
+@docs video
+@docs popover
+@docs PopoverDirection
+@docs clearfix
+@docs well
+@docs jumbotron
+@docs badge
 -}
 
 import Html exposing (..)
