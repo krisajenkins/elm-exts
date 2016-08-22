@@ -7,9 +7,9 @@ module Exts.Json.Encode exposing (..)
 @docs tuple2
 -}
 
+import Dict exposing (Dict)
 import Json.Encode exposing (..)
 import Set as Set exposing (Set)
-import Dict exposing (Dict)
 
 
 {-| Encode a `Set` to a JSON array .
