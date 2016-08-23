@@ -7,6 +7,7 @@ module Exts.List
         , firstMatch
         , rest
         , unique
+        , exactlyOne
         )
 
 {-| Extensions to the core `List` library.
@@ -18,6 +19,7 @@ module Exts.List
 @docs firstMatch
 @docs rest
 @docs unique
+@docs exactlyOne
 -}
 
 import Array exposing (Array)
@@ -119,3 +121,24 @@ unique =
         List.foldl f ( Set.empty, [] )
             >> snd
             >> List.reverse
+
+
+{-| Extract the first item from the `List`, demanding that there be exactly one element.
+
+For example, `Json.Decode.customDecoder string exactlyOne` creates a
+decoder that expects a list of strings, where there is only one
+element in the `List`.
+
+If you think that's weird, you haven't seen enough real-world JSON. ;-)
+-}
+exactlyOne : List a -> Result String a
+exactlyOne xs =
+    case xs of
+        [] ->
+            Err "Expected a list with one item. Got an empty list."
+
+        [ x ] ->
+            Ok x
+
+        x :: xs ->
+            Err <| "Expected a list with one item. Got " ++ toString (List.length xs) ++ " items."
