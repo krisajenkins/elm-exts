@@ -1,4 +1,13 @@
-module Exts.List exposing (chunk, mergeBy, singleton, maybeSingleton, firstMatch, rest, unique)
+module Exts.List
+    exposing
+        ( chunk
+        , mergeBy
+        , singleton
+        , maybeSingleton
+        , firstMatch
+        , rest
+        , unique
+        )
 
 {-| Extensions to the core `List` library.
 
