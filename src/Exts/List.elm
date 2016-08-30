@@ -107,8 +107,7 @@ firstMatch predicate =
 -}
 rest : List a -> List a
 rest =
-    List.tail
-        >> Maybe.withDefault []
+    List.tail >> Maybe.withDefault []
 
 
 {-| Return a new list with duplicates removed. Order is preserved.
