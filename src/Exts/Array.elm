@@ -1,8 +1,13 @@
-module Exts.Array exposing (update)
+module Exts.Array
+    exposing
+        ( update
+        , unzip
+        )
 
 {-| Extensions to the core `Array` library.
 
 @docs update
+@docs unzip
 -}
 
 import Array exposing (..)
@@ -19,3 +24,18 @@ update n f xs =
 
         Just x ->
             set n (f x) xs
+
+
+{-| Split an array of pairs into a pair of arrays.
+
+The same as the core `List.unzip`.
+-}
+unzip : Array ( a, b ) -> ( Array a, Array b )
+unzip =
+    let
+        reducer ( x, y ) ( xs, ys ) =
+            ( push x xs
+            , push y ys
+            )
+    in
+        foldl reducer ( empty, empty )

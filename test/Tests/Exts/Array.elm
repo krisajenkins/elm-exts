@@ -9,6 +9,7 @@ tests : Test
 tests =
     ElmTest.suite "Exts.Array"
         [ updateTests
+        , unzipTests
         ]
 
 
@@ -27,3 +28,29 @@ updateTests =
                 , assertEqual anArray
                     (update 5 ((*) 2) anArray)
                 ]
+
+
+unzipTests : Test
+unzipTests =
+    suite "unzip"
+        <| List.map defaultTest
+            [ assertEqual ( Array.empty, Array.empty )
+                (unzip Array.empty)
+            , assertEqual
+                ( Array.fromList [ 1 ]
+                , Array.fromList [ "a" ]
+                )
+                (unzip (Array.fromList [ ( 1, "a" ) ]))
+            , assertEqual
+                ( Array.fromList [ 1, 2, 3 ]
+                , Array.fromList [ "a", "b", "c" ]
+                )
+                (unzip
+                    (Array.fromList
+                        [ ( 1, "a" )
+                        , ( 2, "b" )
+                        , ( 3, "c" )
+                        ]
+                    )
+                )
+            ]
