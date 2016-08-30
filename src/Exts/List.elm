@@ -87,16 +87,20 @@ maybeSingleton =
 {-| Find the first element in the `List` that matches the given predicate.
 -}
 firstMatch : (a -> Bool) -> List a -> Maybe a
-firstMatch predicate items =
-    case items of
-        [] ->
-            Nothing
+firstMatch predicate =
+    List.foldl
+        (\item acc ->
+            case acc of
+                Just _ ->
+                    acc
 
-        x :: xs ->
-            if predicate x then
-                Just x
-            else
-                (firstMatch predicate xs)
+                Nothing ->
+                    if predicate item then
+                        Just item
+                    else
+                        Nothing
+        )
+        Nothing
 
 
 {-| Like List.tail, but if the list is empty it returns an empty list rather than `Nothing`.

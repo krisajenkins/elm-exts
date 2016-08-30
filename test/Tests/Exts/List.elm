@@ -105,6 +105,8 @@ firstMatchTests : Test
 firstMatchTests =
     ElmTest.suite "firstMatch"
         [ defaultTest (assertEqual Nothing (firstMatch (always True) []))
+        , defaultTest (assertEqual (Just 6) (firstMatch ((<) 5) [1..10]))
+        , defaultTest (assertEqual Nothing (firstMatch ((<) 20) [1..10]))
         ]
 
 
