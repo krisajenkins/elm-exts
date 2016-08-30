@@ -1,10 +1,10 @@
 module Tests.Exts.List exposing (tests)
 
-import ElmTest exposing (..)
-import Exts.List exposing (..)
 import Check exposing (..)
 import Check.Producer exposing (..)
 import Check.Test exposing (evidenceToTest)
+import ElmTest exposing (..)
+import Exts.List exposing (..)
 import Set
 
 
