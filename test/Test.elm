@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Test exposing (..)
 
 import ElmTest exposing (..)
 import Tests.Exts.Array
