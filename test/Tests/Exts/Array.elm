@@ -1,6 +1,9 @@
 module Tests.Exts.Array exposing (tests)
 
 import Array exposing (..)
+import Check exposing (..)
+import Check.Producer exposing (..)
+import Check.Test exposing (evidenceToTest)
 import ElmTest exposing (..)
 import Exts.Array exposing (..)
 
@@ -10,6 +13,7 @@ tests =
     ElmTest.suite "Exts.Array"
         [ updateTests
         , unzipTests
+        , evidenceToTest (quickCheck singletonClaims)
         ]
 
 
@@ -32,7 +36,7 @@ updateTests =
 
 unzipTests : Test
 unzipTests =
-    suite "unzip"
+    ElmTest.suite "unzip"
         <| List.map defaultTest
             [ assertEqual ( Array.empty, Array.empty )
                 (unzip Array.empty)
@@ -54,3 +58,12 @@ unzipTests =
                     )
                 )
             ]
+
+
+singletonClaims : Claim
+singletonClaims =
+    Check.suite "singleton"
+        [ claim "Singletons have a length of 1."
+            `true` (\x -> Array.length (singleton x) == 1)
+            `for` string
+        ]

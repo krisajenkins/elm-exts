@@ -2,12 +2,14 @@ module Exts.Array
     exposing
         ( update
         , unzip
+        , singleton
         )
 
 {-| Extensions to the core `Array` library.
 
 @docs update
 @docs unzip
+@docs singleton
 -}
 
 import Array exposing (..)
@@ -39,3 +41,10 @@ unzip =
             )
     in
         foldl reducer ( empty, empty )
+
+
+{-| Wrap a single item into an `Array`.
+-}
+singleton : a -> Array a
+singleton x =
+    push x empty
