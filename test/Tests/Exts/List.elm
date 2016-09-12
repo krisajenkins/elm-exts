@@ -17,6 +17,7 @@ tests =
         , firstMatchTests
         , evidenceToTest (quickCheck firstMatchClaims)
         , uniqueTests
+        , evidenceToTest (quickCheck singletonClaims)
         ]
 
 
@@ -140,3 +141,15 @@ uniqueTests =
     ]
         |> List.map defaultTest
         |> ElmTest.suite "unique"
+
+
+{-| I find it quite fun that this is the only test you need to make,
+given the type signature...
+-}
+singletonClaims : Claim
+singletonClaims =
+    Check.suite "singleton"
+        [ claim "Singletons have a length of 1."
+            `true` (\x -> List.length (singleton x) == 1)
+            `for` string
+        ]
