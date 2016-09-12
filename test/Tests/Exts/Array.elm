@@ -22,7 +22,7 @@ updateTests : Test
 updateTests =
     let
         anArray =
-            Array.fromList [ 1, 2, 3, 4 ]
+            Array.fromList [1..4]
     in
         ElmTest.suite "update"
             <| List.map defaultTest
