@@ -1,6 +1,7 @@
 module Exts.Array
     exposing
         ( update
+        , delete
         , unzip
         , singleton
         )
@@ -8,6 +9,7 @@ module Exts.Array
 {-| Extensions to the core `Array` library.
 
 @docs update
+@docs delete
 @docs unzip
 @docs singleton
 -}
@@ -26,6 +28,24 @@ update n f xs =
 
         Just x ->
             set n (f x) xs
+
+
+{-| 'Delete' the entry at position `n`.
+index is out of range, the array is unaltered.
+-}
+delete : Int -> Array a -> Array a
+delete n xs =
+    if n < 0 then
+        xs
+    else
+        let
+            before =
+                slice 0 n xs
+
+            after =
+                (slice (n + 1) (Array.length xs) xs)
+        in
+            Array.append before after
 
 
 {-| Split an array of pairs into a pair of arrays.

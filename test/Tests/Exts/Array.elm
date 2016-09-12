@@ -12,6 +12,7 @@ tests : Test
 tests =
     ElmTest.suite "Exts.Array"
         [ updateTests
+        , deleteTests
         , unzipTests
         , evidenceToTest (quickCheck singletonClaims)
         ]
@@ -31,6 +32,25 @@ updateTests =
                     (update 2 ((*) 2) anArray)
                 , assertEqual anArray
                     (update 5 ((*) 2) anArray)
+                ]
+
+
+deleteTests : Test
+deleteTests =
+    let
+        anArray =
+            Array.fromList [1..4]
+    in
+        ElmTest.suite "delete"
+            <| List.map defaultTest
+                [ assertEqual anArray
+                    (delete -1 anArray)
+                , assertEqual (Array.fromList [2..4])
+                    (delete 0 anArray)
+                , assertEqual (Array.fromList [ 1, 2, 4 ])
+                    (delete 2 anArray)
+                , assertEqual anArray
+                    (delete 4 anArray)
                 ]
 
 
