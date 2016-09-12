@@ -13,6 +13,7 @@
         "Exts.Delta",
         "Exts.Dict",
         "Exts.Float",
+        "Exts.Function",
         "Exts.Html.Attributes",
         "Exts.Html.Bootstrap.Glyphicons",
         "Exts.Html.Bootstrap",
