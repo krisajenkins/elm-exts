@@ -1,10 +1,18 @@
-module Exts.Json.Decode exposing (stringIgnoringBlanks)
+module Exts.Json.Decode
+    exposing
+        ( stringIgnoringBlanks
+        , decodeTime
+        , decodeDate
+        )
 
 {-| Extensions to the core `Json.Decode` library.
 
 @docs stringIgnoringBlanks
+@docs decodeTime
+@docs decodeDate
 -}
 
+import Date exposing (Date)
 import Json.Decode exposing (..)
 import String
 
@@ -26,3 +34,18 @@ parseEmptyOrString string =
         Nothing
     else
         Just string
+
+
+{-| Decode a Date from seconds-since-the-epoch.
+-}
+decodeTime : Decoder Date
+decodeTime =
+    map Date.fromTime float
+
+
+{-| Decode a Date from a string, using the same format as the core
+function `Date.fromString`.
+-}
+decodeDate : Decoder Date
+decodeDate =
+    customDecoder string Date.fromString
