@@ -1,9 +1,6 @@
 module Tests.Exts.Array exposing (tests)
 
 import Array exposing (..)
-import Check exposing (..)
-import Check.Producer exposing (..)
-import Check.Test exposing (evidenceToTest)
 import ElmTest exposing (..)
 import Exts.Array exposing (..)
 
@@ -14,7 +11,7 @@ tests =
         [ updateTests
         , deleteTests
         , unzipTests
-        , evidenceToTest (quickCheck singletonClaims)
+        , singletonTests
         ]
 
 
@@ -80,10 +77,14 @@ unzipTests =
             ]
 
 
-singletonClaims : Claim
-singletonClaims =
-    Check.suite "singleton"
-        [ claim "Singletons have a length of 1."
-            `true` (\x -> Array.length (singleton x) == 1)
-            `for` string
+{-| I find it quite fun that this is the only test you need to make,
+given the type signature. Parametricity can be mind-blowing...
+-}
+singletonTests : Test
+singletonTests =
+    ElmTest.suite "singleton"
+        [ defaultTest
+            (assertEqual (empty |> push ())
+                (singleton ())
+            )
         ]
