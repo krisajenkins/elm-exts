@@ -17,7 +17,9 @@ tests =
         , firstMatchTests
         , evidenceToTest (quickCheck firstMatchClaims)
         , uniqueTests
-        , evidenceToTest (quickCheck singletonClaims)
+        , singletonTests
+        , evidenceToTest (quickCheck maximumByClaims)
+        , evidenceToTest (quickCheck minimumByClaims)
         ]
 
 
@@ -144,12 +146,37 @@ uniqueTests =
 
 
 {-| I find it quite fun that this is the only test you need to make,
-given the type signature...
+given the type signature. Parametricity can be mind-blowing...
 -}
-singletonClaims : Claim
-singletonClaims =
-    Check.suite "singleton"
-        [ claim "Singletons have a length of 1."
-            `true` (\x -> List.length (singleton x) == 1)
-            `for` string
+singletonTests : Test
+singletonTests =
+    ElmTest.suite "singleton"
+        [ defaultTest
+            (assertEqual [ () ]
+                (singleton ())
+            )
+        ]
+
+
+type alias Wrapper a =
+    { value : a }
+
+
+maximumByClaims : Claim
+maximumByClaims =
+    Check.suite "maximumBy"
+        [ claim "The maximum of a list of ints is the same as wrapping them and taking the maximumBy an unwrapping function."
+            `that` (\xs -> maximumBy .value (List.map Wrapper xs))
+            `is` (\xs -> Maybe.map Wrapper (List.maximum xs))
+            `for` (list int)
+        ]
+
+
+minimumByClaims : Claim
+minimumByClaims =
+    Check.suite "minimumBy"
+        [ claim "The minimum of a list of ints is the same as wrapping them and taking the minimumBy an unwrapping function."
+            `that` (\xs -> minimumBy .value (List.map Wrapper xs))
+            `is` (\xs -> Maybe.map Wrapper (List.minimum xs))
+            `for` (list int)
         ]

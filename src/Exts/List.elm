@@ -8,6 +8,8 @@ module Exts.List
         , rest
         , unique
         , exactlyOne
+        , maximumBy
+        , minimumBy
         )
 
 {-| Extensions to the core `List` library.
@@ -20,10 +22,13 @@ module Exts.List
 @docs rest
 @docs unique
 @docs exactlyOne
+@docs maximumBy
+@docs minimumBy
 -}
 
 import Array exposing (Array)
 import Dict
+import Exts.Basics exposing (maxBy, minBy)
 import List exposing (take, drop, length)
 import Set
 import Trampoline exposing (..)
@@ -145,3 +150,27 @@ exactlyOne xs =
 
         x :: xs ->
             Err <| "Expected a list with one item. Got " ++ toString (List.length xs) ++ " items."
+
+
+{-| Like `List.maximum`, but it works on non-comparable types by taking a custom function.
+-}
+maximumBy : (a -> comparable) -> List a -> Maybe a
+maximumBy toComparable list =
+    case list of
+        x :: xs ->
+            Just (List.foldl (maxBy toComparable) x xs)
+
+        _ ->
+            Nothing
+
+
+{-| Like `List.minimum`, but it works on non-comparable types by taking a custom function.
+-}
+minimumBy : (a -> comparable) -> List a -> Maybe a
+minimumBy toComparable list =
+    case list of
+        x :: xs ->
+            Just (List.foldl (minBy toComparable) x xs)
+
+        _ ->
+            Nothing

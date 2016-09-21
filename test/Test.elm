@@ -2,6 +2,7 @@ module Test exposing (..)
 
 import ElmTest exposing (..)
 import Tests.Exts.Array
+import Tests.Exts.Basics
 import Tests.Exts.Date
 import Tests.Exts.Delta
 import Tests.Exts.Dict
@@ -18,6 +19,7 @@ tests : Test
 tests =
     suite "All"
         [ Tests.Exts.Array.tests
+        , Tests.Exts.Basics.tests
         , Tests.Exts.Delta.tests
         , Tests.Exts.Dict.tests
         , Tests.Exts.Json.Decode.tests
