@@ -1,14 +1,15 @@
 module Tests.Exts.Validation exposing (tests)
 
-import ElmTest exposing (..)
+import Expect exposing (..)
 import Exts.Result exposing (..)
 import Exts.Validation exposing (..)
 import Regex exposing (..)
+import Test exposing (..)
 
 
 tests : Test
 tests =
-    ElmTest.suite "Exts.Validation"
+    describe "Exts.Validation"
         [ emailTests
         , fullFormTests
         ]
@@ -21,18 +22,18 @@ emailTests =
     , assertNotEmail "THINGS"
     , assertNotEmail "  !\test-user@test.co.uk \x01"
     ]
-        |> List.map defaultTest
-        |> ElmTest.suite "email"
+        |> List.map (test "" << always)
+        |> describe "email"
 
 
-assertEmail : String -> Assertion
+assertEmail : String -> Expectation
 assertEmail str =
-    assert (isOk (email "Not an email." (Just str)))
+    true "" (isOk (email "Not an email." (Just str)))
 
 
-assertNotEmail : String -> Assertion
+assertNotEmail : String -> Expectation
 assertNotEmail str =
-    assert (isErr (email "Not an email." (Just str)))
+    true "" (isErr (email "Not an email." (Just str)))
 
 
 type alias Form =
@@ -62,9 +63,9 @@ validateForm form =
 
 fullFormTests : Test
 fullFormTests =
-    ElmTest.suite "full form"
-        <| List.map defaultTest
-            [ assertEqual (Err "Age is required")
+    describe "full form"
+        <| List.map (test "" << always)
+            [ equal (Err "Age is required")
                 (validateForm
                     { message = Just "Hello"
                     , email = Just "test@asdf.com"
