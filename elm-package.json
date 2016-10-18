@@ -27,7 +27,6 @@
         "Exts.LatLng",
         "Exts.List",
         "Exts.Maybe",
-        "Exts.RemoteData",
         "Exts.Result",
         "Exts.Set",
         "Exts.String",
