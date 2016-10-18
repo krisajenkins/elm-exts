@@ -38,8 +38,8 @@ checkStatus response =
 -}
 handleError : Task RawError Response -> Task Error Response
 handleError t =
-    Task.mapError promoteError t
-        `andThen` checkStatus
+    andThen (Task.mapError promoteError t)
+        checkStatus
 
 
 {-| Send a simple `PUT` request.

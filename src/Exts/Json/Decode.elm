@@ -23,9 +23,10 @@ Useful for dirty data-models.
 -}
 stringIgnoringBlanks : Decoder (Maybe String)
 stringIgnoringBlanks =
-    maybe string
-        `andThen` \maybeString ->
-                    succeed (maybeString `Maybe.andThen` parseEmptyOrString)
+    andThen (maybe string)
+        (\maybeString ->
+            succeed (Maybe.andThen maybeString parseEmptyOrString)
+        )
 
 
 parseEmptyOrString : String -> Maybe String

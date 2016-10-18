@@ -118,8 +118,7 @@ validate predicate value =
 -}
 matches : (a -> Bool) -> Maybe a -> Maybe a
 matches predicate maybe =
-    maybe
-        `Maybe.andThen` (validate predicate)
+    Maybe.andThen maybe (validate predicate)
 
 
 {-| When `test` returns true, return `Just value`, otherwise return `Nothing`.
