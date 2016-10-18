@@ -17,7 +17,7 @@ This is just the example given in `Task.sleep` wrapped up, because it's o useful
 -}
 delay : Time -> Task e a -> Task e a
 delay time task =
-    andThen (sleep time) (\_ -> task)
+    andThen (sleep time) (always task)
 
 
 {-| Turn a `Task` into a `Cmd` which returns a `Result`.
