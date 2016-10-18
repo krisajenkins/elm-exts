@@ -14,8 +14,7 @@ roundTo places value =
         factor =
             10 ^ places
     in
-        (value
-            * factor
+        ((value * factor)
             |> round
             |> toFloat
         )
