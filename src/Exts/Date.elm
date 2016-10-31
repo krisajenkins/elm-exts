@@ -17,11 +17,11 @@ toISOString : Date -> String
 toISOString d =
     (String.padLeft 2 '0' <| toString <| year d)
         ++ "-"
-        ++ (String.padLeft 2 '0' <| toString <| monthNumber d)
+        ++ (toString <| monthNumber d)
         ++ "-"
         ++ (String.padLeft 2 '0' <| toString <| day d)
         ++ "T"
-        ++ (String.padLeft 2 '0' <| toString <| hour d - 1)
+        ++ (String.padLeft 2 '0' <| toString <| hour d)
         ++ ":"
         ++ (String.padLeft 2 '0' <| toString <| minute d)
         ++ ":"

@@ -17,17 +17,24 @@ toISOStringTests : Test
 toISOStringTests =
     let
         check ( from, to ) =
-            test ""
-                <| always
-                <| equal (Ok to)
-                <| Result.map toISOString
-                <| Date.fromString from
+            test from
+                (always
+                    (equal
+                        (Date.fromString from
+                            |> Result.map toISOString
+                        )
+                        (Ok to)
+                    )
+                )
     in
         describe "toIsoString"
             <| List.map check
-                [ ( "Tue Oct 20 2015 17:01:01", "2015-10-20T16:01:01.000Z" )
-                , ( "Wed Oct 21 2015 01:00:00", "2015-10-21T00:00:00.000Z" )
-                , ( "Wed Oct 21 2015 03:00:00", "2015-10-21T02:00:00.000Z" )
+                [ ( "Tue Oct 20 2015 17:01:01", "2015-10-20T17:01:01.000Z" )
+                , ( "Wed Oct 21 2015 01:00:00", "2015-10-21T01:00:00.000Z" )
+                , ( "Wed Oct 21 2015 03:00:00", "2015-10-21T03:00:00.000Z" )
+                , ( "Wed Jun 21 2015 03:00:00", "2015-6-21T03:00:00.000Z" )
+                , ( "Sun Sep 18 2016 00:00:00 GMT-0700", "2016-9-18T08:00:00.000Z" )
+                , ( "Sun Sep 18 2016 00:00:00 GMT-0100", "2016-9-18T02:00:00.000Z" )
                 ]
 
 
