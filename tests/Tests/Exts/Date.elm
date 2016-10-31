@@ -35,11 +35,15 @@ toRFC3339Tests : Test
 toRFC3339Tests =
     let
         check ( from, to ) =
-            test ""
-                <| always
-                <| equal (Ok to)
-                <| Result.map toRFC3339
-                <| Date.fromString from
+            test from
+                (always
+                    (equal
+                        (Date.fromString from
+                            |> Result.map toRFC3339
+                        )
+                        (Ok to)
+                    )
+                )
     in
         describe "toRFC3339"
             <| List.map check
