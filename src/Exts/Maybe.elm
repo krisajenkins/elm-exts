@@ -65,11 +65,11 @@ catMaybes xs =
         [] ->
             []
 
-        Nothing :: xs' ->
-            catMaybes xs'
+        Nothing :: rest ->
+            catMaybes rest
 
-        (Just x) :: xs' ->
-            x :: catMaybes xs'
+        (Just x) :: rest ->
+            x :: catMaybes rest
 
 
 {-| Join together two `Maybe` values using the supplied function. If

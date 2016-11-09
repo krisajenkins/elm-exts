@@ -45,17 +45,17 @@ chunk n xs =
     if n < 1 then
         singleton xs
     else
-        evaluate (chunk' n xs Array.empty)
+        evaluate (chunkInternal n xs Array.empty)
 
 
-chunk' : Int -> List a -> Array (List a) -> Trampoline (List (List a))
-chunk' n xs accum =
+chunkInternal : Int -> List a -> Array (List a) -> Trampoline (List (List a))
+chunkInternal n xs accum =
     if List.isEmpty xs then
         done (Array.toList accum)
     else
         jump
             (\() ->
-                chunk' n
+                chunkInternal n
                     (drop n xs)
                     (Array.push (take n xs) accum)
             )

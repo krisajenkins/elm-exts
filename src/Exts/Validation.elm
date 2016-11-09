@@ -53,7 +53,8 @@ type alias Validator e a b =
 -}
 apply : Result e (a -> b) -> Result e a -> Result e b
 apply f aResult =
-    andThen f (\f' -> Result.map f' aResult)
+    andThen f
+        (\continuation -> Result.map continuation aResult)
 
 
 {-| Convenient synonym for `apply`.

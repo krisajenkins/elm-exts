@@ -35,14 +35,14 @@ indexedPair f x =
 
 {-| Update the first component of a pair.
 -}
-first : (a -> a') -> ( a, b ) -> ( a', b )
+first : (a -> b) -> ( a, x ) -> ( b, x )
 first f ( x, y ) =
     ( f x, y )
 
 
 {-| Update the second component of a pair.
 -}
-second : (b -> b') -> ( a, b ) -> ( a, b' )
+second : (x -> y) -> ( a, x ) -> ( a, y )
 second f ( x, y ) =
     ( x, f y )
 
@@ -56,9 +56,9 @@ both f ( x, y ) =
 
 {-| Update both components of a pair with two functions.
 -}
-pair : (a -> a') -> (b -> b') -> ( a, b ) -> ( a', b' )
-pair fX fY ( x, y ) =
-    ( fX x, fY y )
+pair : (a -> b) -> (x -> y) -> ( a, x ) -> ( b, y )
+pair f1 f2 ( a, x ) =
+    ( f1 a, f2 x )
 
 
 {-| Generate a pair from a single value and a left & right function.
