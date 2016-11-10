@@ -12,7 +12,7 @@ roundTo : Int -> Float -> Float
 roundTo places value =
     let
         factor =
-            10 ^ places
+            toFloat (10 ^ places)
     in
         ((value * factor)
             |> round
