@@ -16,7 +16,7 @@ stringIgnoringBlanksTests : Test
 stringIgnoringBlanksTests =
     let
         nameDecoder =
-            ("name" := stringIgnoringBlanks)
+            (field "name" stringIgnoringBlanks)
     in
         describe "stringIgnoringBlanks"
             <| List.map (test "" << always)
