@@ -32,6 +32,7 @@ import Exts.Basics exposing (maxBy, minBy)
 import List exposing (take, drop, length)
 import Set
 import Trampoline exposing (..)
+import Tuple exposing (second)
 
 
 {-| Split a list into chunks of length `n`.
@@ -127,7 +128,7 @@ unique =
                 ( Set.insert x seen, x :: result )
     in
         List.foldl f ( Set.empty, [] )
-            >> snd
+            >> second
             >> List.reverse
 
 
