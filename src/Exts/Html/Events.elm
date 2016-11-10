@@ -6,9 +6,10 @@ module Exts.Html.Events exposing (onEnter, onSelect)
 @docs onSelect
 -}
 
+import Exts.Json.Decode
 import Html exposing (Attribute)
 import Html.Events exposing (..)
-import Json.Decode as Decode exposing (customDecoder, Decoder)
+import Json.Decode as Decode exposing (Decoder)
 
 
 keyCodeIs : Int -> Int -> Result String ()
@@ -32,7 +33,10 @@ onEnter message =
         { preventDefault = True
         , stopPropagation = False
         }
-        (customDecoder keyCode enterKey `Decode.andThen` (always (Decode.succeed message)))
+        (keyCode
+            |> Decode.andThen (Exts.Json.Decode.parseWith enterKey)
+            |> Decode.andThen (always (Decode.succeed message))
+        )
 
 
 emptyIsNothing : String -> Maybe String

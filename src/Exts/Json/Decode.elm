@@ -3,6 +3,7 @@ module Exts.Json.Decode
         ( stringIgnoringBlanks
         , decodeTime
         , decodeDate
+        , parseWith
         )
 
 {-| Extensions to the core `Json.Decode` library.
@@ -10,6 +11,7 @@ module Exts.Json.Decode
 @docs stringIgnoringBlanks
 @docs decodeTime
 @docs decodeDate
+@docs parseWith
 -}
 
 import Date exposing (Date)
@@ -23,10 +25,14 @@ Useful for dirty data-models.
 -}
 stringIgnoringBlanks : Decoder (Maybe String)
 stringIgnoringBlanks =
-    andThen (maybe string)
-        (\maybeString ->
-            succeed (Maybe.andThen maybeString parseEmptyOrString)
-        )
+    (maybe string)
+        |> andThen
+            (\maybeString ->
+                succeed
+                    (maybeString
+                        |> Maybe.andThen parseEmptyOrString
+                    )
+            )
 
 
 parseEmptyOrString : String -> Maybe String
@@ -49,4 +55,27 @@ function `Date.fromString`.
 -}
 decodeDate : Decoder Date
 decodeDate =
-    customDecoder string Date.fromString
+    string
+        |> andThen (parseWith Date.fromString)
+
+
+{-| Lift a function that parses things, returning a `Result`, into the world of decoders.
+
+If you're looking for the pre-0.18 function `customDecoder`, you can
+use something like this instead:
+
+``` elm
+decodeUUID : Decoder UUID
+decodeUUID =
+    string
+        |> andThen (parseWith UUID.fromString)
+```
+-}
+parseWith : (a -> Result String b) -> a -> Decoder b
+parseWith f input =
+    case f input of
+        Err e ->
+            fail e
+
+        Ok value ->
+            succeed value
