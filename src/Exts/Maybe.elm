@@ -117,8 +117,8 @@ validate predicate value =
     matches isEven Nothing => Nothing
 -}
 matches : (a -> Bool) -> Maybe a -> Maybe a
-matches predicate maybe =
-    Maybe.andThen maybe (validate predicate)
+matches predicate =
+    Maybe.andThen (validate predicate)
 
 
 {-| When `test` returns true, return `Just value`, otherwise return `Nothing`.
