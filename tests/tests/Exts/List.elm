@@ -34,11 +34,16 @@ chunkTests =
         , test ""
             <| always
             <| equal ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
-                (chunk 3 [1..10])
+                (chunk 3 (List.range 1 10))
         , test ""
             <| always
-            <| equal ([ [1..4], [5..8], [9..12] ])
-                (chunk 4 [1..12])
+            <| equal
+                ([ (List.range 1 4)
+                 , (List.range 5 8)
+                 , (List.range 9 12)
+                 ]
+                )
+                (chunk 4 (List.range 1 12))
         , fuzz2 int
             (list char)
             "Concat restores the list."

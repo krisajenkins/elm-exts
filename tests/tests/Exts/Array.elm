@@ -22,7 +22,7 @@ updateTests : Test
 updateTests =
     let
         anArray =
-            Array.fromList [1..4]
+            Array.fromList (List.range 1 4)
     in
         describe "update"
             <| List.map (test "" << always)
@@ -39,13 +39,13 @@ deleteTests : Test
 deleteTests =
     let
         anArray =
-            Array.fromList [1..4]
+            Array.fromList (List.range 1 4)
     in
         describe "delete"
             <| List.map (test "" << always)
                 [ equal anArray
                     (delete -1 anArray)
-                , equal (Array.fromList [2..4])
+                , equal (Array.fromList (List.range 2 4))
                     (delete 0 anArray)
                 , equal (Array.fromList [ 1, 2, 4 ])
                     (delete 2 anArray)
