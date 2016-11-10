@@ -25,4 +25,4 @@ delay time task =
 -}
 asCmd : Task e a -> Cmd (Result e a)
 asCmd =
-    Task.perform Err Ok
+    Task.attempt identity
