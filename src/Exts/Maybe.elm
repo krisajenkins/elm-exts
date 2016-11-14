@@ -12,6 +12,7 @@ module Exts.Maybe exposing (..)
 @docs matches
 @docs validate
 @docs when
+@docs oneOf
 -}
 
 import Maybe exposing (withDefault)
@@ -128,4 +129,18 @@ when test value =
     if test then
         Just value
     else
+        Nothing
+
+
+{-| Return the first non-`Nothing` entry in the list.
+-}
+oneOf : List (Maybe a) -> Maybe a
+oneOf =
+    List.foldl
+        (\x acc ->
+            if acc /= Nothing then
+                acc
+            else
+                x
+        )
         Nothing

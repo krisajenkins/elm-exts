@@ -2,6 +2,7 @@ module Tests.Exts.Maybe exposing (tests)
 
 import Expect exposing (..)
 import Exts.Maybe exposing (..)
+import Fuzz exposing (..)
 import Test exposing (..)
 
 
@@ -11,6 +12,7 @@ tests =
         [ joinTests
         , validateTests
         , matchesTests
+        , oneOfTests
         ]
 
 
@@ -55,3 +57,18 @@ matchesTests =
             , equal Nothing (matches isEven (Just 3))
             , equal Nothing (matches isEven Nothing)
             ]
+
+
+oneOfTests : Test
+oneOfTests =
+    describe "oneOf"
+        [ fuzz (list (Fuzz.maybe int))
+            "oneOf is equivalent to filtering out the Nothings from a list, and taking the head."
+            (\maybeXs ->
+                equal (oneOf maybeXs)
+                    (maybeXs
+                        |> List.filterMap identity
+                        |> List.head
+                    )
+            )
+        ]
