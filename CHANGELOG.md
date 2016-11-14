@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Version 27.0.0 -
+## Version 26.0.0 -
 
 Big breaking changes for Elm 0.18.
 
