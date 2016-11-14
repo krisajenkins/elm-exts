@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## Version 27.0.0
+## Version 27.0.0 -
+
+Big breaking changes for Elm 0.18.
 
 * Removed `RemoteData`. This now lives in [its own package][remotedata].
 * `Exts.Tuple.first` and `second` become `mapFirst` and `mapSecond`.
