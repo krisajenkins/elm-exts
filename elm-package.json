@@ -1,5 +1,5 @@
 {
-    "version": "26.1.0",
+    "version": "26.1.1",
     "summary": "A collection of functions missing from the core.",
     "repository": "https://github.com/krisajenkins/elm-exts.git",
     "license": "MIT",
