@@ -30,8 +30,12 @@ make
 With thanks to:
 
 [Namlook][namlook] - `Exts.Date` additions.
+[Thomas Weiser][weiser] - `catMaybes` performance.
+[Michael Gilliland][mjgpy3] - `Dict.getWithDefault`.
 
 [namlook]: https://github.com/namlook
+[weiser]: https://github.com/ThomasWeiser
+[mjgpy3]: https://github.com/mjgpy3
 
 ## License
 
