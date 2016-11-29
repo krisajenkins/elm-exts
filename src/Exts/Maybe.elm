@@ -61,16 +61,8 @@ mappend a b =
 {-| Extract all the `Just` values from a List of Maybes.
 -}
 catMaybes : List (Maybe a) -> List a
-catMaybes xs =
-    case xs of
-        [] ->
-            []
-
-        Nothing :: rest ->
-            catMaybes rest
-
-        (Just x) :: rest ->
-            x :: catMaybes rest
+catMaybes =
+    List.filterMap identity
 
 
 {-| Join together two `Maybe` values using the supplied function. If
