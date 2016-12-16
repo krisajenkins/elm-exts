@@ -4,6 +4,7 @@ module Exts.Json.Decode
         , decodeTime
         , decodeDate
         , parseWith
+        , customDecoder
         )
 
 {-| Extensions to the core `Json.Decode` library.
@@ -12,6 +13,7 @@ module Exts.Json.Decode
 @docs decodeTime
 @docs decodeDate
 @docs parseWith
+@docs customDecoder
 -}
 
 import Date exposing (Date)
@@ -50,16 +52,9 @@ decodeTime =
     map Date.fromTime float
 
 
-{-| Decode a Date from a string, using the same format as the core
-function `Date.fromString`.
--}
-decodeDate : Decoder Date
-decodeDate =
-    string
-        |> andThen (parseWith Date.fromString)
+{-| DEPRECATED: Use customDecoder instead.
 
-
-{-| Lift a function that parses things, returning a `Result`, into the world of decoders.
+Lift a function that parses things, returning a `Result`, into the world of decoders.
 
 If you're looking for the pre-0.18 function `customDecoder`, you can
 use something like this instead:
@@ -79,3 +74,27 @@ parseWith f input =
 
         Ok value ->
             succeed value
+
+
+{-| Decode a Date from a string, using the same format as the core
+function `Date.fromString`.
+-}
+decodeDate : Decoder Date
+decodeDate =
+    customDecoder string Date.fromString
+
+
+{-| Combine a primitive decoder and a parser to make a more sophisticated decoder.
+-}
+customDecoder : Decoder a -> (a -> Result String b) -> Decoder b
+customDecoder decoder parser =
+    decoder
+        |> andThen
+            (\s ->
+                case parser s of
+                    Err e ->
+                        fail e
+
+                    Ok v ->
+                        succeed v
+            )
