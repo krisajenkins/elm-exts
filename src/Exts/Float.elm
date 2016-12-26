@@ -3,6 +3,8 @@ module Exts.Float exposing (..)
 {-| Extensions to the core `Float` library.
 
 @docs roundTo
+
+@docs toSigFigs
 -}
 
 
@@ -19,3 +21,26 @@ roundTo places value =
             |> toFloat
         )
             / factor
+
+
+{-| Round a `Float` to a given number of significant figures
+-}
+toSigFigs : Int -> Float -> Float
+toSigFigs sigFigs x =
+    if x == 0 then
+        0
+    else
+        let
+            absX =
+                abs x
+
+            logX =
+                logBase 10 absX
+
+            floorLogX =
+                floor logX
+
+            roundPlaces =
+                -(floorLogX - (sigFigs - 1))
+        in
+            roundTo roundPlaces x
