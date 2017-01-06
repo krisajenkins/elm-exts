@@ -18,8 +18,8 @@ tests =
 
 joinTests : Test
 joinTests =
-    describe "join"
-        <| List.map (test "" << always)
+    describe "join" <|
+        List.map (test "" << always)
             [ equal (Just 5)
                 (join (+) (Just 2) (Just 3))
             , equal Nothing
@@ -42,8 +42,8 @@ isEven n =
 
 validateTests : Test
 validateTests =
-    describe "validate"
-        <| List.map (test "" << always)
+    describe "validate" <|
+        List.map (test "" << always)
             [ equal (Just 2) (validate isEven 2)
             , equal Nothing (validate isEven 3)
             ]
@@ -51,8 +51,8 @@ validateTests =
 
 matchesTests : Test
 matchesTests =
-    describe "matches"
-        <| List.map (test "" << always)
+    describe "matches" <|
+        List.map (test "" << always)
             [ equal (Just 2) (matches isEven (Just 2))
             , equal Nothing (matches isEven (Just 3))
             , equal Nothing (matches isEven Nothing)

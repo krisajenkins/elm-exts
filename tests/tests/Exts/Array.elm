@@ -24,8 +24,8 @@ updateTests =
         anArray =
             Array.fromList (List.range 1 4)
     in
-        describe "update"
-            <| List.map (test "" << always)
+        describe "update" <|
+            List.map (test "" << always)
                 [ equal anArray
                     (update -1 ((*) 2) anArray)
                 , equal (Array.fromList [ 1, 2, 6, 4 ])
@@ -41,8 +41,8 @@ deleteTests =
         anArray =
             Array.fromList (List.range 1 4)
     in
-        describe "delete"
-            <| List.map (test "" << always)
+        describe "delete" <|
+            List.map (test "" << always)
                 [ equal anArray
                     (delete -1 anArray)
                 , equal (Array.fromList (List.range 2 4))
@@ -56,8 +56,8 @@ deleteTests =
 
 unzipTests : Test
 unzipTests =
-    describe "unzip"
-        <| List.map (test "" << always)
+    describe "unzip" <|
+        List.map (test "" << always)
             [ equal ( Array.empty, Array.empty )
                 (unzip Array.empty)
             , equal
@@ -85,8 +85,8 @@ given the type signature. Parametricity can be mind-blowing...
 -}
 singletonTests : Test
 singletonTests =
-    describe "singleton"
-        <| List.map (test "" << always)
+    describe "singleton" <|
+        List.map (test "" << always)
             [ equal (empty |> push ())
                 (singleton ())
             ]

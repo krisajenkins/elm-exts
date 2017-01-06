@@ -18,8 +18,8 @@ stringIgnoringBlanksTests =
         nameDecoder =
             (field "name" stringIgnoringBlanks)
     in
-        describe "stringIgnoringBlanks"
-            <| List.map (test "" << always)
+        describe "stringIgnoringBlanks" <|
+            List.map (test "" << always)
                 [ assertDecodes nameDecoder "{\"name\": \"kris\"}" (Just "kris")
                 , assertDecodes nameDecoder "{\"name\": \"\"}" Nothing
                 , assertDecodes nameDecoder "{\"name\": \"   \"}" Nothing

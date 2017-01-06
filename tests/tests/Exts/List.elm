@@ -23,27 +23,27 @@ tests =
 chunkTests : Test
 chunkTests =
     describe "chunk"
-        [ test ""
-            <| always
-            <| equal [ [] ]
-                (chunk 0 [])
-        , test ""
-            <| always
-            <| equal []
-                (chunk 3 [])
-        , test ""
-            <| always
-            <| equal ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
-                (chunk 3 (List.range 1 10))
-        , test ""
-            <| always
-            <| equal
-                ([ (List.range 1 4)
-                 , (List.range 5 8)
-                 , (List.range 9 12)
-                 ]
-                )
-                (chunk 4 (List.range 1 12))
+        [ test "" <|
+            always <|
+                equal [ [] ]
+                    (chunk 0 [])
+        , test "" <|
+            always <|
+                equal []
+                    (chunk 3 [])
+        , test "" <|
+            always <|
+                equal ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
+                    (chunk 3 (List.range 1 10))
+        , test "" <|
+            always <|
+                equal
+                    ([ (List.range 1 4)
+                     , (List.range 5 8)
+                     , (List.range 9 12)
+                     ]
+                    )
+                    (chunk 4 (List.range 1 12))
         , fuzz2 int
             (list char)
             "Concat restores the list."
@@ -82,45 +82,45 @@ mergeByTests =
             { id = 2, name = "Three!" }
     in
         describe "mergeBy"
-            [ test ""
-                <| always
-                <| equal []
-                    (mergeBy .id [] [])
-            , test ""
-                <| always
-                <| equal [ t1, t2a ]
-                    (mergeBy .id
-                        [ t1, t2a ]
-                        []
-                    )
-            , test ""
-                <| always
-                <| equal [ t1, t2a ]
-                    (mergeBy .id
-                        []
-                        [ t1, t2a ]
-                    )
-            , test ""
-                <| always
-                <| equal [ t1, t2b ]
-                    (mergeBy .id
-                        [ t1, t2a, t2b ]
-                        []
-                    )
-            , test ""
-                <| always
-                <| equal [ t1, t2b ]
-                    (mergeBy .id
-                        [ t1, t2a ]
-                        [ t2b ]
-                    )
-            , test ""
-                <| always
-                <| equal [ t1, t2a ]
-                    (mergeBy .id
-                        [ t2b ]
-                        [ t1, t2a ]
-                    )
+            [ test "" <|
+                always <|
+                    equal []
+                        (mergeBy .id [] [])
+            , test "" <|
+                always <|
+                    equal [ t1, t2a ]
+                        (mergeBy .id
+                            [ t1, t2a ]
+                            []
+                        )
+            , test "" <|
+                always <|
+                    equal [ t1, t2a ]
+                        (mergeBy .id
+                            []
+                            [ t1, t2a ]
+                        )
+            , test "" <|
+                always <|
+                    equal [ t1, t2b ]
+                        (mergeBy .id
+                            [ t1, t2a, t2b ]
+                            []
+                        )
+            , test "" <|
+                always <|
+                    equal [ t1, t2b ]
+                        (mergeBy .id
+                            [ t1, t2a ]
+                            [ t2b ]
+                        )
+            , test "" <|
+                always <|
+                    equal [ t1, t2a ]
+                        (mergeBy .id
+                            [ t2b ]
+                            [ t1, t2a ]
+                        )
             ]
 
 
@@ -168,9 +168,9 @@ given the type signature. Parametricity can be mind-blowing...
 singletonTests : Test
 singletonTests =
     describe "singleton"
-        [ test ""
-            <| always
-            <| equal [ () ] (singleton ())
+        [ test "" <|
+            always <|
+                equal [ () ] (singleton ())
         ]
 
 

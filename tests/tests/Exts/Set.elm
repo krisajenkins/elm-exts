@@ -17,24 +17,24 @@ tests =
 uniqueItemsTests : Test
 uniqueItemsTests =
     describe "uniqueItems"
-        [ test ""
-            <| always
-            <| equalSets (Set.fromList [ 18, 21 ])
-                (uniqueItems (.age)
-                    [ { age = Just 18 }
-                    , { age = Just 21 }
-                    , { age = Nothing }
-                    , { age = Just 21 }
-                    , { age = Just 18 }
-                    ]
-                )
+        [ test "" <|
+            always <|
+                equalSets (Set.fromList [ 18, 21 ])
+                    (uniqueItems (.age)
+                        [ { age = Just 18 }
+                        , { age = Just 21 }
+                        , { age = Nothing }
+                        , { age = Just 21 }
+                        , { age = Just 18 }
+                        ]
+                    )
         ]
 
 
 toggleTests : Test
 toggleTests =
-    describe "toggle"
-        <| List.map (test "" << always)
+    describe "toggle" <|
+        List.map (test "" << always)
             [ equalSets (Set.fromList [ "A", "B", "C" ])
                 (toggle "A" (Set.fromList [ "B", "C" ]))
             , equalSets (Set.fromList [ "C" ])

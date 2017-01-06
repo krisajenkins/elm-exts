@@ -12,8 +12,8 @@ tests =
 
 generationTests : Test
 generationTests =
-    describe "generation"
-        <| List.map (test "" << always)
+    describe "generation" <|
+        List.map (test "" << always)
             [ equal { empty | entering = [ 1, 2 ] }
                 (generation [ 1, 2 ] empty)
             , equal

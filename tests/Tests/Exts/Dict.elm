@@ -23,8 +23,8 @@ animals =
 
 getWithDefaultTests : Test
 getWithDefaultTests =
-    describe "getWithDefault"
-        <| List.map (test "" << always)
+    describe "getWithDefault" <|
+        List.map (test "" << always)
             [ equal "cat" (getWithDefault "def" "Tom" animals)
             , equal "def" (getWithDefault "def" "Mickey" animals)
             ]

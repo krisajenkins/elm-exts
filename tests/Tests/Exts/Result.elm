@@ -15,8 +15,8 @@ tests =
 
 fromOkTests : Test
 fromOkTests =
-    describe "fromOk"
-        <| List.map (test "" << always)
+    describe "fromOk" <|
+        List.map (test "" << always)
             [ equal (Just 5) (fromOk (Ok 5))
             , equal Nothing (fromOk (Err 5))
             ]
@@ -24,8 +24,8 @@ fromOkTests =
 
 fromErrTests : Test
 fromErrTests =
-    describe "fromErr"
-        <| List.map (test "" << always)
+    describe "fromErr" <|
+        List.map (test "" << always)
             [ equal (Just 5) (fromErr (Err 5))
             , equal Nothing (fromErr (Ok 5))
             ]

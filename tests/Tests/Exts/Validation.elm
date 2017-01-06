@@ -63,8 +63,8 @@ validateForm form =
 
 fullFormTests : Test
 fullFormTests =
-    describe "full form"
-        <| List.map (test "" << always)
+    describe "full form" <|
+        List.map (test "" << always)
             [ equal (Err "Age is required")
                 (validateForm
                     { message = Just "Hello"
