@@ -10,6 +10,7 @@ module Exts.List
         , exactlyOne
         , maximumBy
         , minimumBy
+        , unfold
         )
 
 {-| Extensions to the core `List` library.
@@ -24,6 +25,7 @@ module Exts.List
 @docs exactlyOne
 @docs maximumBy
 @docs minimumBy
+@docs unfold
 -}
 
 import Array exposing (Array)
@@ -175,3 +177,24 @@ minimumBy toComparable list =
 
         _ ->
             Nothing
+
+
+{-| Generate a `List` from a function and a seed value.
+
+I feel sorry for `unfold` - it doesn't get nearly as much love as
+`map` and `fold`, despite being in the same family.
+-}
+unfold : (b -> Maybe ( b, a )) -> b -> List a
+unfold f seed =
+    unfoldInternal f ( seed, Array.empty )
+        |> evaluate
+
+
+unfoldInternal : (b -> Maybe ( b, a )) -> ( b, Array a ) -> Trampoline (List a)
+unfoldInternal f ( seed, accumulator ) =
+    case f seed of
+        Nothing ->
+            done (Array.toList accumulator)
+
+        Just ( newSeed, next ) ->
+            unfoldInternal f ( newSeed, Array.push next accumulator )

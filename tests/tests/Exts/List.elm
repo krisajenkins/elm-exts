@@ -17,6 +17,7 @@ tests =
         , singletonTests
         , maximumByTests
         , minimumByTests
+        , unfoldTests
         ]
 
 
@@ -199,4 +200,34 @@ minimumByTests =
                 equal (Maybe.map Wrapper (List.minimum xs))
                     (minimumBy .value (List.map Wrapper xs))
             )
+        ]
+
+
+unfoldTests : Test
+unfoldTests =
+    describe "unfold"
+        [ test "Unfolding an int range." <|
+            always <|
+                equal (List.range 0 9)
+                    (unfold
+                        (\n ->
+                            if n < 10 then
+                                Just ( n + 1, n )
+                            else
+                                Nothing
+                        )
+                        0
+                    )
+        , test "Unfolding an int range, but trying to blow the stack." <|
+            always <|
+                equal (List.range 0 9999)
+                    (unfold
+                        (\n ->
+                            if n < 10000 then
+                                Just ( n + 1, n )
+                            else
+                                Nothing
+                        )
+                        0
+                    )
         ]
