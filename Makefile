@@ -1,7 +1,5 @@
-all: tests.js
+all: .tested
 
-tests.js: FORCE $(shell find src tests -type f -name '*.elm' -o -name '*.js')
-	elm-make --yes --warn
-	elm test
-
-FORCE:
+.tested: $(shell find src tests -type f -name '*.elm' -o -name '*.js')
+	$(MAKE) -C tests
+	touch $@
