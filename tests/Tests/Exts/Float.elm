@@ -2,8 +2,6 @@ module Tests.Exts.Float exposing (tests)
 
 import Expect exposing (..)
 import Exts.Float exposing (..)
-import Fuzz exposing (..)
-import Set
 import Test exposing (..)
 
 

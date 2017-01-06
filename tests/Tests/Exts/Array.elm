@@ -3,8 +3,6 @@ module Tests.Exts.Array exposing (tests)
 import Array exposing (..)
 import Expect exposing (..)
 import Exts.Array exposing (..)
-import Fuzz exposing (..)
-import Set
 import Test exposing (..)
 
 

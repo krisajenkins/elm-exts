@@ -3,7 +3,6 @@ module Tests.Exts.Basics exposing (tests)
 import Expect exposing (..)
 import Exts.Basics exposing (..)
 import Fuzz exposing (..)
-import Set
 import Test exposing (..)
 
 
