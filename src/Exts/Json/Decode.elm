@@ -5,6 +5,7 @@ module Exts.Json.Decode
         , decodeDate
         , parseWith
         , customDecoder
+        , set
         )
 
 {-| Extensions to the core `Json.Decode` library.
@@ -14,10 +15,12 @@ module Exts.Json.Decode
 @docs decodeDate
 @docs parseWith
 @docs customDecoder
+@docs set
 -}
 
 import Date exposing (Date)
 import Json.Decode exposing (..)
+import Set exposing (Set)
 import String
 
 
@@ -98,3 +101,10 @@ customDecoder decoder parser =
                     Ok v ->
                         succeed v
             )
+
+
+{-| Decode a JSON array of things directly into a `Set`.
+-}
+set : Decoder comparable -> Decoder (Set comparable)
+set =
+    list >> map Set.fromList
