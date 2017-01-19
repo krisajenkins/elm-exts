@@ -15,6 +15,7 @@ module Exts.Html.Bootstrap
         , well
         , jumbotron
         , badge
+        , btn
         , btnLink
         , btnInput
         )
@@ -208,18 +209,25 @@ popover direction isShown styles title body =
         ]
 
 
+
 ------------------------------------------------------------
 -- Buttons
 ------------------------------------------------------------
-{-
-   <a class="btn btn-default" href="#" role="button">Link</a>
-   <button class="btn btn-default" type="submit">Button</button>
-   <input class="btn btn-default" type="button" value="Input">
-   <input class="btn btn-default" type="submit" value="Submit">
+
+
+{-| Bootstrap button (<button>) component.
 -}
+btn : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btn inputType optionalClasses optionalAttributes =
+    btnHelper
+        "button"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (type_ inputType) ]
+        )
 
 
-{-| Bootstrap button (link) component.
+{-| Bootstrap button (<a>) component.
 -}
 btnLink : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
 btnLink url optionalClasses optionalAttributes =
@@ -233,7 +241,7 @@ btnLink url optionalClasses optionalAttributes =
         )
 
 
-{-| Bootstrap button (input) component.
+{-| Bootstrap button (<input>) component.
 -}
 btnInput : String -> String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
 btnInput inputType displayText optionalClasses optionalAttributes =
