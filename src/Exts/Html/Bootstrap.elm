@@ -15,6 +15,7 @@ module Exts.Html.Bootstrap
         , well
         , jumbotron
         , badge
+        , btnLink
         )
 
 {-| Base classes for Twitter Bootstrap 3 users.
@@ -204,3 +205,22 @@ popover direction isShown styles title body =
         , div [ class "popover-content" ]
             [ body ]
         ]
+
+
+
+
+------------------------------------------------------------
+-- Buttons
+------------------------------------------------------------
+
+
+{-| Bootstrap button (link) component.
+-}
+btnLink : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnLink url optionalClasses optionalAttributes =
+  let
+    initialClasses = "btn"
+    classList =
+      if optionalClasses /= "" then initialClasses ++ " " ++ optionalClasses else initialClasses
+  in
+    a (List.append [ class classList, (attribute "role" "button"), (href url)] optionalAttributes)
