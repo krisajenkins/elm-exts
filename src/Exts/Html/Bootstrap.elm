@@ -16,6 +16,7 @@ module Exts.Html.Bootstrap
         , jumbotron
         , badge
         , btnLink
+        , btnInput
         )
 
 {-| Base classes for Twitter Bootstrap 3 users.
@@ -207,20 +208,62 @@ popover direction isShown styles title body =
         ]
 
 
-
-
 ------------------------------------------------------------
 -- Buttons
 ------------------------------------------------------------
+{-
+   <a class="btn btn-default" href="#" role="button">Link</a>
+   <button class="btn btn-default" type="submit">Button</button>
+   <input class="btn btn-default" type="button" value="Input">
+   <input class="btn btn-default" type="submit" value="Submit">
+-}
 
 
 {-| Bootstrap button (link) component.
 -}
 btnLink : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
 btnLink url optionalClasses optionalAttributes =
-  let
-    initialClasses = "btn"
-    classList =
-      if optionalClasses /= "" then initialClasses ++ " " ++ optionalClasses else initialClasses
-  in
-    a (List.append [ class classList, (attribute "role" "button"), (href url)] optionalAttributes)
+    btnHelper
+        "a"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (attribute "role" "button")
+            , (href url)
+            ]
+        )
+
+
+{-| Bootstrap button (input) component.
+-}
+btnInput : String -> String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnInput inputType displayText optionalClasses optionalAttributes =
+    btnHelper
+        "input"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (value displayText)
+            , (type_ inputType)
+            ]
+        )
+
+
+btnHelper : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnHelper nodeTag optionalClasses optionalAttributes =
+    let
+        initialClasses =
+            "btn"
+
+        classList =
+            if optionalClasses /= "" then
+                initialClasses ++ " " ++ optionalClasses
+            else
+                initialClasses
+    in
+        node
+            nodeTag
+            (List.append
+                [ class classList
+                , (attribute "role" "button")
+                ]
+                optionalAttributes
+            )
