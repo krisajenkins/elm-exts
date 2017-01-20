@@ -15,6 +15,7 @@ module Exts.Html.Bootstrap
         , well
         , jumbotron
         , badge
+        , col
         )
 
 {-| Base classes for Twitter Bootstrap 3 users.
@@ -98,6 +99,27 @@ twoColumns left right =
         [ div [ class "col-xs-6" ] left
         , div [ class "col-xs-6" ] right
         ]
+
+
+{-| Bootstrap dynamic column. Must be used within a row.
+-}
+col : List ( String, Int ) -> List (Html msg) -> Html msg
+col sizes =
+    let
+        classList =
+            List.map addColClass sizes
+    in
+        div [ class (toString classList) ]
+
+
+{-| Helper function for column. Emits a single class (e.g. "col-xs-12")
+-}
+addColClass : ( String, Int ) -> String
+addColClass ( screenSize, cols ) =
+    if cols > 0 then
+        "col-" ++ screenSize ++ "-" ++ toString (cols)
+    else
+        ""
 
 
 {-| Bootstrap clearfix.
