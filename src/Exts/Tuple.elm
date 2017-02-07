@@ -32,8 +32,8 @@ indexedPair f x =
 {-| Update both components of a pair with a single function.
 -}
 both : (a -> b) -> ( a, a ) -> ( b, b )
-both f ( x, y ) =
-    ( f x, f y )
+both f =
+    pair f f
 
 
 {-| Update both components of a pair with two functions.
