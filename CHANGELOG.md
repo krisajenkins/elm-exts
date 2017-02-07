@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Version 27.0.0 -
+* Removed `Exts.Tuple.mapFirst` and `.mapSecond`. These are in core.
+
 ## Version 26.0.0 -
 
 Big breaking changes for Elm 0.18.

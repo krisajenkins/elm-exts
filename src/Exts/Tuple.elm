@@ -1,8 +1,6 @@
 module Exts.Tuple
     exposing
         ( indexedPair
-        , mapFirst
-        , mapSecond
         , both
         , pair
         , fork
@@ -13,8 +11,6 @@ module Exts.Tuple
 {-| Extensions for tuples.
 
 @docs indexedPair
-@docs mapFirst
-@docs mapSecond
 @docs both
 @docs pair
 @docs fork
@@ -31,20 +27,6 @@ module Exts.Tuple
 indexedPair : (a -> b) -> a -> ( b, a )
 indexedPair f x =
     ( f x, x )
-
-
-{-| Apply a function to the first component of a pair.
--}
-mapFirst : (a -> b) -> ( a, x ) -> ( b, x )
-mapFirst f ( x, y ) =
-    ( f x, y )
-
-
-{-| Apply a function to the second component of a pair.
--}
-mapSecond : (x -> y) -> ( a, x ) -> ( a, y )
-mapSecond f ( x, y ) =
-    ( x, f y )
 
 
 {-| Update both components of a pair with a single function.
