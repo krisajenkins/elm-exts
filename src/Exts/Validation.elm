@@ -68,7 +68,7 @@ apply f aResult =
 -}
 required : e -> Validator e a a
 required err =
-    Maybe.withDefault (Err err) << Maybe.map Ok
+    Result.fromMaybe err
 
 
 {-| A field that might be `Nothing`, but is only valid if it is a non-empty `String`.
