@@ -90,7 +90,7 @@ empty =
     span [] []
 
 
-{-| Two evenly-sized columns. Must be used within a row.
+{-| Two evenly-sized columns.
 -}
 twoColumns : List (Html msg) -> List (Html msg) -> Html msg
 twoColumns left right =
