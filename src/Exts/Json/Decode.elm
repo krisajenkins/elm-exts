@@ -6,6 +6,7 @@ module Exts.Json.Decode
         , parseWith
         , customDecoder
         , set
+        , exactlyOne
         )
 
 {-| Extensions to the core `Json.Decode` library.
@@ -16,6 +17,7 @@ module Exts.Json.Decode
 @docs parseWith
 @docs customDecoder
 @docs set
+@docs exactlyOne
 -}
 
 import Date exposing (Date)
@@ -108,3 +110,23 @@ customDecoder decoder parser =
 set : Decoder comparable -> Decoder (Set comparable)
 set =
     list >> map Set.fromList
+
+
+{-| Expects a list where *exactly* one element will succeed with the given decoder.
+-}
+exactlyOne : Decoder a -> Decoder a
+exactlyOne decoder =
+    list (maybe decoder)
+        |> andThen
+            (\results ->
+                let
+                    successes =
+                        List.filterMap identity results
+                in
+                    case successes of
+                        [ x ] ->
+                            succeed x
+
+                        _ ->
+                            fail <| "Expected exactly one matching element. Got: " ++ toString (List.length successes)
+            )
