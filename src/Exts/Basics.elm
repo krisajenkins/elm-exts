@@ -2,11 +2,24 @@ module Exts.Basics exposing (..)
 
 {-| Extensions to the core `Basics` library.
 
+@docs on
 @docs compareBy
 @docs maxBy
 @docs minBy
 
 -}
+
+
+{-| Run a function on two inputs, before doing something with the
+result. I can be useful for things like sorts. For example, `compare
+(List.length a) (List.length b)` can be written `on List.length
+compare`.
+
+See also `compareBy`.
+-}
+on : (a -> b) -> (b -> b -> c) -> a -> a -> c
+on f g a b =
+    g (f a) (f b)
 
 
 {-| Like `Basics.compare`, with a custom function. For example:
@@ -17,8 +30,8 @@ compareBy Date.toTime earlyDate laterDate
 ```
 -}
 compareBy : (a -> comparable) -> a -> a -> Order
-compareBy f a b =
-    compare (f a) (f b)
+compareBy f =
+    on f compare
 
 
 {-| Like `Basics.max`, but it works on non-comparable types by taking a custom function. For example:
