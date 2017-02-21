@@ -12,6 +12,7 @@ tests =
         [ joinTests
         , validateTests
         , matchesTests
+        , mappendTests
         , oneOfTests
         ]
 
@@ -72,3 +73,18 @@ oneOfTests =
                     )
             )
         ]
+
+
+mappendTests : Test
+mappendTests =
+    describe "mappend" <|
+        List.map (test "" << always)
+            [ equal Nothing
+                (mappend Nothing Nothing)
+            , equal Nothing
+                (mappend Nothing (Just 3))
+            , equal Nothing
+                (mappend (Just 2) Nothing)
+            , equal (Just ( 2, 3 ))
+                (mappend (Just 2) (Just 3))
+            ]
