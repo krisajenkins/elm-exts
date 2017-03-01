@@ -7,6 +7,7 @@ module Exts.Json.Decode
         , customDecoder
         , set
         , exactlyOne
+        , decodeEmptyObject
         )
 
 {-| Extensions to the core `Json.Decode` library.
@@ -18,9 +19,11 @@ module Exts.Json.Decode
 @docs customDecoder
 @docs set
 @docs exactlyOne
+@docs decodeEmptyObject
 -}
 
 import Date exposing (Date)
+import Dict
 import Json.Decode exposing (..)
 import Set exposing (Set)
 import String
@@ -129,4 +132,18 @@ exactlyOne decoder =
 
                         _ ->
                             fail <| "Expected exactly one matching element. Got: " ++ toString (List.length successes)
+            )
+
+
+{-| Decode the empty object as the value given, and fail otherwise.
+-}
+decodeEmptyObject : a -> Decoder a
+decodeEmptyObject default =
+    dict value
+        |> andThen
+            (\aDict ->
+                if Dict.isEmpty aDict then
+                    succeed default
+                else
+                    fail "Expected {}"
             )
