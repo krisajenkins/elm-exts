@@ -8,6 +8,7 @@ module Exts.Result exposing (..)
 @docs fromOk
 @docs fromErr
 @docs mappend
+@docs either
 -}
 
 
@@ -77,3 +78,29 @@ mappend a b =
 
         ( Ok x, Ok y ) ->
             Ok ( x, y )
+
+
+{-| Collapse a `Result` down to a single value of a single type.
+
+Example:
+
+``` elm
+  case result of
+    Err err -> errorView err
+    Ok value -> okView value
+```
+
+...is equivalent to:
+
+``` elm
+  either errorView okView result
+```
+-}
+either : (e -> c) -> (a -> c) -> Result e a -> c
+either f g r =
+    case r of
+        Err x ->
+            f x
+
+        Ok x ->
+            g x
