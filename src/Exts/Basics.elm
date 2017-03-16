@@ -11,7 +11,7 @@ module Exts.Basics exposing (..)
 
 
 {-| Run a function on two inputs, before doing something with the
-result. I can be useful for things like sorts. For example, `compare
+result. Can be useful for things like sorts. For example, `compare
 (List.length a) (List.length b)` can be written `on List.length
 compare`.
 
