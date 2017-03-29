@@ -15,6 +15,9 @@ module Exts.Html.Bootstrap
         , well
         , jumbotron
         , badge
+        , btn
+        , btnLink
+        , btnInput
         )
 
 {-| Base classes for Twitter Bootstrap 3 users.
@@ -204,3 +207,71 @@ popover direction isShown styles title body =
         , div [ class "popover-content" ]
             [ body ]
         ]
+
+
+
+------------------------------------------------------------
+-- Buttons
+------------------------------------------------------------
+
+
+{-| Bootstrap button (<button>) component.
+-}
+btn : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btn inputType optionalClasses optionalAttributes =
+    btnHelper
+        "button"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (type_ inputType) ]
+        )
+
+
+{-| Bootstrap button (<a>) component.
+-}
+btnLink : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnLink url optionalClasses optionalAttributes =
+    btnHelper
+        "a"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (attribute "role" "button")
+            , (href url)
+            ]
+        )
+
+
+{-| Bootstrap button (<input>) component.
+-}
+btnInput : String -> String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnInput inputType displayText optionalClasses optionalAttributes =
+    btnHelper
+        "input"
+        optionalClasses
+        (List.append optionalAttributes
+            [ (value displayText)
+            , (type_ inputType)
+            ]
+        )
+
+
+btnHelper : String -> String -> List (Attribute msg) -> List (Html msg) -> Html msg
+btnHelper nodeTag optionalClasses optionalAttributes =
+    let
+        initialClasses =
+            "btn"
+
+        classList =
+            if optionalClasses /= "" then
+                initialClasses ++ " " ++ optionalClasses
+            else
+                initialClasses
+    in
+        node
+            nodeTag
+            (List.append
+                [ class classList
+                , (attribute "role" "button")
+                ]
+                optionalAttributes
+            )
