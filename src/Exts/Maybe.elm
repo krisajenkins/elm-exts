@@ -37,6 +37,38 @@ isNothing =
 
 
 {-| Apply a function to a value, returning the default if the value is `Nothing`.
+
+Example:
+
+``` elm
+greeting : Maybe User -> String
+greeting maybeUser =
+  case maybeUser of
+    Just user -> user.name
+    Nothing -> "Guest"
+```
+
+...could be replaced with:
+
+``` elm
+greeting : Maybe User -> String
+greeting user = maybe "Guest" .name user
+```
+
+...or even:
+
+``` elm
+greeting : Maybe User -> String
+greeting = maybe "Guest" .name
+```
+
+
+_Aside: There's always a judgement call to be made here. Is shorter
+code clearer (because it removes common plumbing, leaving only
+meaning), or is it harder to understand (because people can't see how
+the plumbing works anymore)?  Learn both ways, choose with your eyes
+open, and stay tasteful out there._
+
 -}
 maybe : b -> (a -> b) -> Maybe a -> b
 maybe default f =
