@@ -3,7 +3,7 @@
     "name": "krisajenkins/elm-exts",
     "summary": "A collection of functions missing from the core.",
     "license": "MIT",
-    "version": "27.4.0",
+    "version": "28.0.0",
     "exposed-modules": [
         "Exts.Array",
         "Exts.Basics",
