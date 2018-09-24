@@ -1,4 +1,4 @@
-module Exts.Return exposing (addCmd, mapLens, mapOptional, mapOptionalWithFeedback, withFeedback)
+module Exts.Response exposing (addCmd, mapLens, mapOptional, mapOptionalWithFeedback, withFeedback)
 
 import Monocle.Lens exposing (..)
 import Monocle.Optional exposing (..)

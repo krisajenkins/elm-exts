@@ -1,24 +1,25 @@
-module Exts.Http
-    exposing
-        ( cgiParameters
-        , formBody
-        )
+module Exts.Http exposing
+    ( cgiParameters
+    , formBody
+    )
 
 {-| Extensions to the `Http` library.
 
 @docs cgiParameters
 @docs formBody
+
 -}
 
 import Http exposing (..)
 import String
+import Url exposing (percentEncode)
 
 
 {-| Encode a CGI parameter pair.
 -}
 cgiParameter : ( String, String ) -> String
 cgiParameter ( key, value ) =
-    encodeUri key ++ "=" ++ encodeUri value
+    percentEncode key ++ "=" ++ percentEncode value
 
 
 {-| Encode a CGI parameter list.

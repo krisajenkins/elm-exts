@@ -1,4 +1,10 @@
-module Exts.Html.Attributes exposing (defaultValue, defaultString, defaultInt, defaultFloat, styleList)
+module Exts.Html.Attributes exposing
+    ( defaultValue
+    , defaultString
+    , defaultInt
+    , defaultFloat
+    , styleList
+    )
 
 {-| Extensions to the `Html.Attributes` library.
 
@@ -7,6 +13,7 @@ module Exts.Html.Attributes exposing (defaultValue, defaultString, defaultInt, d
 @docs defaultInt
 @docs defaultFloat
 @docs styleList
+
 -}
 
 import Html exposing (Attribute)
@@ -43,15 +50,16 @@ defaultFloat =
 
 
 {-| This function makes it easier to specify a conditional set of styles.
-   This the style-equivalent of elm-html's classList.
+This the style-equivalent of elm-html's classList.
 -}
-styleList : List ( String, String, Bool ) -> Attribute msg
+styleList : List ( String, String, Bool ) -> List (Attribute msg)
 styleList =
     let
         withActive ( name, value, active ) =
             if active then
                 Just ( name, value )
+
             else
                 Nothing
     in
-        List.filterMap withActive >> Html.Attributes.style
+    List.filterMap withActive >> List.map (\( name, value ) -> Html.Attributes.style name value)

@@ -1,9 +1,13 @@
-module Exts.Html.Events exposing (onEnter, onSelect)
+module Exts.Html.Events exposing
+    ( onEnter
+    , onSelect
+    )
 
 {-| Extensions to the `Html.Events` library.
 
 @docs onEnter
 @docs onSelect
+
 -}
 
 import Exts.Json.Decode
@@ -16,6 +20,7 @@ keyCodeIs : Int -> Int -> Result String ()
 keyCodeIs expected actual =
     if expected == actual then
         Ok ()
+
     else
         Err "Not the right key code"
 
@@ -29,13 +34,10 @@ enterKey =
 -}
 onEnter : msg -> Attribute msg
 onEnter message =
-    onWithOptions "keydown"
-        { preventDefault = True
-        , stopPropagation = False
-        }
+    preventDefaultOn "keydown"
         (keyCode
             |> Decode.andThen (Exts.Json.Decode.parseWith enterKey)
-            |> Decode.andThen (always (Decode.succeed message))
+            |> Decode.andThen (always (Decode.succeed ( message, True )))
         )
 
 
@@ -43,6 +45,7 @@ emptyIsNothing : String -> Maybe String
 emptyIsNothing s =
     if s == "" then
         Nothing
+
     else
         Just s
 

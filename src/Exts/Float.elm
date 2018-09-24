@@ -1,8 +1,9 @@
-module Exts.Float exposing (..)
+module Exts.Float exposing (roundTo)
 
 {-| Extensions to the core `Float` library.
 
 @docs roundTo
+
 -}
 
 
@@ -14,8 +15,8 @@ roundTo places value =
         factor =
             toFloat (10 ^ places)
     in
-        ((value * factor)
-            |> round
-            |> toFloat
-        )
-            / factor
+    ((value * factor)
+        |> round
+        |> toFloat
+    )
+        / factor

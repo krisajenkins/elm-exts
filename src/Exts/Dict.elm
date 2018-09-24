@@ -1,4 +1,11 @@
-module Exts.Dict exposing (..)
+module Exts.Dict exposing
+    ( indexBy
+    , groupBy
+    , frequency
+    , getWithDefault
+    , foldToList
+    , updateDict
+    )
 
 {-| Extensions to the core `Dict` library.
 
@@ -16,12 +23,13 @@ import Dict exposing (Dict, insert)
 
 {-| Turn a list of items into an indexed dictionary.
 
-  Supply an indexing function (eg. `.id`) and a list of
-  items. `indexBy` returns a dictionary with each item stored under
-  its index.
+Supply an indexing function (eg. `.id`) and a list of
+items. `indexBy` returns a dictionary with each item stored under
+its index.
 
-  This code assumes each index is unique. If that is not the case, you
-  should use `groupBy` instead.
+This code assumes each index is unique. If that is not the case, you
+should use `groupBy` instead.
+
 -}
 indexBy : (v -> comparable) -> List v -> Dict comparable v
 indexBy f =
@@ -30,10 +38,11 @@ indexBy f =
 
 {-| Group a list of items by a key.
 
-  Supply an indexing function (eg. `.id`) and a list of
-  items. `groupBy` returns a dictionary of group-key/list-of-items.
+Supply an indexing function (eg. `.id`) and a list of
+items. `groupBy` returns a dictionary of group-key/list-of-items.
 
-  If the indexing function returns a unique key for every item, consider `indexBy` instead.
+If the indexing function returns a unique key for every item, consider `indexBy` instead.
+
 -}
 
 
@@ -52,9 +61,9 @@ groupBy f =
                 newValue =
                     x :: Maybe.withDefault [] (Dict.get key d)
             in
-                insert key newValue d
+            insert key newValue d
     in
-        List.foldl (reducer f) Dict.empty
+    List.foldl (reducer f) Dict.empty
 
 
 {-| Create a frequency-map from the given list.
@@ -73,7 +82,7 @@ frequency =
         reducer x =
             Dict.update x updater
     in
-        List.foldl reducer Dict.empty
+    List.foldl reducer Dict.empty
 
 
 {-| Attempt to find a key, if it's not there, return a default value.
@@ -117,6 +126,6 @@ updateDict f key dict =
                 ( newSubmodel, subcmd ) =
                     f submodel
             in
-                ( Dict.insert key newSubmodel dict
-                , subcmd
-                )
+            ( Dict.insert key newSubmodel dict
+            , subcmd
+            )

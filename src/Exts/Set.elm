@@ -1,4 +1,8 @@
-module Exts.Set exposing (..)
+module Exts.Set exposing
+    ( select
+    , uniqueItems
+    , toggle
+    )
 
 {-| Extensions to the core `Set` library.
 
@@ -21,7 +25,8 @@ select f keys =
 
 {-| Dive into a `List` to get a set of values.
 
-  For example, pulling a `Set` of countries from a `List` of users.
+For example, pulling a `Set` of countries from a `List` of users.
+
 -}
 uniqueItems : (a -> Maybe comparable) -> List a -> Set comparable
 uniqueItems accessor =
@@ -34,5 +39,6 @@ toggle : comparable -> Set comparable -> Set comparable
 toggle key set =
     if member key set then
         Set.remove key set
+
     else
         Set.insert key set

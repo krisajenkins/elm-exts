@@ -1,4 +1,4 @@
-module Exts.String exposing (..)
+module Exts.String exposing (removePrefix)
 
 {-| Extensions to the core `String` library.
 
@@ -13,7 +13,8 @@ import String exposing (dropLeft, length, startsWith)
 -}
 removePrefix : String -> String -> String
 removePrefix prefix s =
-    if (startsWith prefix s) then
+    if startsWith prefix s then
         dropLeft (length prefix) s
+
     else
         s
