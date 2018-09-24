@@ -1,32 +1,45 @@
 {
-    "type": "application",
-    "source-directories": [
-        "src"
-    ],
-    "elm-version": "0.19.0",
-    "dependencies": {
-        "direct": {
-            "arturopala/elm-monocle": "2.0.0",
-            "elm/browser": "1.0.0",
-            "elm/core": "1.0.0",
-            "elm/html": "1.0.0",
-            "elm/http": "1.0.0",
-            "elm/json": "1.0.0",
-            "elm/regex": "1.0.0",
-            "elm/time": "1.0.0",
-            "etaque/elm-response": "3.1.0"
-        },
-        "indirect": {
-            "elm/url": "1.0.0",
-            "elm/virtual-dom": "1.0.0"
-        }
-    },
-    "test-dependencies": {
-        "direct": {
-            "elm-explorations/test": "1.0.0"
-        },
-        "indirect": {
-            "elm/random": "1.0.0"
-        }
-    }
+  "type": "package",
+  "name": "krisajenkins/elm-exts",
+  "source-directories": [
+    "src"
+  ],
+  "exposed-modules": [
+    "Exts.Array",
+    "Exts.Basics",
+    "Exts.Cmd",
+    "Exts.Delta",
+    "Exts.Dict",
+    "Exts.Float",
+    "Exts.Function",
+    "Exts.Html",
+    "Exts.Html.Attributes",
+    "Exts.Html.Bootstrap",
+    "Exts.Html.Bootstrap.Glyphicons",
+    "Exts.Html.Events",
+    "Exts.Html.Table",
+    "Exts.Http",
+    "Exts.Int",
+    "Exts.Json.Decode",
+    "Exts.Json.Encode",
+    "Exts.LatLng",
+    "Exts.List",
+    "Exts.Maybe",
+    "Exts.Monocle",
+    "Exts.Response",
+    "Exts.Result",
+    "Exts.Set",
+    "Exts.String",
+    "Exts.Task",
+    "Exts.Tuple"
+  ],
+  "elm-version": "0.19.0 <= v < 0.20.0",
+  "dependencies": {
+    "elm/core": "1.0.0 <= v < 2.0.0",
+    "elm/http": "1.0.0 <= v < 2.0.0",
+    "elm/json": "1.0.0 <= v < 2.0.0"
+  },
+  "test-dependencies": {
+    "elm-explorations/test": "1.0.0 <= v < 2.0.0"
+  }
 }
