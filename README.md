@@ -20,7 +20,9 @@ $ elm package install krisajenkins/elm-exts
 ## Building & Testing
 
 ```
-make
+yarn
+yarn run elm make
+yarn run elm-test
 ```
 
 ...will run the whole build and test suite.

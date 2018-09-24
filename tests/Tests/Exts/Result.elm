@@ -2,6 +2,7 @@ module Tests.Exts.Result exposing (tests)
 
 import Expect exposing (..)
 import Exts.Result exposing (..)
+import Fuzz exposing (int)
 import Test exposing (..)
 
 
@@ -17,7 +18,7 @@ tests =
 fromOkTests : Test
 fromOkTests =
     describe "fromOk" <|
-        List.map (test "" << always)
+        List.indexedMap (\n -> test (String.fromInt n) << always)
             [ equal (Just 5) (fromOk (Ok 5))
             , equal Nothing (fromOk (Err 5))
             ]
@@ -26,7 +27,7 @@ fromOkTests =
 fromErrTests : Test
 fromErrTests =
     describe "fromErr" <|
-        List.map (test "" << always)
+        List.indexedMap (\n -> test (String.fromInt n) << always)
             [ equal (Just 5) (fromErr (Err 5))
             , equal Nothing (fromErr (Ok 5))
             ]
@@ -35,7 +36,7 @@ fromErrTests =
 mappendTests : Test
 mappendTests =
     describe "mappend" <|
-        List.map (test "" << always)
+        List.indexedMap (\n -> test (String.fromInt n) << always)
             [ equal (Err "A")
                 (mappend (Err "A") (Err "B"))
             , equal (Err "A")

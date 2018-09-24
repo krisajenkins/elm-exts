@@ -1,41 +1,40 @@
-module Exts.Json.Decode
-    exposing
-        ( stringIgnoringBlanks
-        , decodeTime
-        , decodeDate
-        , parseWith
-        , customDecoder
-        , set
-        , exactlyOne
-        , decodeEmptyObject
-        )
+module Exts.Json.Decode exposing
+    ( stringIgnoringBlanks
+    , decodeTime
+    , parseWith
+    , customDecoder
+    , set
+    , exactlyOne
+    , decodeEmptyObject
+    )
 
 {-| Extensions to the core `Json.Decode` library.
 
 @docs stringIgnoringBlanks
 @docs decodeTime
-@docs decodeDate
 @docs parseWith
 @docs customDecoder
 @docs set
 @docs exactlyOne
 @docs decodeEmptyObject
+
 -}
 
-import Date exposing (Date)
 import Dict
 import Json.Decode exposing (..)
 import Set exposing (Set)
 import String
+import Time
 
 
 {-| A decoder like `(maybe string)`, except an empty or whitespace string is treated as `Nothing`.
 
 Useful for dirty data-models.
+
 -}
 stringIgnoringBlanks : Decoder (Maybe String)
 stringIgnoringBlanks =
-    (maybe string)
+    maybe string
         |> andThen
             (\maybeString ->
                 succeed
@@ -49,15 +48,16 @@ parseEmptyOrString : String -> Maybe String
 parseEmptyOrString string =
     if String.isEmpty (String.trim string) then
         Nothing
+
     else
         Just string
 
 
 {-| Decode a Date from seconds-since-the-epoch.
 -}
-decodeTime : Decoder Date
+decodeTime : Decoder Time.Posix
 decodeTime =
-    map Date.fromTime float
+    map Time.millisToPosix int
 
 
 {-| DEPRECATED: Use customDecoder instead.
@@ -67,12 +67,11 @@ Lift a function that parses things, returning a `Result`, into the world of deco
 If you're looking for the pre-0.18 function `customDecoder`, you can
 use something like this instead:
 
-``` elm
-decodeUUID : Decoder UUID
-decodeUUID =
-    string
-        |> andThen (parseWith UUID.fromString)
-```
+    decodeUUID : Decoder UUID
+    decodeUUID =
+        string
+            |> andThen (parseWith UUID.fromString)
+
 -}
 parseWith : (a -> Result String b) -> a -> Decoder b
 parseWith f input =
@@ -82,14 +81,6 @@ parseWith f input =
 
         Ok value ->
             succeed value
-
-
-{-| Decode a Date from a string, using the same format as the core
-function `Date.fromString`.
--}
-decodeDate : Decoder Date
-decodeDate =
-    customDecoder string Date.fromString
 
 
 {-| Combine a primitive decoder and a parser to make a more sophisticated decoder.
@@ -115,7 +106,7 @@ set =
     list >> map Set.fromList
 
 
-{-| Expects a list where *exactly* one element will succeed with the given decoder.
+{-| Expects a list where _exactly_ one element will succeed with the given decoder.
 -}
 exactlyOne : Decoder a -> Decoder a
 exactlyOne decoder =
@@ -126,12 +117,12 @@ exactlyOne decoder =
                     successes =
                         List.filterMap identity results
                 in
-                    case successes of
-                        [ x ] ->
-                            succeed x
+                case successes of
+                    [ x ] ->
+                        succeed x
 
-                        _ ->
-                            fail <| "Expected exactly one matching element. Got: " ++ toString (List.length successes)
+                    _ ->
+                        fail <| "Expected exactly one matching element. Got: " ++ String.fromInt (List.length successes)
             )
 
 
@@ -144,6 +135,7 @@ decodeEmptyObject default =
             (\aDict ->
                 if Dict.isEmpty aDict then
                     succeed default
+
                 else
                     fail "Expected {}"
             )

@@ -1,4 +1,7 @@
-module Exts.Html exposing (matchText, nbsp)
+module Exts.Html exposing
+    ( matchText
+    , nbsp
+    )
 
 {-| Extensions to the `Html` library.
 
@@ -8,8 +11,8 @@ module Exts.Html exposing (matchText, nbsp)
 -}
 
 import Exts.List exposing (rest)
-import Html exposing (Html, Attribute, text, span)
-import Regex exposing (Regex, HowMany(All), find)
+import Html exposing (Attribute, Html, span, text)
+import Regex exposing (Regex, find)
 import String exposing (length)
 
 
@@ -40,7 +43,7 @@ matchText : List (Attribute msg) -> Regex -> String -> List (Html msg)
 matchText attributes search string =
     let
         matches =
-            find All search string
+            find search string
 
         matchBoundaries place =
             [ ( place.index, True )
@@ -57,23 +60,23 @@ matchText attributes search string =
 
         allSegmentBoundaries =
             matchStringStart
-                ++ (List.concatMap matchBoundaries
-                        matches
-                   )
+                ++ List.concatMap matchBoundaries
+                    matches
                 ++ matchStringEnd
 
         sliceSegments ( start, match ) ( end, _ ) =
             span
                 (if match then
                     attributes
+
                  else
                     []
                 )
                 [ text (String.slice start end string) ]
     in
-        List.map2 sliceSegments
-            allSegmentBoundaries
-            (rest allSegmentBoundaries)
+    List.map2 sliceSegments
+        allSegmentBoundaries
+        (rest allSegmentBoundaries)
 
 
 {-| A non-breaking space. elm-html doesn't support escape sequences

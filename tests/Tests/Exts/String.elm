@@ -24,15 +24,16 @@ validIndex n s =
 removePrefixTests : Test
 removePrefixTests =
     describe "removePrefix"
-        [ test "" <| always <| equal "elm" (removePrefix "cr" "crelm")
-        , test "" <| always <| equal "mouthwash" (removePrefix "cr" "mouthwash")
+        [ test "Present" <| always <| equal "elm" (removePrefix "cr" "crelm")
+        , test "Absent" <| always <| equal "mouthwash" (removePrefix "cr" "mouthwash")
         , fuzz
             (Fuzz.map
                 (\( n, s ) ->
                     if String.isEmpty s then
                         ( 0, s )
+
                     else
-                        ( n % String.length s, s )
+                        ( remainderBy n (String.length s), s )
                 )
                 (tuple ( int, string ))
             )

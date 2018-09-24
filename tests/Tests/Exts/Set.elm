@@ -17,10 +17,10 @@ tests =
 uniqueItemsTests : Test
 uniqueItemsTests =
     describe "uniqueItems"
-        [ test "" <|
+        [ test "Simple" <|
             always <|
                 equalSets (Set.fromList [ 18, 21 ])
-                    (uniqueItems (.age)
+                    (uniqueItems .age
                         [ { age = Just 18 }
                         , { age = Just 21 }
                         , { age = Nothing }
@@ -34,7 +34,7 @@ uniqueItemsTests =
 toggleTests : Test
 toggleTests =
     describe "toggle" <|
-        List.map (test "" << always)
+        List.indexedMap (\n -> test (String.fromInt n) << always)
             [ equalSets (Set.fromList [ "A", "B", "C" ])
                 (toggle "A" (Set.fromList [ "B", "C" ]))
             , equalSets (Set.fromList [ "C" ])

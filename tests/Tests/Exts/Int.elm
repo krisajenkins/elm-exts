@@ -15,7 +15,7 @@ tests =
 floorByTests : Test
 floorByTests =
     describe "floorBy" <|
-        List.map (test "" << always)
+        List.indexedMap (\n -> test (String.fromInt n) << always)
             [ equal Nothing (floorBy 0 143)
             , equal (Just 142) (floorBy 2 143)
             , equal (Just 100) (floorBy 50 143)

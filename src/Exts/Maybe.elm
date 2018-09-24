@@ -1,4 +1,16 @@
-module Exts.Maybe exposing (..)
+module Exts.Maybe exposing
+    ( isJust
+    , isNothing
+    , maybe
+    , mappend
+    , catMaybes
+    , join
+    , maybeDefault
+    , matches
+    , validate
+    , when
+    , oneOf
+    )
 
 {-| Extensions to the core `Maybe` library.
 
@@ -13,6 +25,7 @@ module Exts.Maybe exposing (..)
 @docs validate
 @docs when
 @docs oneOf
+
 -}
 
 import Maybe exposing (withDefault)
@@ -40,33 +53,31 @@ isNothing =
 
 Example:
 
-``` elm
-greeting : Maybe User -> String
-greeting maybeUser =
-  case maybeUser of
-    Just user -> user.name
-    Nothing -> "Guest"
-```
+    greeting : Maybe User -> String
+    greeting maybeUser =
+        case maybeUser of
+            Just user ->
+                user.name
+
+            Nothing ->
+                "Guest"
 
 ...could be replaced with:
 
-``` elm
-greeting : Maybe User -> String
-greeting user = maybe "Guest" .name user
-```
+    greeting : Maybe User -> String
+    greeting user =
+        maybe "Guest" .name user
 
 ...or even:
 
-``` elm
-greeting : Maybe User -> String
-greeting = maybe "Guest" .name
-```
-
+    greeting : Maybe User -> String
+    greeting =
+        maybe "Guest" .name
 
 _Aside: There's always a judgement call to be made here. Is shorter
 code clearer (because it removes common plumbing, leaving only
 meaning), or is it harder to understand (because people can't see how
-the plumbing works anymore)?  Learn both ways, choose with your eyes
+the plumbing works anymore)? Learn both ways, choose with your eyes
 open, and stay tasteful out there._
 
 -}
@@ -113,8 +124,8 @@ join f left right =
 {-| If `x` is a `Just _` value, return it, otherwise return `Just default`.
 -}
 maybeDefault : a -> Maybe a -> Maybe a
-maybeDefault default x =
-    case x of
+maybeDefault default v =
+    case v of
         Just x ->
             Just x
 
@@ -125,12 +136,15 @@ maybeDefault default x =
 {-| Validate a value against a predicate, returning a `Maybe`.
 
     validate isEven 2 => Just 2
+
     validate isEven 3 => Nothing
+
 -}
 validate : (a -> Bool) -> a -> Maybe a
 validate predicate value =
     if predicate value then
         Just value
+
     else
         Nothing
 
@@ -138,8 +152,11 @@ validate predicate value =
 {-| Check the if value in the `Maybe` matches a predicate. If it does, pass it through, if not, return nothing.
 
     matches isEven (Just 2) => Just 2
+
     matches isEven (Just 3) => Nothing
+
     matches isEven Nothing => Nothing
+
 -}
 matches : (a -> Bool) -> Maybe a -> Maybe a
 matches predicate =
@@ -152,6 +169,7 @@ when : Bool -> a -> Maybe a
 when test value =
     if test then
         Just value
+
     else
         Nothing
 
@@ -164,6 +182,7 @@ oneOf =
         (\x acc ->
             if acc /= Nothing then
                 acc
+
             else
                 x
         )

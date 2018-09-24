@@ -10,8 +10,9 @@ tests : Test
 tests =
     describe "Exts.Basics"
         [ compareByTests
-          -- , maxByTests
-          -- , minByTests
+
+        -- , maxByTests
+        -- , minByTests
         ]
 
 

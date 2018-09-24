@@ -1,4 +1,12 @@
-module Exts.Result exposing (..)
+module Exts.Result exposing
+    ( mapBoth
+    , isOk
+    , isErr
+    , fromOk
+    , fromErr
+    , mappend
+    , either
+    )
 
 {-| Extensions to the core `Result` library.
 
@@ -9,6 +17,7 @@ module Exts.Result exposing (..)
 @docs fromErr
 @docs mappend
 @docs either
+
 -}
 
 
@@ -45,8 +54,8 @@ isErr =
 {-| Convert a `Result` to a `Maybe`.
 -}
 fromOk : Result e a -> Maybe a
-fromOk x =
-    case x of
+fromOk v =
+    case v of
         Ok x ->
             Just x
 
@@ -56,8 +65,8 @@ fromOk x =
 
 {-| -}
 fromErr : Result e a -> Maybe e
-fromErr x =
-    case x of
+fromErr v =
+    case v of
         Err x ->
             Just x
 
@@ -84,17 +93,14 @@ mappend a b =
 
 Example:
 
-``` elm
-  case result of
-    Err err -> errorView err
-    Ok value -> okView value
-```
+      case result of
+        Err err -> errorView err
+        Ok value -> okView value
 
 ...is equivalent to:
 
-``` elm
-  either errorView okView result
-```
+      either errorView okView result
+
 -}
 either : (e -> c) -> (a -> c) -> Result e a -> c
 either f g r =

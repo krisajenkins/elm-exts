@@ -1,17 +1,23 @@
-module Exts.Delta exposing (Delta, empty, generation)
+module Exts.Delta exposing
+    ( Delta
+    , empty
+    , generation
+    )
 
 {-| A system for tracking players that enter and leave a stage, a-la D3.
 
 Implementation detail: This code is hampered by the lack of Elm's type classes. Note the following:
-1. Performance may degrade badly as the number of elements increases.
-2. It is up to you to ensure (a) implments Eq correctly.
+
+1.  Performance may degrade badly as the number of elements increases.
+2.  It is up to you to ensure (a) implments Eq correctly.
 
 @docs Delta
 @docs empty
 @docs generation
+
 -}
 
-import List exposing (append, partition, (::))
+import List exposing ((::), append, partition)
 
 
 filter : (a -> Bool) -> List a -> List a
@@ -20,11 +26,12 @@ filter p xs =
         [] ->
             []
 
-        x :: xs ->
-            if p x then
-                x :: (filter p xs)
+        y :: ys ->
+            if p y then
+                y :: filter p ys
+
             else
-                filter p xs
+                filter p ys
 
 
 remove : (a -> Bool) -> List a -> List a
@@ -88,8 +95,8 @@ generation xs ds =
         newContinuers =
             intersect xs actives
     in
-        { empty
-            | entering = newEntries
-            , continuing = newContinuers
-            , leaving = newLeavers
-        }
+    { empty
+        | entering = newEntries
+        , continuing = newContinuers
+        , leaving = newLeavers
+    }

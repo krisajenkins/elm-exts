@@ -24,26 +24,25 @@ tests =
 chunkTests : Test
 chunkTests =
     describe "chunk"
-        [ test "" <|
+        [ test "Empty List 1" <|
             always <|
                 equal [ [] ]
                     (chunk 0 [])
-        , test "" <|
+        , test "Empty List 2" <|
             always <|
                 equal []
                     (chunk 3 [])
-        , test "" <|
+        , test "Partial list" <|
             always <|
-                equal ([ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ])
+                equal [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ]
                     (chunk 3 (List.range 1 10))
-        , test "" <|
+        , test "Perfect range" <|
             always <|
                 equal
-                    ([ (List.range 1 4)
-                     , (List.range 5 8)
-                     , (List.range 9 12)
-                     ]
-                    )
+                    [ List.range 1 4
+                    , List.range 5 8
+                    , List.range 9 12
+                    ]
                     (chunk 4 (List.range 1 12))
         , fuzz2 int
             (list char)
@@ -82,53 +81,42 @@ mergeByTests =
         t2b =
             { id = 2, name = "Three!" }
     in
-        describe "mergeBy"
-            [ test "" <|
-                always <|
-                    equal []
-                        (mergeBy .id [] [])
-            , test "" <|
-                always <|
-                    equal [ t1, t2a ]
-                        (mergeBy .id
-                            [ t1, t2a ]
-                            []
-                        )
-            , test "" <|
-                always <|
-                    equal [ t1, t2a ]
-                        (mergeBy .id
-                            []
-                            [ t1, t2a ]
-                        )
-            , test "" <|
-                always <|
-                    equal [ t1, t2b ]
-                        (mergeBy .id
-                            [ t1, t2a, t2b ]
-                            []
-                        )
-            , test "" <|
-                always <|
-                    equal [ t1, t2b ]
-                        (mergeBy .id
-                            [ t1, t2a ]
-                            [ t2b ]
-                        )
-            , test "" <|
-                always <|
-                    equal [ t1, t2a ]
-                        (mergeBy .id
-                            [ t2b ]
-                            [ t1, t2a ]
-                        )
+    describe "mergeBy" <|
+        List.indexedMap (\n -> test (String.fromInt n) << always)
+            [ equal []
+                (mergeBy .id [] [])
+            , equal [ t1, t2a ]
+                (mergeBy .id
+                    [ t1, t2a ]
+                    []
+                )
+            , equal [ t1, t2a ]
+                (mergeBy .id
+                    []
+                    [ t1, t2a ]
+                )
+            , equal [ t1, t2b ]
+                (mergeBy .id
+                    [ t1, t2a, t2b ]
+                    []
+                )
+            , equal [ t1, t2b ]
+                (mergeBy .id
+                    [ t1, t2a ]
+                    [ t2b ]
+                )
+            , equal [ t1, t2a ]
+                (mergeBy .id
+                    [ t2b ]
+                    [ t1, t2a ]
+                )
             ]
 
 
 firstMatchTests : Test
 firstMatchTests =
     describe "firstMatch"
-        [ test "" <| always <| equal Nothing (firstMatch (always True) [])
+        [ test "Empty" <| always <| equal Nothing (firstMatch (always True) [])
         , fuzz (list int)
             "An always-false predicate is the same as Nothing."
             (\items ->
@@ -152,14 +140,14 @@ firstMatchTests =
 
 isEven : Int -> Bool
 isEven n =
-    n % 2 == 0
+    remainderBy 2 n == 0
 
 
 uniqueTests : Test
 uniqueTests =
     describe "unique"
-        [ test "" <| always <| equal [] (unique [])
-        , test "" <| always <| equal [ 1, 3, 2, 4 ] (unique [ 1, 3, 2, 4, 1, 2, 3, 4 ])
+        [ test "Empty" <| always <| equal [] (unique [])
+        , test "Full" <| always <| equal [ 1, 3, 2, 4 ] (unique [ 1, 3, 2, 4, 1, 2, 3, 4 ])
         ]
 
 
@@ -169,7 +157,7 @@ given the type signature. Parametricity can be mind-blowing...
 singletonTests : Test
 singletonTests =
     describe "singleton"
-        [ test "" <|
+        [ test "Empty" <|
             always <|
                 equal [ () ] (singleton ())
         ]
@@ -213,6 +201,7 @@ unfoldTests =
                         (\n ->
                             if n < 10 then
                                 Just ( n + 1, n )
+
                             else
                                 Nothing
                         )
@@ -225,6 +214,7 @@ unfoldTests =
                         (\n ->
                             if n < 10000 then
                                 Just ( n + 1, n )
+
                             else
                                 Nothing
                         )
